@@ -1,19 +1,13 @@
 <?php
 session_start();
-
-/* if(!empty($_GET["x"]))
-{
-	$xx=$_GET["x"];
-	echo $xx;
-	
-} */
 ?>
+
 <!DOCTYPE html>
 <html>
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>AdminLTE 2 | Dashboard</title>
+  <title>Admin</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.7 -->
@@ -22,8 +16,8 @@ session_start();
   <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css">
   <!-- Ionicons -->
   <link rel="stylesheet" href="bower_components/Ionicons/css/ionicons.min.css">
-  <!-- jvectormap -->
-  <link rel="stylesheet" href="bower_components/jvectormap/jquery-jvectormap.css">
+  <!-- DataTables -->
+  <link rel="stylesheet" href="bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="dist/css/AdminLTE.min.css">
   <!-- AdminLTE Skins. Choose a skin from the css/skins
@@ -45,27 +39,28 @@ session_start();
 <div class="wrapper">
 
   <header class="main-header">
-
     <!-- Logo -->
-    <a href="" class="logo">
+   <a href="starter.html" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class="logo-mini"><b>A</b>H</span>
       <!-- logo for regular state and mobile devices -->
       <span class="logo-lg"><b>Elite Shoppy</b></span>
     </a>
-
     <!-- Header Navbar: style can be found in header.less -->
     <nav class="navbar navbar-static-top">
       <!-- Sidebar toggle button-->
       <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
         <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
       </a>
-      <!-- Navbar Right Menu -->
-      <div class="navbar-custom-menu">
+
+       <div class="navbar-custom-menu">
         <ul class="nav navbar-nav">
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-			<?php
+			 <?php
 				$id=$_SESSION['txtemail'];
 				$con=mysqli_connect("localhost","maria","maria","os");
 				$sq="select gender from registration where email='$id';"; 
@@ -78,7 +73,7 @@ session_start();
 				else
 				{
 					echo "<img src='dist/imgs/MALE.jpg' class='user-image' alt='User Image'>";
-				}	
+				}	 
 			   
 				$id=$_SESSION["txtemail"];
 				$con=mysqli_connect("localhost","maria","maria","os");
@@ -87,7 +82,7 @@ session_start();
 				$row=mysqli_fetch_assoc($res);
 				echo "<span class='hidden-xs'>".$row['name']."</span>";
 			    ?>
-              
+               
              
             </a>
             <ul class="dropdown-menu">
@@ -142,8 +137,7 @@ session_start();
           </li>
         </ul>
       </div>
-
-    </nav>
+	  </nav>
   </header>
   <!-- Left side column. contains the logo and sidebar -->
   <aside class="main-sidebar">
@@ -155,7 +149,7 @@ session_start();
 		<?php
 				$id=$_SESSION["txtemail"];
 				$con=mysqli_connect("localhost","maria","maria","os");
-				/* $sq="select gender from registration where email='$id';";*/ 
+				/* $sq="select gender from registration where email='$id';"; */
 				echo "<img src='dist/imgs/FEMALE.jpg' class='img-circle' alt='User Image'>";
 				/*$res=mysqli_query($con,$sq);
 				$row=mysqli_fetch_assoc($res);
@@ -183,7 +177,7 @@ session_start();
           
         </div>
       </div>
-      <!-- search form -->
+       <!-- search form -->
       <form action="#" method="get" class="sidebar-form">
         <div class="input-group">
           <input type="text" name="q" class="form-control" placeholder="Search...">
@@ -196,7 +190,6 @@ session_start();
       </form>
       <!-- /.search form -->
       <!-- sidebar menu: : style can be found in sidebar.less -->
-     
        <ul class="sidebar-menu" data-widget="tree">
         <li class="header">MAIN NAVIGATION</li>
         <li class="treeview">
@@ -215,8 +208,9 @@ session_start();
             </span>
           </a>
          <ul class="treeview-menu">
-            <li class="active" ><a href="Add_Product.php"><i class="fa fa-circle-o"></i> Add Product</a></li>
-			<li ><a href="seller1.php"><i class="fa fa-circle-o"></i> Add Seller</a></li>
+            <li ><a href="Add_Product.php"><i class="fa fa-circle-o"></i> Add Product</a></li>
+			<li ><a href="Admin_seller.php"><i class="fa fa-circle-o"></i> Add Seller</a></li>
+			<li ><a href="Admin_addsp.php"><i class="fa fa-circle-o"></i> Seller Product</a></li>
           </ul>
         </li>
 		  <li class="treeview">
@@ -228,10 +222,10 @@ session_start();
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="Admin_vbook.php"><i class="fa fa-circle-o"></i> View Users</a></li>
-			<li><a href="view_user.php"><i class="fa fa-circle-o"></i> View Products</a></li>
-			<li><a href="view_college.php"><i class="fa fa-circle-o"></i> View Sellors</a></li>
-			<li><a href="view_feedback.php"><i class="fa fa-circle-o"></i> View Feedback</a></li>
+            <li><a href="View_Users.php"><i class="fa fa-circle-o"></i> View Users</a></li>
+			<li><a href="View_Product.php"><i class="fa fa-circle-o"></i> View Products</a></li>
+			<li><a href="Admin_dslr.php"><i class="fa fa-circle-o"></i> View Sellors</a></li>
+			<li><a href=""><i class="fa fa-circle-o"></i> View Feedback</a></li>
           </ul>
         </li>
 		<li class="treeview">
@@ -242,32 +236,21 @@ session_start();
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href=""><i class="fa fa-circle-o"></i> Edit Products</a></li>
+            <li><a href="Admin_pedr.php"><i class="fa fa-circle-o"></i> Edit Products</a></li>
+			<li><a href="Admin_dsp.php"><i class="fa fa-circle-o"></i> Delete Products</a></li>
           </ul>
         </li>
-  </aside>
-
-        
+    </section>
+    <!-- /.sidebar -->
   </aside>
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
-   <!-- <section class="content-header">
-      <h1>
-        MCA Virtual Library
-        <small></small>
-      </h1>
-      <ol class="breadcrumb">
-        <li><a href="index_Admin.php"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active">Add Books</li>
-      </ol>
-    </section>-->
+    
+	<section class="content" background-color="red">
 
-    <!-- Main content -->
-    <section class="content">
-      <!-- Info boxes -->
-      <div class="row">
+       <div class="row">
         <div class="col-md-3 col-sm-6 col-xs-12">
           <div class="info-box">
             <!--<span class="info-box-icon bg-aqua"><i class="ion ion-ios-gear-outline"></i></span>-->
@@ -306,33 +289,13 @@ session_start();
           </div>
           <!-- /.info-box -->
         </div>
-        <!-- /.col -->
-
-        <!-- fix for small devices only -->
- 
-        <!-- /.col -->
- 
-        <!-- /.col -->
-      </div>
-	  <!-- page content -->
-       <div class="right_col" role="main">
-          <div class="">
-            <div class="page-title">
-              <div class="title_left">
-                <h3></h3>
-              </div>
-			
-                  </div>
-              
+		</div>
+					
+			<div class="box">
+            <div class="box-header">
+              <h2 align="center">Delete Products</h3>
             </div>
-           <div class="clearfix"></div>
-               </div>
-			   <div class="x_title">
-                    <h2 align="center">ADD PRODUCT</h2>
-                    
-                    <div class="clearfix"></div>
-                  </div>
-			
+					
 			<div class="box-body">
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
@@ -345,7 +308,7 @@ session_start();
 				  <th>DISCOUNT</th>
 				  <th>DESCRIPTION</th>
 				  <th>IMAGE</th>
-				   <th>KEY WORDS</th>
+				  
 				  <th>QUANTITY</th>
 				  <th>SELLER</th>
 				  <th>OPTIONS</th>
@@ -361,7 +324,7 @@ session_start();
 								if(mysqli_num_rows($res)>0){
 									while($row=$res->fetch_assoc()){
 									
-									echo "<tr><td>". $row["p_id"]. "</td><td>" .$row["p_name"]. "</td><td>" .$row["p_cat"]. "</td><td>" .$row["p_brand"]. "</td><td>" .$row["p_price"]. "</td><td>" .$row["p_dis"]. "</td><td>" .$row["p_desc"]. "</td><td><img src='images/".$row["p_img"]."' width='100px' height='100px'></td><td>" .$row["p_key"]. "</td><td>" .$row["p_qty"]. "</td><td>" .$row["p_seller"]. "</td><td align='middle'> <div class='btn-group'>
+									echo "<tr><td>". $row["p_id"]. "</td><td>" .$row["p_name"]. "</td><td>" .$row["p_cat"]. "</td><td>" .$row["p_brand"]. "</td><td>" .$row["p_price"]. "</td><td>" .$row["p_dis"]. "</td><td>" .$row["p_desc"]. "</td><td><img src='images/".$row["p_img"]."' width='100px' height='100px'></td><td>" .$row["p_qty"]. "</td><td>" .$row["p_seller"]. "</td><td align='middle'> <div class='btn-group'>
 				  <div class='btn-group'>
                         
                   <button type='button' class='btn btn-default dropdown-toggle btn-sm' data-toggle='dropdown'>
@@ -379,88 +342,26 @@ session_start();
 									}
 								  
 							?>
-                <!--<tr>
-                  <td> </td>
-                  <td> </td>
-                  <td> </td>
-				  <td> </td>
-				  <td> </td>
-				   <td> </td>
-                  <td> </td>
-                  <td> </td>
-				  <td> </td>
-				  <td> </td>
-				   <td align="middle"> <div class="btn-group">
-				  <div class="btn-group">
-                        
-                  <button type="button" class="btn btn-default dropdown-toggle btn-sm" data-toggle="dropdown">
-				  Options
-                    <span class="caret"></span>
-                    <span class="sr-only">Toggle Dropdown</span>				
-                  </button>
+							</table>
+	
+    </section>
 
-                        <ul class="dropdown-menu">
-                          <li><a href="#">Edit</a></li>
-                          <li><a href="#">Delete</a></li>
-                        </ul>
-                   </div>
-                    </div></td>
-                </tr>
-                
-				<tfoot>
-                <tr>
-                  
-                </tr>
-                </tfoot>-->
-					</table>
-				</div>
-			</div>
-		</div>
-		</div>
-            <!-- /.box-header -->
-            <!-- form start -->
- 
-            <!-- /.box-body -->
-            
+  </div>
   <!-- /.content-wrapper -->
-
-  <!--<footer class="main-footer">
+  <!-- <footer class="main-footer">
     <div class="pull-right hidden-xs">
       <b>Version</b> 2.4.0
     </div>
-    <strong>Copyright &copy; <a href=""> MCA Studio</a>.</strong> All rights
+    <strong>Copyright &copy; 2014-2016 <a href="https://adminlte.io">Almsaeed Studio</a>.</strong> All rights
     reserved.
-  </footer>-->
+  </footer> -->
 
   <!-- Control Sidebar -->
-  <aside class="control-sidebar control-sidebar-dark">
-    <!-- Create the tabs -->
-    <ul class="nav nav-tabs nav-justified control-sidebar-tabs">
-     <!-- <li><a href="#control-sidebar-home-tab" data-toggle="tab"><i class="fa fa-home"></i></a></li>-->
-      <li><a href="#control-sidebar-settings-tab" data-toggle="tab"><i class="fa fa-gears"></i></a></li>
-    </ul>
-    <!-- Tab panes -->
-    <div class="tab-content">
-      <!-- Home tab content -->
-      <div class="tab-pane" id="control-sidebar-home-tab">
-            </a>
-          </li>
-        </ul>
-        <!-- /.control-sidebar-menu -->
-
-      </div>
-      <!-- /.tab-pane -->
-
-      <!-- Settings tab content -->
-     
-      <!-- /.tab-pane -->
-    </div>
-  </aside>
+  
   <!-- /.control-sidebar -->
   <!-- Add the sidebar's background. This div must be placed
        immediately after the control sidebar -->
   <div class="control-sidebar-bg"></div>
-
 </div>
 <!-- ./wrapper -->
 
@@ -468,22 +369,30 @@ session_start();
 <script src="bower_components/jquery/dist/jquery.min.js"></script>
 <!-- Bootstrap 3.3.7 -->
 <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<!-- DataTables -->
+<script src="bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+<script src="bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+<!-- SlimScroll -->
+<script src="bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
 <!-- FastClick -->
 <script src="bower_components/fastclick/lib/fastclick.js"></script>
 <!-- AdminLTE App -->
 <script src="dist/js/adminlte.min.js"></script>
-<!-- Sparkline -->
-<script src="bower_components/jquery-sparkline/dist/jquery.sparkline.min.js"></script>
-<!-- jvectormap  -->
-<script src="plugins/jvectormap/jquery-jvectormap-1.2.2.min.js"></script>
-<script src="plugins/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
-<!-- SlimScroll -->
-<script src="bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
-<!-- ChartJS -->
-<script src="bower_components/Chart.js/Chart.js"></script>
-<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-<script src="dist/js/pages/dashboard2.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="dist/js/demo.js"></script>
+<!-- page script -->
+<script>
+  $(function () {
+    $('#example1').DataTable()
+    $('#example2').DataTable({
+      'paging'      : true,
+      'lengthChange': false,
+      'searching'   : false,
+      'ordering'    : true,
+      'info'        : true,
+      'autoWidth'   : false
+    })
+  })
+</script>
 </body>
 </html>

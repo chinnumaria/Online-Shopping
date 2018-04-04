@@ -67,6 +67,8 @@ session_start();
         for(var i = 0; i < category.length; i++){
           select.options[i] = new Option(category[i].val,category[i].id);          
         }
+		select.options[i]=new Option("--Select Category--");
+		select.selectedIndex=i;
       }
       function updatebrand(){
         var catSelect = this;
@@ -246,8 +248,8 @@ session_start();
               <i class="fa fa-angle-left pull-right"></i>
             </span>
           </a>
-		       <li class="active treeview menu-open">
-			<a href="#">
+		      <li class="treeview">
+          <a href="#">
             <i class="fa fa-pie-chart"></i>
             <span>ADD</span>
             <span class="pull-right-container">
@@ -255,10 +257,11 @@ session_start();
             </span>
           </a>
          <ul class="treeview-menu">
-            <li class="active"><a href="Add_Product.php"><i class="fa fa-circle-o"></i> Add Products</a></li>
-			<li ><a href=""><i class="fa fa-circle-o"></i> Add Sellors</a></li>
+            <li ><a href="Add_Product.php"><i class="fa fa-circle-o"></i> Add Product</a></li>
+			<li ><a href="Admin_seller.php"><i class="fa fa-circle-o"></i> Add Seller</a></li>
+			<li ><a href="Admin_addsp.php"><i class="fa fa-circle-o"></i> Seller Product</a></li>
           </ul>
-        </li>-->
+        </li>
 		  <li class="treeview">
           <a href="#">
             <i class="fa fa-laptop"></i>
@@ -268,10 +271,10 @@ session_start();
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="Admin_vbook.php"><i class="fa fa-circle-o"></i> View Users</a></li>
-			<li><a href="view_user.php"><i class="fa fa-circle-o"></i> View Products</a></li>
-			<li><a href="view_college.php"><i class="fa fa-circle-o"></i> View Sellors</a></li>
-			<li><a href="view_feedback.php"><i class="fa fa-circle-o"></i> View Feedback</a></li>
+            <li><a href="View_Users.php"><i class="fa fa-circle-o"></i> View Users</a></li>
+			<li><a href="View_Product.php"><i class="fa fa-circle-o"></i> View Products</a></li>
+			<li><a href="Admin_dslr.php"><i class="fa fa-circle-o"></i> View Sellors</a></li>
+			<li><a href=""><i class="fa fa-circle-o"></i> View Feedback</a></li>
           </ul>
         </li>
 		<li class="treeview">
@@ -282,7 +285,7 @@ session_start();
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href=""><i class="fa fa-circle-o"></i> Edit Products</a></li>
+            <li><a href="Admin_fp"><i class="fa fa-circle-o"></i> Featured Products</a></li>
           </ul>
         </li>
   </aside>
@@ -308,44 +311,8 @@ session_start();
     <section class="content">
       <!-- Info boxes -->
       <div class="row">
-        <div class="col-md-3 col-sm-6 col-xs-12">
-          <div class="info-box">
-            <!--<span class="info-box-icon bg-aqua"><i class="ion ion-ios-gear-outline"></i></span>-->
-
-            <div class="info-box-content">
-              <span class="info-box-text">Members</span>
-			  <?php
-				$con=mysqli_connect("localhost","maria","maria","os");
-				$sq="select name from registration where usertype=1;";
-				$res=mysqli_query($con,$sq);
-				$rowCount = mysqli_num_rows($res);
-				echo "<span class='info-box-number'>".$rowCount."<small></small></span>";
-			   ?>
-              
-            </div>
-            <!-- /.info-box-content -->
-          </div>
-          <!-- /.info-box -->
-        </div>
-        <!-- /.col -->
-        <div class="col-md-3 col-sm-6 col-xs-12">
-          <div class="info-box">
-            <!--<span class="info-box-icon bg-red"><i class="fa fa-google-plus"></i></span>-->
-
-            <div class="info-box-content">
-              <span class="info-box-text">Products</span>
-              <?php
-				$con=mysqli_connect("localhost","maria","maria","os");
-				$sq="select p_id from product;";
-				$res=mysqli_query($con,$sq);
-				$rowCount = mysqli_num_rows($res);
-				echo "<span class='info-box-number'>".$rowCount."<small></small></span>";
-			   ?>
-            </div>
-            <!-- /.info-box-content -->
-          </div>
-          <!-- /.info-box -->
-        </div>
+        
+        
         <!-- /.col -->
 
         <!-- fix for small devices only -->

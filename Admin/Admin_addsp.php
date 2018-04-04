@@ -197,7 +197,7 @@ session_start();
       <!-- /.search form -->
       <!-- sidebar menu: : style can be found in sidebar.less -->
      
-       <ul class="sidebar-menu" data-widget="tree">
+        <ul class="sidebar-menu" data-widget="tree">
         <li class="header">MAIN NAVIGATION</li>
         <li class="treeview">
           <a href="index_Admin.php">
@@ -215,8 +215,9 @@ session_start();
             </span>
           </a>
          <ul class="treeview-menu">
-            <li class="active" ><a href="Add_Product.php"><i class="fa fa-circle-o"></i> Add Product</a></li>
-			<li ><a href="seller1.php"><i class="fa fa-circle-o"></i> Add Seller</a></li>
+            <li ><a href="Add_Product.php"><i class="fa fa-circle-o"></i> Add Product</a></li>
+			<li ><a href="Admin_seller.php"><i class="fa fa-circle-o"></i> Add Seller</a></li>
+			<li ><a href="Admin_addsp.php"><i class="fa fa-circle-o"></i> Seller Product</a></li>
           </ul>
         </li>
 		  <li class="treeview">
@@ -228,10 +229,10 @@ session_start();
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="Admin_vbook.php"><i class="fa fa-circle-o"></i> View Users</a></li>
-			<li><a href="view_user.php"><i class="fa fa-circle-o"></i> View Products</a></li>
-			<li><a href="view_college.php"><i class="fa fa-circle-o"></i> View Sellors</a></li>
-			<li><a href="view_feedback.php"><i class="fa fa-circle-o"></i> View Feedback</a></li>
+            <li><a href="View_Users.php"><i class="fa fa-circle-o"></i> View Users</a></li>
+			<li><a href="View_Product.php"><i class="fa fa-circle-o"></i> View Products</a></li>
+			<li><a href="Admin_dslr.php"><i class="fa fa-circle-o"></i> View Sellors</a></li>
+			<li><a href=""><i class="fa fa-circle-o"></i> View Feedback</a></li>
           </ul>
         </li>
 		<li class="treeview">
@@ -242,7 +243,8 @@ session_start();
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href=""><i class="fa fa-circle-o"></i> Edit Products</a></li>
+            <li><a href="Admin_pedr.php"><i class="fa fa-circle-o"></i> Edit Products</a></li>
+			<li><a href="Admin_dsp.php"><i class="fa fa-circle-o"></i> Delete Products</a></li>
           </ul>
         </li>
   </aside>

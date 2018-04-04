@@ -1,13 +1,12 @@
 <?php
 session_start();
-
-/* if(!empty($_GET["x"]))
-{
-	$xx=$_GET["x"];
-	echo $xx;
-	
-} */
+$x=$_GET['x'];
+$con=mysqli_connect("localhost","maria","maria","os");
+$sq="select p_name,p_price,p_dis,p_desc,p_img,p_key,p_qty from product where p_id='$x';";
+$res=mysqli_query($con,$sq);
+$chin=mysqli_fetch_assoc($res);
 ?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -68,7 +67,8 @@ session_start();
 			<?php
 				$id=$_SESSION['txtemail'];
 				$con=mysqli_connect("localhost","maria","maria","os");
-				$sq="select gender from registration where email='$id';"; 
+				echo "<img src='dist/imgs/s.jpg' class='user-image' alt='User Image'>";
+				/* $sq="select gender from registration where email='$id';"; 
 				$res=mysqli_query($con,$sq);
 				$row=mysqli_fetch_assoc($res);
 				if($row['gender']=='Female')
@@ -78,14 +78,14 @@ session_start();
 				else
 				{
 					echo "<img src='dist/imgs/MALE.jpg' class='user-image' alt='User Image'>";
-				}	
+				}	 */
 			   
 				$id=$_SESSION["txtemail"];
 				$con=mysqli_connect("localhost","maria","maria","os");
-				$sq="select name from registration where email='$id';";
+				$sq="select s_name from seller where s_email='$id';";
 				$res=mysqli_query($con,$sq);
 				$row=mysqli_fetch_assoc($res);
-				echo "<span class='hidden-xs'>".$row['name']."</span>";
+				echo "<span class='hidden-xs'>".$row['s_name']."</span>";
 			    ?>
               
              
@@ -96,7 +96,8 @@ session_start();
 			  <?php
 				$id=$_SESSION["txtemail"];
 				$con=mysqli_connect("localhost","maria","maria","os");
-				$sq="select gender from registration where email='$id';"; 
+				echo "<img src='dist/imgs/s.jpg' class='img-circle' alt='User Image'>";
+				/* $sq="select gender from registration where email='$id';"; 
 				$res=mysqli_query($con,$sq);
 				$row=mysqli_fetch_assoc($res);
 				if($row['gender']=='Female')
@@ -106,7 +107,7 @@ session_start();
 				else
 				{
 					echo "<img src='dist/imgs/MALE.jpg' class='img-circle' alt='User Image'>";
-				} 
+				}  */
 				
 			    ?>
 
@@ -114,10 +115,10 @@ session_start();
                 <?php
 				$id=$_SESSION["txtemail"];
 				$con=mysqli_connect("localhost","maria","maria","os");
-				$sq="select name from registration where email='$id';";
+				$sq="select s_name from seller where s_email='$id';";
 				$res=mysqli_query($con,$sq);
 				$row=mysqli_fetch_assoc($res);
-				echo $row['name'];
+				echo $row['s_name'];
 			    ?>
                 
                   <!--<small>Member since Nov. 2012</small>-->
@@ -155,8 +156,8 @@ session_start();
 		<?php
 				$id=$_SESSION["txtemail"];
 				$con=mysqli_connect("localhost","maria","maria","os");
-				/* $sq="select gender from registration where email='$id';";*/ 
-				echo "<img src='dist/imgs/FEMALE.jpg' class='img-circle' alt='User Image'>";
+				/* $sq="select gender from registration where email='$id';"; */
+				echo "<img src='dist/imgs/s.jpg' class='img-circle' alt='User Image'>";
 				/*$res=mysqli_query($con,$sq);
 				$row=mysqli_fetch_assoc($res);
 				 if($row['gender']=='Female')
@@ -174,15 +175,16 @@ session_start();
           <?php
 				$id=$_SESSION["txtemail"];
 				$con=mysqli_connect("localhost","maria","maria","os");
-				$sq="select name from registration where email='$id';";
+				$sq="select s_name from seller where s_email='$id';";
 				$res=mysqli_query($con,$sq);
 				$row=mysqli_fetch_assoc($res);
-				echo "<p>".$row['name']."</p>";
+				echo "<p>".$row['s_name']."</p>";
 			?>
 			 <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
           
         </div>
       </div>
+	  
       <!-- search form -->
       <form action="#" method="get" class="sidebar-form">
         <div class="input-group">
@@ -215,9 +217,8 @@ session_start();
             </span>
           </a>
          <ul class="treeview-menu">
-            <li ><a href="Add_Product.php"><i class="fa fa-circle-o"></i> Add Product</a></li>
-			<li ><a href="Admin_seller.php"><i class="fa fa-circle-o"></i> Add Seller</a></li>
-			<li ><a href="Admin_addsp.php"><i class="fa fa-circle-o"></i> Seller Product</a></li>
+            <li ><a href="seller_addp.php"><i class="fa fa-circle-o"></i> Add Product</a></li>
+			<!--<li ><a href=""><i class="fa fa-circle-o"></i> Add Seller</a></li>-->
           </ul>
         </li>
 		  <li class="treeview">
@@ -229,10 +230,10 @@ session_start();
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="View_Users.php"><i class="fa fa-circle-o"></i> View Users</a></li>
-			<li><a href="View_Product.php"><i class="fa fa-circle-o"></i> View Products</a></li>
-			<li><a href="Admin_dslr.php"><i class="fa fa-circle-o"></i> View Sellors</a></li>
-			<li><a href=""><i class="fa fa-circle-o"></i> View Feedback</a></li>
+			<li><a href="seller_pview.php"><i class="fa fa-circle-o"></i> View Products</a></li>
+            <li><a href=""><i class="fa fa-circle-o"></i> View Profile</a></li>
+<!--<li><a href=""><i class="fa fa-circle-o"></i> View Sellors</a></li>
+			<li><a href=""><i class="fa fa-circle-o"></i> View Feedback</a></li>-->
           </ul>
         </li>
 		<li class="treeview">
@@ -243,14 +244,14 @@ session_start();
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="Admin_pedr.php"><i class="fa fa-circle-o"></i> Edit Products</a></li>
-			<li><a href="Admin_dsp.php"><i class="fa fa-circle-o"></i> Delete Products</a></li>
+            <li><a href=""><i class="fa fa-circle-o"></i> Edit Products</a></li>
+			<li><a href="seller_dpreq.php"><i class="fa fa-circle-o"></i> Delete Products</a></li>
           </ul>
         </li>
   </aside>
 
         
-  </aside>
+
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
@@ -270,46 +271,7 @@ session_start();
     <section class="content">
       <!-- Info boxes -->
       <div class="row">
-        <div class="col-md-3 col-sm-6 col-xs-12">
-          <div class="info-box">
-            <!--<span class="info-box-icon bg-aqua"><i class="ion ion-ios-gear-outline"></i></span>-->
-
-            <div class="info-box-content">
-              <span class="info-box-text">Members</span>
-			  <?php
-				$con=mysqli_connect("localhost","maria","maria","os");
-				$sq="select name from registration where usertype=1;";
-				$res=mysqli_query($con,$sq);
-				$rowCount = mysqli_num_rows($res);
-				echo "<span class='info-box-number'>".$rowCount."<small></small></span>";
-			   ?>
-              
-            </div>
-            <!-- /.info-box-content -->
-          </div>
-          <!-- /.info-box -->
-        </div>
-        <!-- /.col -->
-        <div class="col-md-3 col-sm-6 col-xs-12">
-          <div class="info-box">
-            <!--<span class="info-box-icon bg-red"><i class="fa fa-google-plus"></i></span>-->
-
-            <div class="info-box-content">
-              <span class="info-box-text">Products</span>
-              <?php
-				$con=mysqli_connect("localhost","maria","maria","os");
-				$sq="select p_id from product;";
-				$res=mysqli_query($con,$sq);
-				$rowCount = mysqli_num_rows($res);
-				echo "<span class='info-box-number'>".$rowCount."<small></small></span>";
-			   ?>
-            </div>
-            <!-- /.info-box-content -->
-          </div>
-          <!-- /.info-box -->
-        </div>
-        <!-- /.col -->
-
+        
         <!-- fix for small devices only -->
  
         <!-- /.col -->
@@ -317,104 +279,116 @@ session_start();
         <!-- /.col -->
       </div>
 	  <!-- page content -->
-       <div class="right_col" role="main">
-          <div class="">
-            <div class="page-title">
-              <div class="title_left">
-                <h3></h3>
-              </div>
-			<div class="x_title">
-                    <h2 align="center">ADD SELLER</h2>
+		<div class="x_panel">
+                  <div class="x_title">
+                    <h2 align="center">EDIT PRODUCT</h2>
                     
                     <div class="clearfix"></div>
                   </div>
-                  </div>
-              
-            </div>
-            <div class="clearfix"></div>
-               </div>
-			
-			<div class="box-body">
-              <table id="example1" class="table table-bordered table-striped">
-                <thead>
-                <tr>
-                  <th>ID</th>
-                  <th>NAME</th>
-                  <th>OWNER</th>
-                  <th>EMAIL</th>
-                  <th>MOBILE</th>
-				  <th>PLACE</th>
-				  <th>DATE</th>
-				  <th>OPTIONS</th>
-                </tr>
-                </thead>
-				 <tbody>
-				 <?php
-								$con=mysqli_connect("localhost","maria","maria","os");
-								
-								$sel="SELECT * from seller where apr='N'";
-								$res=mysqli_query($con,$sel);
-							
-								if(mysqli_num_rows($res)>0){
-									while($row=$res->fetch_assoc()){
-									
-									echo "<tr><td>". $row["s_id"]. "</td><td>" .$row["s_name"]. "</td><td>" .$row["s_owner"]. "</td><td>" .$row["s_email"]. "</td><td>" .$row["s_mob"]. "</td><td>" .$row["s_place"]. "</td><td>" .$row["curdate"]. "</td><td align='middle'> <div class='btn-group'>
-				  <div class='btn-group'>
-                        
-                  <button type='button' class='btn btn-default dropdown-toggle btn-sm' data-toggle='dropdown'>
-				  Options
-                    <span class='caret'></span>
-                    <span class='sr-only'>Toggle Dropdown</span>				
-                  </button>
-                        <ul class='dropdown-menu'>
-                          <li><a href='s_apr.php?x=". $row["s_id"]. "'>Approve</a></li>
-                          <li><a href='s_rjct.php?x=". $row["s_id"]. "'>Reject</a></li>
-                        </ul>
-                   </div>
-                    </div></td></tr>";
-									} 
-									
-									}
-								  
-							?>
-                <!--<tr>
-                  <td> </td>
-                  <td> </td>
-                  <td> </td>
-				  <td> </td>
-				  <td> </td>
-				   <td> </td>
-                  <td> </td>
-                  <td> </td>
-				  <td> </td>
-				  <td> </td>
-				   <td align="middle"> <div class="btn-group">
-				  <div class="btn-group">
-                        
-                  <button type="button" class="btn btn-default dropdown-toggle btn-sm" data-toggle="dropdown">
-				  Options
-                    <span class="caret"></span>
-                    <span class="sr-only">Toggle Dropdown</span>				
-                  </button>
+                  <div class="x_content">
+                    <br />
+                    <form action="seller_epreq1.php" id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" method="post" enctype="multipart/form-data">
+					
+					 <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">NAME<span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <!--<input type="text"  name="txt_pname" placeholder="NAME" required="required" class="form-control col-md-7 col-xs-12">-->
+						  <?php
+					
+							echo "<input type='text' name='txt_pname' required='required' readonly='readonly' class='form-control col-md-7 col-xs-12' value='".$chin['p_name']."' >";
+						   ?>
+						  
+						   
+                        </div>
+                      </div>
+					  
+					  <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">PRICE <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                         <!-- <input type="text" name="txt_price" placeholder="PRICE"  required="required" class="form-control col-md-7 col-xs-12">-->
+						  <?php
+					
+									echo "<input type='text' name='txt_price' required='required' class='form-control col-md-7 col-xs-12' value='".$chin['p_price']."' >";
+						   ?>
+                        </div>
+                      </div>
+					  
+					    <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">DISCOUND <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <!--<input type="text" name="txt_pdis" placeholder="DISCOUND"  required="required" class="form-control col-md-7 col-xs-12">-->
+						  <?php
+					
+									echo "<input type='text' name='txt_pdis' required='required' class='form-control col-md-7 col-xs-12' value='".$chin['p_dis']."' >";
+						   ?>
+                        </div>
+                      </div>
+					  
+					   <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">DESCRIPTION<span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <!--<input type="text" name="txt_des" placeholder="DESCRIPTION"  required="required" class="form-control col-md-7 col-xs-12">-->
+						  <?php
+					
+									echo "<input type='text' name='txt_des' required='required' class='form-control col-md-7 col-xs-12' value='".$chin['p_desc']."' >";
+						   ?>
+                        </div>
+                      </div>
+					  
+					  <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">SELECT IMAGE<span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <!--<input type="file" id="p_img" margin-right="30px" name="p_img" size="50" required="required" class="form-control col-md-7 col-xs-12" accept= "image/*">-->
+						  <?php
+									echo "<img src='images/".$chin["p_img"]."' width='100px' height='100px'>";
+									echo "<input type='file' name='p_img' margin-right='30px' size='50' required='required' accept= 'image/*' class='form-control col-md-7 col-xs-12' value='".$chin['p_img']."' >";
+						   ?>
+                        </div>
+                      </div>
+					  
+					   <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">KEY WORDS<span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <!--<input type="text" name="kwords" placeholder="KEY WORDS"  required="required" class="form-control col-md-7 col-xs-12">-->
+						  <?php
+					
+									echo "<input type='text' name='kwords' required='required' class='form-control col-md-7 col-xs-12' value='".$chin['p_key']."' >";
+						   ?>
+                        </div>
+                      </div>
+					  
+					  <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">QUANTITY<span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <!--<input type="text" name="txt_pqty" placeholder="QUANTITY"  required="required" class="form-control col-md-7 col-xs-12">-->
+						  <?php
+					
+									echo "<input type='text' name='txt_pqty' required='required' class='form-control col-md-7 col-xs-12' value='".$chin['p_qty']."' >";
+						   ?>
+                        </div>
+                      </div>
+					  
+                      <div class="ln_solid"></div>
+                      <div class="form-group">
+                        <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                         <!-- <button class="btn btn-primary" type="button">Cancel</button>-->
+                          <button type="submit" class="btn btn-info pull-right" Onclick=" return validate()">Submit</button>
+                        </div>
+                      </div>
 
-                        <ul class="dropdown-menu">
-                          <li><a href="#">Edit</a></li>
-                          <li><a href="#">Delete</a></li>
-                        </ul>
-                   </div>
-                    </div></td>
-                </tr>
-                
-				<tfoot>
-                <tr>
-                  
-                </tr>
-                </tfoot>-->
-					</table>
-				</div>
-			</div>
-		</div>
-		</div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+        </div>    </div>
+			
             <!-- /.box-header -->
             <!-- form start -->
  

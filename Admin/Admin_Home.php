@@ -225,7 +225,8 @@ session_start();
             <li><a href="View_Users.php"><i class="fa fa-circle-o"></i> View Users</a></li>
 			<li><a href="View_Product.php"><i class="fa fa-circle-o"></i> View Products</a></li>
 			<li><a href="Admin_dslr.php"><i class="fa fa-circle-o"></i> View Sellors</a></li>
-			<li><a href="Admin_pedr.php"><i class="fa fa-circle-o"></i> View Edit Requests</a></li>
+			<li><a href="Admin_fp.php"><i class="fa fa-circle-o"></i> Featured Products</a></li>
+			<li><a href="p_details.php"><i class="fa fa-circle-o"></i>Payment Details</a></li>
 			<li><a href=""><i class="fa fa-circle-o"></i> View Feedback</a></li>
           </ul>
         </li>
@@ -237,8 +238,8 @@ session_start();
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href=""><i class="fa fa-circle-o"></i> Edit Products</a></li>
-			<li><a href="Admin_dsp.php"><i class="fa fa-circle-o"></i> Delete Products</a></li>
+            <li><a href="Admin_fp.php"><i class="fa fa-circle-o"></i> Featured Products</a></li>
+			
           </ul>
         </li>
   </aside>
@@ -263,82 +264,110 @@ session_start();
     <!-- Main content -->
     <section class="content">
       <!-- Info boxes -->
-      <div class="row">
-        <div class="col-md-3 col-sm-6 col-xs-12">
-          <div class="info-box">
-            <!--<span class="info-box-icon bg-aqua"><i class="ion ion-ios-gear-outline"></i></span>-->
+     <div class="row">
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-aqua">
+            <div class="inner">
+			
+			<?php
+				$con=mysqli_connect("localhost","maria","maria","os");
+				$sq="select p_id from product;";
+				$res=mysqli_query($con,$sq);
+				$rowCount = mysqli_num_rows($res);
+				echo "<h3>".$rowCount."</h3>";
+			 ?>
+              <p>Products</p>
+            </div>
+            <div class="icon">
+              <i class="fa fa-shopping-cart"></i>
+            </div>
+            <a href="View_Product.php" class="small-box-footer">
+              More info <i class="fa fa-arrow-circle-right"></i>
+            </a>
+          </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-green">
+            <div class="inner">
+              
 
-            <div class="info-box-content">
-              <span class="info-box-text">Members</span>
+			  <?php
+				$con=mysqli_connect("localhost","maria","maria","os");
+				$sq="select s_id from seller;";
+				$res=mysqli_query($con,$sq);
+				$rowCount = mysqli_num_rows($res);
+				echo "<h3>".$rowCount."</h3>";
+			   ?>
+			  
+              <p>Sellers</p>
+            </div>
+            <div class="icon">
+              <i class="fa fa-fw fa-user"></i>
+            </div>
+            <a href="Admin_dslr.php" class="small-box-footer">
+              More info <i class="fa fa-arrow-circle-right"></i>
+            </a>
+          </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-yellow">
+            <div class="inner">
+          
 			  <?php
 				$con=mysqli_connect("localhost","maria","maria","os");
 				$sq="select name from registration where usertype=1;";
 				$res=mysqli_query($con,$sq);
 				$rowCount = mysqli_num_rows($res);
-				echo "<span class='info-box-number'>".$rowCount."<small></small></span>";
+				echo "<h3>".$rowCount."</h3>";
 			   ?>
-              
-            </div>
-            <!-- /.info-box-content -->
-          </div>
-          <!-- /.info-box -->
-        </div>
-        <!-- /.col -->
-        <div class="col-md-3 col-sm-6 col-xs-12">
-          <div class="info-box">
-            <!--<span class="info-box-icon bg-red"><i class="fa fa-google-plus"></i></span>-->
 
-            <div class="info-box-content">
-              <span class="info-box-text">Products</span>
-              <?php
-				$con=mysqli_connect("localhost","maria","maria","os");
-				$sq="select p_id from product;";
-				$res=mysqli_query($con,$sq);
-				$rowCount = mysqli_num_rows($res);
-				echo "<span class='info-box-number'>".$rowCount."<small></small></span>";
-			   ?>
+              <p>Users</p>
             </div>
-            <!-- /.info-box-content -->
+            <div class="icon">
+              <i class="ion ion-person-add"></i>
+            </div>
+            <a href="View_Users.php" class="small-box-footer">
+              More info <i class="fa fa-arrow-circle-right"></i>
+            </a>
           </div>
-          <!-- /.info-box -->
         </div>
-        <!-- /.col -->
-		 <div class="col-md-3 col-sm-6 col-xs-12">
-          <div class="info-box">
-            <!--<span class="info-box-icon bg-red"><i class="fa fa-google-plus"></i></span>-->
+        <!-- ./col -->
+        
+		 <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-red">
+            <div class="inner">
+          
+			  <?php
+				$con=mysqli_connect("localhost","maria","maria","os");
+				$sq="select * from account;";
+				$resi=mysqli_query($con,$sq);
+				$rew=mysqli_fetch_assoc($resi);
+				$amt=$rew["amount"];
+				echo "<h4 style='font-weight: bold;'>$amt</h4>";
+			?>
 
-            <div class="info-box-content">
-              <span class="info-box-text">Sellers</span>
-              <?php
-				$con=mysqli_connect("localhost","maria","maria","os");
-				$sq="select s_id from seller;";
-				$res=mysqli_query($con,$sq);
-				$rowCount = mysqli_num_rows($res);
-				echo "<span class='info-box-number'>".$rowCount."<small></small></span>";
-			   ?>
+              <p>Current Amount</p>
             </div>
-            <!-- /.info-box-content -->
+            <div class="icon">
+              <i class="fa fa-fw fa-inr"></i>
+            </div>
+            <a href="View_Users.php" class="small-box-footer">
+               <i class=""></i>
+            </a>
           </div>
-          <!-- /.info-box -->
         </div>
-        <!-- fix for small devices only -->
- 
-        <!-- /.col -->
- 
-        <!-- /.col -->
+		
+		
+		
+        <!-- ./col -->
       </div>
-	  <!-- page content -->
-       <div class="right_col" role="main">
-          <div class="">
-            <div class="page-title">
-              <div class="title_left">
-                <h3></h3>
-              </div>
-
-              
-            </div>
-            <div class="clearfix"></div>
-               </div>
+      <!-- /.row -->
 			
             <!-- /.box-header -->
             <!-- form start -->
