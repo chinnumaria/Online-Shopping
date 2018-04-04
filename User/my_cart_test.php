@@ -162,17 +162,7 @@ function caltot(a)
 				echo "<span class='hidden-xs'>".$rew['name']."</span>";
 			?>
 			
-			 <?php
-							$con=mysqli_connect("localhost","root","","os");
-				$cr="select * from cart where uid='$uid';";
-				$crt=mysqli_query($con,$cr);
-				if(mysqli_num_rows($crt)==0){
-					echo "<script>
-							window.history.back();
-							window.alert('Your Cart Is Empty!!!!!');
-							</script>";
-				}
-				?>
+			 
 			
 			<b class="caret"></b></a>
 			<ul class="dropdown-menu agile_short_dropdown">
@@ -234,9 +224,25 @@ tr:hover {background-color:#f5f5f5;}
 </style>
 <div class="banner-bootom-w3-agileits">
 
+<?php
+							$con=mysqli_connect("localhost","root","","os");
+				$cr="select * from cart where uid='$uid';";
+				$crt=mysqli_query($con,$cr);
+				if(mysqli_num_rows($crt)==0){
+					echo "		
+							<h2 >Your Cart Is Empty!!!!!</h2>
+							
+							";
+				}
+				else{
+				?>
+
 <table align="center">
-									<thead>
+<?php 
+				
+									echo "<thead>
 										<tr>
+											<th>   </th>
 											<th>   </th>
 											<th>   </th>
 											<th>Elite Price</th>
@@ -244,8 +250,8 @@ tr:hover {background-color:#f5f5f5;}
 											<th>Quantity</th>
 											<th>Total</th>
 										</tr>
-									</thead>
-
+									</thead>";
+?>
 				<?php
 								//$con=mysqli_connect("localhost","maria","maria","os");
 								
@@ -254,7 +260,7 @@ tr:hover {background-color:#f5f5f5;}
 								$r=mysqli_fetch_assoc($re);
 								$pid=$r["pid"];*/
 								
-								$seq="SELECT p.p_name as nm,p.p_price as price,p.p_dis as dis,p.p_price-p.p_dis as pfinal , p.p_img as imge,p.p_desc as descr from product p inner join cart c on p.p_id=c.pid and c.uid=$uid;";
+								$seq="SELECT p.p_id as pid,p.p_name as nm,p.p_price as price,p.p_dis as dis,p.p_price-p.p_dis as pfinal , p.p_img as imge,p.p_desc as descr from product p inner join cart c on p.p_id=c.pid and c.uid=$uid;";
 								//echo $seq;
 								$req=mysqli_query($con,$seq);
 								//$rs=mysqli_fetch_assoc($req);
@@ -278,8 +284,11 @@ tr:hover {background-color:#f5f5f5;}
 										
 									?>
 									<tbody>
-									<?php echo"<form action='' method='post'>"; ?>
+									<?php echo"<form action='pur.php' method='post'>"; ?>
 										<tr>
+											<td>
+											<input type='hidden' id='pid' name='pid[]' class='' value=<?php  echo $rs["pid"]; ?> style="width: 60px;">
+											</td>
 											<td>
 												<?php echo "<img src='images/".$rs["imge"]." ' width='100px' height='100px'>"; ?>
 											</td>
@@ -291,7 +300,7 @@ tr:hover {background-color:#f5f5f5;}
                                                 <input type='text' id='<?php echo "price$i"?>' class='' readonly value=<?php  echo $rs["pfinal"]; ?> style="width: 60px;">
 											</td>
 											<td>
-									<select name='qty' id='quantity' onChange="cal(this,'<?php echo "price".$i?>','<?php echo "ff".$i?>')">	
+									<select name='qty[]' id='quantity' onChange="cal(this,'<?php echo "price".$i?>','<?php echo "ff".$i?>')">	
 													<option value='1'>1</option>
 													<option value='2'>2</option>
 													<option value='3'>3</option>
@@ -299,19 +308,8 @@ tr:hover {background-color:#f5f5f5;}
 													<option value='5'>5</option>
 												</select>
 											</td>
-											<td><input type='text' name='price'  id='<?php echo "ff".$i?>' readonly value='<?php  echo $rs["pfinal"]; ?> ' class='' style="width: 60px;"></td>
-							<td><div class='btn-group'>
-                        
-                  <button type='button' class='btn btn-default dropdown-toggle btn-sm' data-toggle='dropdown'>
-				  Options
-                    <span class='caret'></span>
-                    <span class='sr-only'>Toggle Dropdown</span>				
-                  </button>
-                        <ul class='dropdown-menu'>
-                          <?php echo"<li><a href='pay.php?x= ".$rs["pfinal"]."'>Place Order</a></li>
-						  <li><a href='del.php'>Delete</a></li>"; ?>
-                        </ul>
-                   </div>
+											<td><input type='text' name='price'  id='<?php echo "ff".$i?>' readonly value='<?php  echo $rs["pfinal"]; ?> ' class='' style="width: 60px;" /></td>
+							<?php echo "<td><input type='button' name='Remove' value='Remove' onclick=window.location.href='dp.php?x=". $rs["pid"]. "' >" ; ?>
                     </div></td>
 							</tr> 
 							<?php
@@ -319,7 +317,7 @@ tr:hover {background-color:#f5f5f5;}
 									} 
 									
 									}
-								  
+		  
 							?>
 							
 						</tbody></table></br>
@@ -327,8 +325,12 @@ tr:hover {background-color:#f5f5f5;}
 					<label for="subtotal" style="margin-left: 78%;">Sub Total:  ₹</label> <input type='text' name='Subtotal' id='totl' style="width: 60px;"   class=''value="<?php echo $cn;?>">
 					
 					<div class="col-sm-6 newsright">
-					<?php echo "<input type='submit' name='cs' value='Continue Shopping' class='hvr-outline-out button2' onClick=window.location.href='payment.php?x=$cn' style='margin-left: 155%;'>";?>
+					<?php echo "<input type='submit' name='cs' value='Continue Shopping' class='hvr-outline-out button2' style='margin-left: 155%;'>";?>
 						</div></div><br/>
+						<?php
+						
+				}
+				?>
 						</form>
 	<!-- //banner -->
     

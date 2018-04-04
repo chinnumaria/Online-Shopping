@@ -237,8 +237,9 @@ tr:hover {background-color:#f5f5f5;}
 <table align="center">
 									<thead>
 										<tr>
-											<th>   </th>
-											<th>   </th>
+											<th>    </th>
+											<th>    </th>
+											<th>    </th>
 											<th>Elite Price</th>
 											<th>Price</th>
 											<th>Quantity</th>
@@ -254,7 +255,7 @@ tr:hover {background-color:#f5f5f5;}
 								$r=mysqli_fetch_assoc($re);
 								$pid=$r["pid"];*/
 								
-								$seq="SELECT p.p_name as nm,p.p_price as price,p.p_dis as dis,p.p_price-p.p_dis as pfinal , p.p_img as imge,p.p_desc as descr from product p inner join cart c on p.p_id=c.pid and c.uid=$uid;";
+								$seq="SELECT p.p_id as pid,p.p_name as nm,p.p_price as price,p.p_dis as dis,p.p_price-p.p_dis as pfinal , p.p_img as imge,p.p_desc as descr from product p inner join cart1 c on p.p_id=c.pid and c.uid=$uid;";
 								//echo $seq;
 								$req=mysqli_query($con,$seq);
 								//$rs=mysqli_fetch_assoc($req);
@@ -278,8 +279,11 @@ tr:hover {background-color:#f5f5f5;}
 										
 									?>
 									<tbody>
-									<?php echo"<form action='' method='post'>"; ?>
+									<?php echo"<form action='pur.php' method='post'>"; ?>
 										<tr>
+											<td>
+											<input type='hidden' id='pid' name='pid[]' class='' value=<?php  echo $rs["pid"]; ?> style="width: 60px;">
+											</td>
 											<td>
 												<?php echo "<img src='images/".$rs["imge"]." ' width='100px' height='100px'>"; ?>
 											</td>
@@ -291,7 +295,7 @@ tr:hover {background-color:#f5f5f5;}
                                                 <input type='text' id='<?php echo "price$i"?>' class='' readonly value=<?php  echo $rs["pfinal"]; ?> style="width: 60px;">
 											</td>
 											<td>
-									<select name='qty' id='quantity' onChange="cal(this,'<?php echo "price".$i?>','<?php echo "ff".$i?>')">	
+									<select name='qty[]' id='quantity' onChange="cal(this,'<?php echo "price".$i?>','<?php echo "ff".$i?>')">	
 													<option value='1'>1</option>
 													<option value='2'>2</option>
 													<option value='3'>3</option>
@@ -300,19 +304,7 @@ tr:hover {background-color:#f5f5f5;}
 												</select>
 											</td>
 											<td><input type='text' name='price'  id='<?php echo "ff".$i?>' readonly value='<?php  echo $rs["pfinal"]; ?> ' class='' style="width: 60px;"></td>
-							<td><div class='btn-group'>
-                        
-                  <button type='button' class='btn btn-default dropdown-toggle btn-sm' data-toggle='dropdown'>
-				  Options
-                    <span class='caret'></span>
-                    <span class='sr-only'>Toggle Dropdown</span>				
-                  </button>
-                        <ul class='dropdown-menu'>
-                          <?php echo"<li><a href='pay.php?x= ".$rs["pfinal"]."'>Place Order</a></li>
-						  <li><a href='del.php'>Delete</a></li>"; ?>
-                        </ul>
-                   </div>
-                    </div></td>
+						
 							</tr> 
 							<?php
 							$i++;
@@ -324,10 +316,10 @@ tr:hover {background-color:#f5f5f5;}
 							
 						</tbody></table></br>
 						
-					<label for="subtotal" style="margin-left: 78%;">Sub Total:  ₹</label> <input type='text' name='Subtotal' id='totl' style="width: 60px;"   class=''value="<?php echo $cn;?>">
+					<label for="subtotal" style="margin-left: 76%;">Sub Total:  ₹</label> <input type='text' name='Subtotal' id='totl' style="width: 60px;"   class=''value="<?php echo $cn;?>">
 					
 					<div class="col-sm-6 newsright">
-					<?php echo "<input type='submit' name='cs' value='Continue Shopping' class='hvr-outline-out button2' onClick=window.location.href='payment.php?x=$cn' style='margin-left: 155%;'>";?>
+					<?php echo "<input type='submit' name='cs' value='Place Order' class='hvr-outline-out button2' onClick=window.location.href='' style='margin-left: 155%;'>";?>
 						</div></div><br/>
 						</form>
 	<!-- //banner -->

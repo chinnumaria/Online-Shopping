@@ -6,6 +6,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 -->
 <?php
 session_start();
+$x=50;
 ?>
 <!DOCTYPE html>
 <html>
@@ -27,65 +28,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <link href="//fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800" rel="stylesheet">
 <link href='//fonts.googleapis.com/css?family=Lato:400,100,100italic,300,300italic,400italic,700,900,900italic,700italic' rel='stylesheet' type='text/css'>
 
+<!--<link rel="stylesheet" href="New/css/bootstrap.min.css"/>-->
+		<script src="New/js/jquery2.js"></script>
+		<script src="New/js/bootstrap.min.js"></script>
+		<script src="New/main.js"></script>
+		<link rel="stylesheet" type="text/css" href="New/style.css"/>
 <script>
-j=0;
-	for(i=0;i<5;i++)
-	{
-	u=document.getElementsByName('price')[i].value;
-	j=parseInt(j) + parseInt(u)
-	document.getElementById('totl').value=j;
-	}
-        var x = 0;
-        var y = 0;
-        var z = 0;
-		var k =0;
-	
-        function calc(obj) {
-			alert(obj)
-            var e = obj.id.toString();
-			
-            if (e == 'aprice') {
-                x = Number(obj.value);
-                y = Number(document.getElementById('quantity').value);
-            } else {
-                x = Number(document.getElementById('aprice').value);
-                y = Number(obj.value);
-            }
-            z = x * y;
-            document.getElementById('price').value = z;
-            document.getElementById('update').innerHTML = z;
-        }
-		function cal(e,id,ff)
-{
-	var a=e.value;
-	//alert(e.value)
-	//alert(id)
-	//var a=document.getElementById("pr"+i).value;
-	//alert(a);
-	var b=document.getElementById(id).value;
-	
-	var c=parseInt(a) * parseInt(b);
-	//alert(c);
-	document.getElementById(ff).value=c;
-	caltot(c);
-	
-	/* i++; */
-}
-function caltot(a)
-{
-	
-	j=0;
-	for(i=0;i<5;i++)
-	{
-	u=document.getElementsByName('price')[i].value;
-	j=parseInt(j) + parseInt(u)
-	document.getElementById('totl').value=j;
-}
-			
-}
-    </script>
-    
 
+</script>
 
 </head>
 <body>
@@ -161,19 +111,6 @@ function caltot(a)
 				$uid=$rew["uid"];
 				echo "<span class='hidden-xs'>".$rew['name']."</span>";
 			?>
-			
-			 <?php
-							$con=mysqli_connect("localhost","root","","os");
-				$cr="select * from cart where uid='$uid';";
-				$crt=mysqli_query($con,$cr);
-				if(mysqli_num_rows($crt)==0){
-					echo "<script>
-							window.history.back();
-							window.alert('Your Cart Is Empty!!!!!');
-							</script>";
-				}
-				?>
-			
 			<b class="caret"></b></a>
 			<ul class="dropdown-menu agile_short_dropdown">
 									<li><a href="icons.html">Profile</a></li>
@@ -245,8 +182,7 @@ tr:hover {background-color:#f5f5f5;}
 											<th>Total</th>
 										</tr>
 									</thead>
-
-				<?php
+ <?php
 								//$con=mysqli_connect("localhost","maria","maria","os");
 								
 								/*$se="SELECT * from cart where uid=$uid";
@@ -263,53 +199,52 @@ tr:hover {background-color:#f5f5f5;}
 								//$ap=$pr-$dis;
 								
 								//echo mysqli_num_rows($re);
-								
+							$i=1;
 								if(mysqli_num_rows($req)>0)
 								{
 								
-										$i=1;
-										$cn=0;
+															
 									while($rs = mysqli_fetch_array($req))
 									{
-										$e=$rs["pfinal"];
-										$e =intval($e);
-										$cn=intval($cn);
-										$cn=$cn+$e;
 										
 									?>
+									<form action="sub.php" method="post">
 									<tbody>
-									<?php echo"<form action='' method='post'>"; ?>
 										<tr>
 											<td>
 												<?php echo "<img src='images/".$rs["imge"]." ' width='100px' height='100px'>"; ?>
 											</td>
 											<td> <?php  echo $rs["nm"];?> <br/>
-											<?php  echo $rs["descr"]; ?> </td>
-											<td> Price:   <?php  echo $rs["price"]; ?> <br/> Discount:  <?php  echo $rs["dis"]; ?> </td>
+											<?php  echo $rs["descr"]; ?> </td><td>
+											<span class=""><?php  echo $rs["price"]; ?></span>
+											<input type="hidden" name="discount_amount_2" value=<?php  echo $rs["dis"]; ?>>
+											 </td>
 											<td>
 												<!--<input type='text' id='aprice' class='' readonly value=<?php  //echo $rs["pfinal"]; ?> >-->
-                                                <input type='text' id='<?php echo "price$i"?>' class='' readonly value=<?php  echo $rs["pfinal"]; ?> style="width: 60px;">
+												 <input type='text'  class='form-control price' readonly value=<?php  echo $rs["pfinal"]; ?> style="width: 60px;">
 											</td>
 											<td>
-									<select name='qty' id='quantity' onChange="cal(this,'<?php echo "price".$i?>','<?php echo "ff".$i?>')">	
-													<option value='1'>1</option>
-													<option value='2'>2</option>
-													<option value='3'>3</option>
-													<option value='4'>4</option>
-													<option value='5'>5</option>
-												</select>
+									<input type="text" class="form-control qty" value="1">
+									
 											</td>
-											<td><input type='text' name='price'  id='<?php echo "ff".$i?>' readonly value='<?php  echo $rs["pfinal"]; ?> ' class='' style="width: 60px;"></td>
+											<td><<input type="text" class="form-control total" id="tprice" value="<?php  echo $rs["pfinal"]; ?>" readonly="readonly">
+				
+											
+											
+											
+											</td>
+											
 							<td><div class='btn-group'>
                         
                   <button type='button' class='btn btn-default dropdown-toggle btn-sm' data-toggle='dropdown'>
+				  
 				  Options
                     <span class='caret'></span>
                     <span class='sr-only'>Toggle Dropdown</span>				
                   </button>
                         <ul class='dropdown-menu'>
-                          <?php echo"<li><a href='pay.php?x= ".$rs["pfinal"]."'>Place Order</a></li>
-						  <li><a href='del.php'>Delete</a></li>"; ?>
+                          <li><a href=''>Continue Shopping</a></li>
+						  <li><a href=''>Delete</a></li>
                         </ul>
                    </div>
                     </div></td>
@@ -324,10 +259,14 @@ tr:hover {background-color:#f5f5f5;}
 							
 						</tbody></table></br>
 						
-					<label for="subtotal" style="margin-left: 78%;">Sub Total:  ₹</label> <input type='text' name='Subtotal' id='totl' style="width: 60px;"   class=''value="<?php echo $cn;?>">
+					<!--<div class="minicart-subtotal">                Subtotal: $            </div>-->
+					<b class="net_total" style="font-size:20px;"> </b>
 					
+						
+					  <input type='text' name='stotal' id="totalPrice" class="net_total" style="width: 60px;" > 
 					<div class="col-sm-6 newsright">
-					<?php echo "<input type='submit' name='cs' value='Continue Shopping' class='hvr-outline-out button2' onClick=window.location.href='payment.php?x=$cn' style='margin-left: 155%;'>";?>
+					
+					<input type='submit' name="cs" value="Continue Shopping" class="hvr-outline-out button2" style="margin-left: 155%;" onClick="sub.php">
 						</div></div><br/>
 						</form>
 	<!-- //banner -->

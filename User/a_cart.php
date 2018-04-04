@@ -31,8 +31,9 @@ echo "<script>var confirm = confirm(\"Already Exists!\");
           </script>";
 }
 else{	
-$sql="insert into cart(uid,pid,quantity) values($uid,$pid,1)";
+$sql="insert into cart(uid,pid,quantity,curdate) values($uid,$pid,1,NOW())";
 $rw=mysqli_query($con,$sql);
-header("location:index_user.php");
+echo "<script type='text/javascript'>alert('Added to Cart');window.history.back();</script>";
+/* header("location:index_user.php"); */ 
 }
 ?>

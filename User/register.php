@@ -3,8 +3,9 @@
 			
 				$con=mysqli_connect("localhost","maria","maria","os");
 				$name=$_POST["txtname"];
+				$g=$_POST["gender"];
 				$mob=$_POST["txtmob"];
-				$email=$_POST["txtemail"];
+				$email=$_POST["txtusername"];
 				$pass=$_POST["txtpass"];
 				$cpass=$_POST["txtcpass"];
 				if($pass!=$cpass)
@@ -41,7 +42,7 @@
 					
 				}
 				else{
-				$sql="insert into registration(name,mob,email,pass,curdate)values('$name',$mob,'$email','$pass',NOW());";
+				$sql="insert into registration(name,gender,mob,email,pass,curdate)values('$name','$g',$mob,'$email','$pass',NOW());";
 				mysqli_query($con,$sql);
 				$_SESSION['username'] = $_POST['txtemail'];
 				header('location:Index_user.php');

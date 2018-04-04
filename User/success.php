@@ -6,7 +6,6 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 -->
 <?php
 session_start();
-$id=$_SESSION["txtusername"];
 ?>
 <!DOCTYPE html>
 <html>
@@ -36,7 +35,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <div class="header-bot">
 	<div class="header-bot_inner_wthreeinfo_header_mid">
 		<div class="col-md-4 header-middle">
-			<form action="search.php" method="post">
+			<form action="#" method="post">
 					<input type="search" name="search" placeholder="Search here..." required="">
 					<input type="submit" value=" ">
 				<div class="clearfix"></div>
@@ -76,7 +75,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<li class="dropdown menu__item">
 						<a href="#" class="dropdown-toggle menu__link" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Categories <span class="caret"></span></a>
 										<ul class="dropdown-menu agile_short_dropdown">
-									<li><a href="fp.php">Featured Products</a></li>
 									<li><a href="mens.html">Men's Fasion</a></li>
 									<li><a href="womens.php">Women's Fasion</a></li>
 									<li><a href="mens.html">Shoes</a></li>
@@ -100,7 +98,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			?>
 			<b class="caret"></b></a>
 			<ul class="dropdown-menu agile_short_dropdown">
-									<li><a href="profile.php">Profile</a></li>
+									<li><a href="icons.html">Profile</a></li>
 									<li><a href="typography.html">Signout</a></li>
 			</ul>
 			</a></li>
@@ -129,7 +127,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				$res=mysqli_query($con,$sq);
 				$rows=mysqli_fetch_assoc($res);
 				
-		echo "<form action='my_cart_test.php' method='post' class=''> 
+		echo "<form action='my_cart.php' method='post' class=''> 
 		<button class='w3view-cart' type='submit' name='submit' onClick='' value=''><i class='fa fa-cart-arrow-down' aria-hidden='true'></i></button></form>";
 	?>
 		</li>
@@ -140,6 +138,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<div class="clearfix"></div>
 	</div>
 </div>
+</div>
 <!-- //banner-top -->
 <!-- Modal1 -->
 <!-- //Modal1 -->
@@ -148,283 +147,149 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!-- //Modal2 -->
 
 <!-- banner -->
-	<div id="myCarousel" class="carousel slide" data-ride="carousel">
-		<!-- Indicators -->
-		<ol class="carousel-indicators">
-			<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-			<li data-target="#myCarousel" data-slide-to="1" class=""></li>
-			<li data-target="#myCarousel" data-slide-to="2" class=""></li>
-			<li data-target="#myCarousel" data-slide-to="3" class=""></li>
-			<li data-target="#myCarousel" data-slide-to="4" class=""></li> 
-		</ol>
-		<div class="carousel-inner" role="listbox">
-			<div class="item active"> 
-				<div class="container">
-					<div class="carousel-caption">
-						<h3>The Biggest <span>Sale</span></h3>
-						<p>Special for today</p>
-						<a class="hvr-outline-out button2" href="mens.html">Shop Now </a>
-					</div>
+	
+<div class="page-head_agile_info_w3l">
+		<div class="container">
+			<h3>Payment <span>Successfully Completed </span></h3>
+			<!--/w3_short-->
+				 <div class="services-breadcrumb">
+						<div class="agile_inner_breadcrumb">
+
+						   <ul class="w3_short">
+								<li><a href="user_index.php">Payment</a><i>|</i></li>
+								<li>Success</li>
+							</ul>
+						 </div>
 				</div>
-			</div>
-			<div class="item item2"> 
-				<div class="container">
-					<div class="carousel-caption">
-						<h3>Summer <span>Collection</span></h3>
-						<p>New Arrivals On Sale</p>
-						<a class="hvr-outline-out button2" href="mens.html">Shop Now </a>
-					</div>
-				</div>
-			</div>
-			<div class="item item3"> 
-				<div class="container">
-					<div class="carousel-caption">
-						<h3>The Biggest <span>Sale</span></h3>
-						<p>Special for today</p>
-						<a class="hvr-outline-out button2" href="mens.html">Shop Now </a>
-					</div>
-				</div>
-			</div>
-			<div class="item item4"> 
-				<div class="container">
-					<div class="carousel-caption">
-						<h3>Summer <span>Collection</span></h3>
-						<p>New Arrivals On Sale</p>
-						<a class="hvr-outline-out button2" href="mens.html">Shop Now </a>
-					</div>
-				</div>
-			</div>
-			<div class="item item5"> 
-				<div class="container">
-					<div class="carousel-caption">
-						<h3>The Biggest <span>Sale</span></h3>
-						<p>Special for today</p>
-						<a class="hvr-outline-out button2" href="mens.html">Shop Now </a>
-					</div>
-				</div>
-			</div> 
-		</div>
-		<a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
-			<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-			<span class="sr-only">Previous</span>
-		</a>
-		<a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
-			<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-			<span class="sr-only">Next</span>
-		</a>
-		<!-- The Modal -->
-    </div> 
+	   <!--//w3_short-->
 	</div>
+</div>
 	<!-- //banner -->
-    <div class="banner_bottom_agile_info">
-	    <div class="container">
-            <div class="banner_bottom_agile_info_inner_w3ls">
-    	           <div class="col-md-6 wthree_banner_bottom_grid_three_left1 grid">
-						<figure class="effect-roxy">
-							<img src="images/bottom1.jpg" alt=" " class="img-responsive" />
-							<figcaption>
-								<h3><span>F</span>all Ahead</h3>
-								<p>New Arrivals</p>
-							</figcaption>			
-						</figure>
-					</div>
-					 <div class="col-md-6 wthree_banner_bottom_grid_three_left1 grid">
-						<figure class="effect-roxy">
-							<img src="images/bottom2.jpg" alt=" " class="img-responsive" />
-							<figcaption>
-								<h3><span>F</span>all Ahead</h3>
-								<p>New Arrivals</p>
-							</figcaption>			
-						</figure>
-					</div>
-					<div class="clearfix"></div>
-		    </div> 
-		 </div> 
-    </div>
-	</div>
+    
 	<!-- schedule-bottom -->
-	<div class="schedule-bottom">
-		<div class="col-md-6 agileinfo_schedule_bottom_left">
-			<img src="images/mid.jpg" alt=" " class="img-responsive" />
-		</div>
-		<div class="col-md-6 agileits_schedule_bottom_right">
-			<div class="w3ls_schedule_bottom_right_grid">
-				<h3><span></span> </h3>
-				<p></p>
-				<div class="col-md-4 w3l_schedule_bottom_right_grid1">
-					<i class="fa fa-user-o" aria-hidden="true"></i>
-					<h4>Customers</h4>
-					<h5 class="counter"><?php
-				$con=mysqli_connect("localhost","root","","os");
-				$sq="select name from registration where usertype=1;";
-				$res=mysqli_query($con,$sq);
-				$rowCount = mysqli_num_rows($res);
-				echo $rowCount;
-			   ?></h5>
-				</div>
-				<div class="col-md-4 w3l_schedule_bottom_right_grid1">
-					<i class="fa fa-calendar-o" aria-hidden="true"></i>
-					<h4>Products</h4>
-					<h5 class="counter"><?php
-				$con=mysqli_connect("localhost","root","","os");
-				$sq="select p_id from product;";
-				$res=mysqli_query($con,$sq);
-				$rowCount = mysqli_num_rows($res);
-				echo $rowCount;
-			   ?></h5> 
-				</div>
-				<div class="col-md-4 w3l_schedule_bottom_right_grid1">
-					<i class="fa fa-shield" aria-hidden="true"></i>
-					<h4>Sellers</h4>
-					<h5 class="counter"> <?php
-				$con=mysqli_connect("localhost","root","","os");
-				$sq="select s_id from seller;";
-				$res=mysqli_query($con,$sq);
-				$rowCount = mysqli_num_rows($res);
-				echo $rowCount;
-			   ?></h5>
-				</div>
-				<div class="clearfix"> </div>
-			</div>
-		</div>
-		<div class="clearfix"> </div>
-	</div>
-<!-- //schedule-bottom -->
-  <!-- banner-bootom-w3-agileits -->
-	<div class="banner-bootom-w3-agileits">
-	<div class="container">
-		<h3 class="wthree_text_info">What's <span>Trending</span></h3>
 	
-		<div class="col-md-5 bb-grids bb-left-agileits-w3layouts">
-			<a href="womens.html">
-			   <div class="bb-left-agileits-w3layouts-inner grid">
-					<figure class="effect-roxy">
-							<img src="images/bb1.jpg" alt=" " class="img-responsive" />
-							<figcaption>
-								<h3><span>S</span>ale </h3>
-								<p>Upto 55%</p>
-							</figcaption>			
-						</figure>
-			    </div>
-			</a>
-		</div>
-		<div class="col-md-7 bb-grids bb-middle-agileits-w3layouts">
-		      <a href="mens.html">
-		       <div class="bb-middle-agileits-w3layouts grid">
-			           <figure class="effect-roxy">
-							<img src="images/bottom3.jpg" alt=" " class="img-responsive" />
-							<figcaption>
-								<h3><span>S</span>ale </h3>
-								<p>Upto 55%</p>
-							</figcaption>			
-						</figure>
-		        </div>
-				</a>
-				<a href="mens.html">
-		      <div class="bb-middle-agileits-w3layouts forth grid">
-						<figure class="effect-roxy">
-							<img src="images/bottom4.jpg" alt=" " class="img-responsive">
-							<figcaption>
-								<h3><span>S</span>ale </h3>
-								<p>Upto 65%</p>
-							</figcaption>		
-						</figure>
-					</div>
-					</a>
-		<div class="clearfix"></div>
-	</div>
-	</div>
-    </div>
-<!--/grids-->
-      <div class="agile_last_double_sectionw3ls">
-            <div class="col-md-6 multi-gd-img multi-gd-text ">
-					<a href="womens.html"><img src="images/bot_1.jpg" alt=" "><h4>Flat <span>50%</span> offer</h4></a>
-					
-			</div>
-			 <div class="col-md-6 multi-gd-img multi-gd-text ">
-					<a href="womens.html"><img src="images/bot_2.jpg" alt=" "><h4>Flat <span>50%</span> offer</h4></a>
-			</div>
-			<div class="clearfix"></div>
-	   </div>							
-<!--/grids-->
-<!-- /new_arrivals --> 
 	
-							<div class="clearfix"></div>
-							<div class="clearfix"></div>
-						</div>
 						<!--//tab_one-->
 						<!--/tab_two-->
 						<div class="banner_bottom_agile_info">
-	    <div class="container">
-            <div class="banner_bottom_agile_info_inner_w3ls">
-						<h3 class="wthree_text_info">New <span>Products</span></h3>
-						<?php
-							$con=mysqli_connect("localhost","root","","os");
-										$sel_p="SELECT * from product;";
-										$res_p=mysqli_query($con,$sel_p);
-										
-										
-	
-							
-								if(mysqli_num_rows($res_p)>0){
-									while($row_p = mysqli_fetch_array($res_p)){
-										$pid = $row_p['p_id'];
-										$pcat = $row_p['p_cat'];
-										$pbrand = $row_p['p_brand'];
-										$pname = $row_p['p_name']; 
-										$price = $row_p['p_price'];
-										$pdis=$row_p['p_dis'];
-										$pimg = $row_p['p_img'];
-										$qty=$row_p['p_qty'];
-										$p=$price-$pdis;
-										
-							 echo "
-							 <div class='col-md-4 product-men'>
-								<div class='men-pro-item simpleCart_shelfItem'>
-									<div class='men-thumb-item'>
-										<img src='images/".$row_p["p_img"]."' alt='' class='pro-image-front'>
-										<img src='images/".$row_p["p_img"]."' alt='' class='pro-image-back'>
-											<div class='men-cart-pro'>
-												<div class='inner-men-cart-pro'>";
-												if($qty<=5){
-													echo "<a class='link-product-add-cart' disabled>Out Of Stock</a>";
-												}
-												else{
-													echo "<a href='single.php?p_id=$pid' class='link-product-add-cart'>Quick View</a>";
-												}
-												echo "</div>
-											</div>
-											<span class='product-new-top'>New</span>
-											
-									</div>
-									<div class='item-info-product '>
-										<h4><a href='single.html'>$pname</a></h4>
-										<div class='info-product-price'>
-											<span class='item_price'>₹$p</span>
-											<del>₹$price</del><br/>
-											
-										</div>";
-										
-										echo "<div class='hvr-outline-out button2' >
-															<form action='a_cart.php?uid=$uid&pid=$pid' method='post'>";
-															if($qty<=5){
-																	echo "<input type='submit' class='hvr-outline-out button2' name='submit' value='Add to cart' onClick='' disabled/>";
-															}
-															else{
-																echo "<input type='submit' class='hvr-outline-out button2' name='submit' value='Add to cart' onClick=''  />";
-															}
-															echo "</form>
-														</div>
-										</div>									
-									</div>
+					<div class="container">
+					<div class="banner_bottom_agile_info_inner_w3ls">
+					<?php
+					
+					$con=mysqli_connect("localhost","root","","os");
+					$sqq="SELECT * FROM p_address where uid='$uid' and a_id in (SELECT MAX(a_id) AS maxi FROM p_address);";
+					$rq=mysqli_query($con,$sqq);
+					$req=mysqli_fetch_assoc($rq);
+					$date=$req["curdate"];
+					$name=$req["name"];
+					$mob=$req["phone"];
+					$adr=$req["address"];
+					$loc=$req["locality"];
+					$city=$req["city"];
+					$pin=$req["pin"];
+					echo "<table border='0'>
+					<tr>
+						<td>Date:<td>
+						<td>$date<td>
+					</tr>
+					<tr>
+						<td>Name:<td>
+						<td>$name<td>
+					</tr>
+					<tr>
+						<td>Mobile:<td>
+						<td>$mob<td>
+					</tr>
+					<tr>
+						<td>Address:<td>
+						<td>$adr<td>
+					</tr>
+					<tr>
+						<td>Locality:<td>
+						<td>$loc<td>
+					</tr>
+					<tr>
+						<td>City:<td>
+						<td>$city<td>
+					</tr>
+					<tr>
+						<td>Pin code:<td>
+						<td>$pin<td>
+					</tr>";
+					
+						$s="SELECT MAX(invoice) AS maxi FROM purchase";
+						$r=mysqli_query($con,$s);
+						$re = mysqli_fetch_assoc($r);
+						$inv=$re['maxi'];
+						echo "<tr>
+						<td>Invoice:<td>
+						<td>$inv<td>
+							</tr>";
+						$sel_pr="SELECT * from purchase where invoice=$inv;";
+						$res_pr=mysqli_query($con,$sel_pr);
+						if(mysqli_num_rows($res_pr)>0)
+						{
+							while($rs = mysqli_fetch_array($res_pr))
+							{
+								$pid=$rs['pid'];
+								$p="SELECT * from product where p_id='$pid';";
+								$rp=mysqli_query($con,$p);
+								$rep = mysqli_fetch_assoc($rp);
+								$pn=$rep['p_name'];
 								
-							</div>";
-							}
-								}
-										
-							?>
+								$price=$rs['price'];
+								$qty=$rs['qty'];
+								$dis=$rs['dis'];
+								$sub=$rs['subt']; 
+						echo"
+						<tr>
+						<td>Product:<td>
+						<td>$pn<td>
+						</tr>
+						<tr>
+						<td>Price<td>
+						<td>$price<td>
+						</tr>
+						<tr>
+						<td>Quantity<td>
+						<td>$qty<td>
+						</tr>
+						<tr>
+						<td>Discount<td>
+						<td>$dis<td>
+						</tr><tr>
+						<td>Subtotal<td>
+						<td>$sub<td>
+						</tr>";
 							
+						 } 
+						}
+						$sl_pr="SELECT * from purchase where invoice=$inv;";
 						
+						$rs_pr=mysqli_query($con,$sl_pr);
+						 $rse = mysqli_fetch_array($rs_pr);
+						 $dc=$rse['dc'];
+						 $tot=$rse['t_price'];
+						 
+						 echo"<tr>
+						<td>Delivery Charge<td>
+						<td>$dc<td>
+						</tr><tr>
+						<td>Total Price<td>
+						<td>$tot<td>
+						</tr>";
+						echo "</table>"; 
+						
+					?>
+						
+						
+					<form action="index_user.php" method="post"	>			
+						
+				<button class='hvr-outline-out button2' value='Choose current Address' name='cs' style="color:white;font-weight: bold;align:center;" onClick="index_user.php"  >
+						<span>Back to Home </span> 
+				</button>
+							
+						</form>
 						</div>
 					 <!--//tab_two-->
 
@@ -435,13 +300,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		</div>
 	<!-- //new_arrivals --> 
 	<!-- /we-offer -->
-		<div class="sale-w3ls">
-			<div class="container">
-				<h6>We Offer Flat <span>40%</span> Discount</h6>
- 
-				
-			</div>
-		</div>
+		
 	<!-- //we-offer -->
 <!--/grids-->
 
@@ -451,24 +310,27 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<div class="footer_agile_inner_info_w3l">
 		<div class="col-md-3 footer-left">
 			<h2><a href="index.html"><span>E</span>lite Shoppy </a></h2>
-			<p></p>
+			<p>Lorem ipsum quia dolor
+			sit amet, consectetur, adipisci velit, sed quia non 
+			numquam eius modi tempora.</p>
 			<ul class="social-nav model-3d-0 footer-social w3_agile_social two">
-															<li><a  class="facebook">
+															<li><a href="" class="facebook">
 																  <div class="front"><i class="fa fa-facebook" aria-hidden="true"></i></div>
 																  <div class="back"><i class="fa fa-facebook" aria-hidden="true"></i></div></a></li>
-															<li><a  class="twitter"> 
+															<li><a href="" class="twitter"> 
 																  <div class="front"><i class="fa fa-twitter" aria-hidden="true"></i></div>
 																  <div class="back"><i class="fa fa-twitter" aria-hidden="true"></i></div></a></li>
-															<li><a  class="instagram">
+															<li><a href="" class="instagram">
 																  <div class="front"><i class="fa fa-instagram" aria-hidden="true"></i></div>
 																  <div class="back"><i class="fa fa-instagram" aria-hidden="true"></i></div></a></li>
-															<li><a  class="pinterest">
+															<li><a href="" class="pinterest">
 																  <div class="front"><i class="fa fa-linkedin" aria-hidden="true"></i></div>
 																  <div class="back"><i class="fa fa-linkedin" aria-hidden="true"></i></div></a></li>
 														</ul>
 		</div>
 		<div class="col-md-9 footer-right">
 			<div class="sign-grds">
+				
 				
 				<div class="col-md-5 sign-gd-two">
 					<h4>Store <span>Information</span></h4>
@@ -489,7 +351,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							</div>
 							<div class="w3-address-right">
 								<h6>Email Address</h6>
-								<p>Email :<a > EliteShoppy@gmail.com</a></p>
+								<p>Email : EliteShoppy@gmail.com</p>
 							</div>
 							<div class="clearfix"> </div>
 						</div>
@@ -512,19 +374,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			</div>
 		</div>
 		<div class="clearfix"></div>
-			<div class="agile_newsletter_footer">
-					<div class="col-sm-6 newsleft">
-				<h3>SIGN UP FOR NEWSLETTER !</h3>
-			</div>
-			<div class="col-sm-6 newsright">
-				<form action="#" method="post">
-					<input type="email" placeholder="Enter your email..." name="email" required="">
-					<input type="submit" value="Submit">
-				</form>
-			</div>
-
-		<div class="clearfix"></div>
-	</div>
+			
 		<p class="copy-right">&copy 2018 Elite shoppy. All rights reserved </p>
 	</div>
 </div>

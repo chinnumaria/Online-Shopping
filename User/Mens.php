@@ -26,67 +26,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!-- //for bootstrap working -->
 <link href="//fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800" rel="stylesheet">
 <link href='//fonts.googleapis.com/css?family=Lato:400,100,100italic,300,300italic,400italic,700,900,900italic,700italic' rel='stylesheet' type='text/css'>
-
-<script>
-j=0;
-	for(i=0;i<5;i++)
-	{
-	u=document.getElementsByName('price')[i].value;
-	j=parseInt(j) + parseInt(u)
-	document.getElementById('totl').value=j;
-	}
-        var x = 0;
-        var y = 0;
-        var z = 0;
-		var k =0;
-	
-        function calc(obj) {
-			alert(obj)
-            var e = obj.id.toString();
-			
-            if (e == 'aprice') {
-                x = Number(obj.value);
-                y = Number(document.getElementById('quantity').value);
-            } else {
-                x = Number(document.getElementById('aprice').value);
-                y = Number(obj.value);
-            }
-            z = x * y;
-            document.getElementById('price').value = z;
-            document.getElementById('update').innerHTML = z;
-        }
-		function cal(e,id,ff)
-{
-	var a=e.value;
-	//alert(e.value)
-	//alert(id)
-	//var a=document.getElementById("pr"+i).value;
-	//alert(a);
-	var b=document.getElementById(id).value;
-	
-	var c=parseInt(a) * parseInt(b);
-	//alert(c);
-	document.getElementById(ff).value=c;
-	caltot(c);
-	
-	/* i++; */
-}
-function caltot(a)
-{
-	
-	j=0;
-	for(i=0;i<5;i++)
-	{
-	u=document.getElementsByName('price')[i].value;
-	j=parseInt(j) + parseInt(u)
-	document.getElementById('totl').value=j;
-}
-			
-}
-    </script>
-    
-
-
 </head>
 <body>
 <!-- header 
@@ -97,7 +36,7 @@ function caltot(a)
 	<div class="header-bot_inner_wthreeinfo_header_mid">
 		<div class="col-md-4 header-middle">
 			<form action="#" method="post">
-					<input type="search" name="search" placeholder="Search here..." required>
+					<input type="search" name="search" placeholder="Search here..." required="">
 					<input type="submit" value=" ">
 				<div class="clearfix"></div>
 			</form>
@@ -153,27 +92,14 @@ function caltot(a)
 					<li class="menu__item dropdown">
 					<a class="menu__link" class="dropdown-toggle" data-toggle="dropdown">
 					<?php
-				$id=$_SESSION["txtusername"];
+			$id=$_SESSION["txtusername"];
 				$con=mysqli_connect("localhost","root","","os");
-				$si="select * from registration where email='$id';";
-				$resi=mysqli_query($con,$si);
-				$rew=mysqli_fetch_assoc($resi);
-				$uid=$rew["uid"];
-				echo "<span class='hidden-xs'>".$rew['name']."</span>";
+				$sq="select * from registration where email='$id';";
+				$res=mysqli_query($con,$sq);
+				$row=mysqli_fetch_assoc($res);
+				$uid=$row["uid"];
+				echo "<span class='hidden-xs'>".$row['name']."</span>";
 			?>
-			
-			 <?php
-							$con=mysqli_connect("localhost","root","","os");
-				$cr="select * from cart where uid='$uid';";
-				$crt=mysqli_query($con,$cr);
-				if(mysqli_num_rows($crt)==0){
-					echo "<script>
-							window.history.back();
-							window.alert('Your Cart Is Empty!!!!!');
-							</script>";
-				}
-				?>
-			
 			<b class="caret"></b></a>
 			<ul class="dropdown-menu agile_short_dropdown">
 									<li><a href="icons.html">Profile</a></li>
@@ -186,21 +112,31 @@ function caltot(a)
 			</nav>	
 		</div>-->
 		<li></li>
-		<li>
+		<!--<li>
 		<div class="top_nav_right">
 			<div class=""> 
-						<form action="#" method="post" class="last"> 
+						<form action="my_cart.php" method="post" class=""> 
 						<input type="hidden" name="cmd" value="_cart">
 						<input type="hidden" name="display" value="1">
-						<button class="w3view-cart" type="submit" name="submit" value=""><i class="fa fa-cart-arrow-down" aria-hidden="true"></i></button>
+						<button class="w3view-cart" type="submit" name="submit" onClick="" value=""><i class="fa fa-cart-arrow-down" aria-hidden="true"></i></button>
 					</form>  
 			
 			</div>
 		</div>
+		</li> -->
+		<li><?php
+			$id=$_SESSION["txtusername"];
+				$con=mysqli_connect("localhost","root","","os");
+				$sq="select uid from registration where email='$id';";
+				$res=mysqli_query($con,$sq);
+				$rows=mysqli_fetch_assoc($res);
+				
+		echo "<form action='cart11.php' method='post' class=''> 
+		<button class='w3view-cart' type='submit' name='submit' onClick='' value=''><i class='fa fa-cart-arrow-down' aria-hidden='true'></i></button></form>";
+	?>
 		</li>
 		</ul>
 			</div>
-			 </div>
 			 </div>
 			</nav>
 		<div class="clearfix"></div>
@@ -209,142 +145,363 @@ function caltot(a)
 <!-- //banner-top -->
 <!-- Modal1 -->
 <!-- //Modal1 -->
-<!-- Modal2 -->	
+<!-- Modal2 -->
+	
 <!-- //Modal2 -->
+
 <!-- banner -->
-		<style>
-input{
-	border: none;
-    background: transparent;
-	
-}
-select option { padding:0px 0px; }
-table {
-    border-collapse: collapse;
-    width: 90%;	
-}
-
-th, td {
-    
-    text-align: left;
-    border-bottom: 1px solid #ddd;
-}
-
-tr:hover {background-color:#f5f5f5;}
-</style>
-<div class="banner-bootom-w3-agileits">
-
-<table align="center">
-									<thead>
-										<tr>
-											<th>   </th>
-											<th>   </th>
-											<th>Elite Price</th>
-											<th>Price</th>
-											<th>Quantity</th>
-											<th>Total</th>
-										</tr>
-									</thead>
-
-				<?php
-								//$con=mysqli_connect("localhost","maria","maria","os");
-								
-								/*$se="SELECT * from cart where uid=$uid";
-								$re=mysqli_query($con,$se);
-								$r=mysqli_fetch_assoc($re);
-								$pid=$r["pid"];*/
-								
-								$seq="SELECT p.p_name as nm,p.p_price as price,p.p_dis as dis,p.p_price-p.p_dis as pfinal , p.p_img as imge,p.p_desc as descr from product p inner join cart c on p.p_id=c.pid and c.uid=$uid;";
-								//echo $seq;
-								$req=mysqli_query($con,$seq);
-								//$rs=mysqli_fetch_assoc($req);
-								//$pr=$rs["price"];
-								//$dis=$rs["dis"];
-								//$ap=$pr-$dis;
-								
-								//echo mysqli_num_rows($re);
-								
-								if(mysqli_num_rows($req)>0)
-								{
-								
-										$i=1;
-										$cn=0;
-									while($rs = mysqli_fetch_array($req))
-									{
-										$e=$rs["pfinal"];
-										$e =intval($e);
-										$cn=intval($cn);
-										$cn=$cn+$e;
-										
-									?>
-									<tbody>
-									<?php echo"<form action='' method='post'>"; ?>
-										<tr>
-											<td>
-												<?php echo "<img src='images/".$rs["imge"]." ' width='100px' height='100px'>"; ?>
-											</td>
-											<td> <?php  echo $rs["nm"];?> <br/>
-											<?php  echo $rs["descr"]; ?> </td>
-											<td> Price:   <?php  echo $rs["price"]; ?> <br/> Discount:  <?php  echo $rs["dis"]; ?> </td>
-											<td>
-												<!--<input type='text' id='aprice' class='' readonly value=<?php  //echo $rs["pfinal"]; ?> >-->
-                                                <input type='text' id='<?php echo "price$i"?>' class='' readonly value=<?php  echo $rs["pfinal"]; ?> style="width: 60px;">
-											</td>
-											<td>
-									<select name='qty' id='quantity' onChange="cal(this,'<?php echo "price".$i?>','<?php echo "ff".$i?>')">	
-													<option value='1'>1</option>
-													<option value='2'>2</option>
-													<option value='3'>3</option>
-													<option value='4'>4</option>
-													<option value='5'>5</option>
-												</select>
-											</td>
-											<td><input type='text' name='price'  id='<?php echo "ff".$i?>' readonly value='<?php  echo $rs["pfinal"]; ?> ' class='' style="width: 60px;"></td>
-							<td><div class='btn-group'>
-                        
-                  <button type='button' class='btn btn-default dropdown-toggle btn-sm' data-toggle='dropdown'>
-				  Options
-                    <span class='caret'></span>
-                    <span class='sr-only'>Toggle Dropdown</span>				
-                  </button>
-                        <ul class='dropdown-menu'>
-                          <?php echo"<li><a href='pay.php?x= ".$rs["pfinal"]."'>Place Order</a></li>
-						  <li><a href='del.php'>Delete</a></li>"; ?>
-                        </ul>
-                   </div>
-                    </div></td>
-							</tr> 
-							<?php
-							$i++;
-									} 
-									
-									}
-								  
-							?>
-							
-						</tbody></table></br>
-						
-					<label for="subtotal" style="margin-left: 78%;">Sub Total:  ₹</label> <input type='text' name='Subtotal' id='totl' style="width: 60px;"   class=''value="<?php echo $cn;?>">
-					
-					<div class="col-sm-6 newsright">
-					<?php echo "<input type='submit' name='cs' value='Continue Shopping' class='hvr-outline-out button2' onClick=window.location.href='payment.php?x=$cn' style='margin-left: 155%;'>";?>
-						</div></div><br/>
-						</form>
+	<div id="myCarousel" class="carousel slide" data-ride="carousel">
+		<!-- Indicators -->
+		<ol class="carousel-indicators">
+			<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+			<li data-target="#myCarousel" data-slide-to="1" class=""></li>
+			<li data-target="#myCarousel" data-slide-to="2" class=""></li>
+			<li data-target="#myCarousel" data-slide-to="3" class=""></li>
+			<li data-target="#myCarousel" data-slide-to="4" class=""></li> 
+		</ol>
+		<div class="carousel-inner" role="listbox">
+			<div class="item active"> 
+				<div class="container">
+					<div class="carousel-caption">
+						<h3>The Biggest <span>Sale</span></h3>
+						<p>Special for today</p>
+						<a class="hvr-outline-out button2" href="mens.html">Shop Now </a>
+					</div>
+				</div>
+			</div>
+			<div class="item item2"> 
+				<div class="container">
+					<div class="carousel-caption">
+						<h3>Summer <span>Collection</span></h3>
+						<p>New Arrivals On Sale</p>
+						<a class="hvr-outline-out button2" href="mens.html">Shop Now </a>
+					</div>
+				</div>
+			</div>
+			<div class="item item3"> 
+				<div class="container">
+					<div class="carousel-caption">
+						<h3>The Biggest <span>Sale</span></h3>
+						<p>Special for today</p>
+						<a class="hvr-outline-out button2" href="mens.html">Shop Now </a>
+					</div>
+				</div>
+			</div>
+			<div class="item item4"> 
+				<div class="container">
+					<div class="carousel-caption">
+						<h3>Summer <span>Collection</span></h3>
+						<p>New Arrivals On Sale</p>
+						<a class="hvr-outline-out button2" href="mens.html">Shop Now </a>
+					</div>
+				</div>
+			</div>
+			<div class="item item5"> 
+				<div class="container">
+					<div class="carousel-caption">
+						<h3>The Biggest <span>Sale</span></h3>
+						<p>Special for today</p>
+						<a class="hvr-outline-out button2" href="mens.html">Shop Now </a>
+					</div>
+				</div>
+			</div> 
+		</div>
+		<a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+			<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+			<span class="sr-only">Previous</span>
+		</a>
+		<a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+			<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+			<span class="sr-only">Next</span>
+		</a>
+		<!-- The Modal -->
+    </div> 
+	</div>
 	<!-- //banner -->
-    
+    <div class="banner_bottom_agile_info">
+	    <div class="container">
+            <div class="banner_bottom_agile_info_inner_w3ls">
+    	           <div class="col-md-6 wthree_banner_bottom_grid_three_left1 grid">
+						<figure class="effect-roxy">
+							<img src="images/bottom1.jpg" alt=" " class="img-responsive" />
+							<figcaption>
+								<h3><span>F</span>all Ahead</h3>
+								<p>New Arrivals</p>
+							</figcaption>			
+						</figure>
+					</div>
+					 <div class="col-md-6 wthree_banner_bottom_grid_three_left1 grid">
+						<figure class="effect-roxy">
+							<img src="images/bottom2.jpg" alt=" " class="img-responsive" />
+							<figcaption>
+								<h3><span>F</span>all Ahead</h3>
+								<p>New Arrivals</p>
+							</figcaption>			
+						</figure>
+					</div>
+					<div class="clearfix"></div>
+		    </div> 
+		 </div> 
+    </div>
+	</div>
 	<!-- schedule-bottom -->
-	
+	<div class="schedule-bottom">
+		<div class="col-md-6 agileinfo_schedule_bottom_left">
+			<img src="images/mid.jpg" alt=" " class="img-responsive" />
+		</div>
+		<div class="col-md-6 agileits_schedule_bottom_right">
+			<div class="w3ls_schedule_bottom_right_grid">
+				<h3>Save up to <span>50%</span> in this week</h3>
+				<p>Suspendisse varius turpis efficitur erat laoreet dapibus. 
+					Mauris sollicitudin scelerisque commodo.Nunc dapibus mauris sed metus finibus posuere.</p>
+				<div class="col-md-4 w3l_schedule_bottom_right_grid1">
+					<i class="fa fa-user-o" aria-hidden="true"></i>
+					<h4>Customers</h4>
+					<h5 class="counter"><?php
+				$con=mysqli_connect("localhost","root","","os");
+				$sq="select name from registration where usertype=1;";
+				$res=mysqli_query($con,$sq);
+				$rowCount = mysqli_num_rows($res);
+				echo $rowCount;
+			   ?></h5>
+				</div>
+				<div class="col-md-4 w3l_schedule_bottom_right_grid1">
+					<i class="fa fa-calendar-o" aria-hidden="true"></i>
+					<h4>Products</h4>
+					<h5 class="counter"><?php
+				$con=mysqli_connect("localhost","root","","os");
+				$sq="select p_id from product;";
+				$res=mysqli_query($con,$sq);
+				$rowCount = mysqli_num_rows($res);
+				echo $rowCount;
+			   ?></h5> 
+				</div>
+				<div class="col-md-4 w3l_schedule_bottom_right_grid1">
+					<i class="fa fa-shield" aria-hidden="true"></i>
+					<h4>Sellers</h4>
+					<h5 class="counter"> <?php
+				$con=mysqli_connect("localhost","root","","os");
+				$sq="select s_id from seller;";
+				$res=mysqli_query($con,$sq);
+				$rowCount = mysqli_num_rows($res);
+				echo $rowCount;
+			   ?></h5>
+				</div>
+				<div class="clearfix"> </div>
+			</div>
+		</div>
+		<div class="clearfix"> </div>
+	</div>
 <!-- //schedule-bottom -->
   <!-- banner-bootom-w3-agileits -->
+	<div class="banner-bootom-w3-agileits">
+	<div class="container">
+		<h3 class="wthree_text_info">What's <span>Trending</span></h3>
 	
+		<div class="col-md-5 bb-grids bb-left-agileits-w3layouts">
+			<a href="womens.html">
+			   <div class="bb-left-agileits-w3layouts-inner grid">
+					<figure class="effect-roxy">
+							<img src="images/bb1.jpg" alt=" " class="img-responsive" />
+							<figcaption>
+								<h3><span>S</span>ale </h3>
+								<p>Upto 55%</p>
+							</figcaption>			
+						</figure>
+			    </div>
+			</a>
+		</div>
+		<div class="col-md-7 bb-grids bb-middle-agileits-w3layouts">
+		      <a href="mens.html">
+		       <div class="bb-middle-agileits-w3layouts grid">
+			           <figure class="effect-roxy">
+							<img src="images/bottom3.jpg" alt=" " class="img-responsive" />
+							<figcaption>
+								<h3><span>S</span>ale </h3>
+								<p>Upto 55%</p>
+							</figcaption>			
+						</figure>
+		        </div>
+				</a>
+				<a href="mens.html">
+		      <div class="bb-middle-agileits-w3layouts forth grid">
+						<figure class="effect-roxy">
+							<img src="images/bottom4.jpg" alt=" " class="img-responsive">
+							<figcaption>
+								<h3><span>S</span>ale </h3>
+								<p>Upto 65%</p>
+							</figcaption>		
+						</figure>
+					</div>
+					</a>
+		<div class="clearfix"></div>
+	</div>
+	</div>
+    </div>
 <!--/grids-->
-     					
+      <div class="agile_last_double_sectionw3ls">
+            <div class="col-md-6 multi-gd-img multi-gd-text ">
+					<a href="womens.html"><img src="images/bot_1.jpg" alt=" "><h4>Flat <span>50%</span> offer</h4></a>
+					
+			</div>
+			 <div class="col-md-6 multi-gd-img multi-gd-text ">
+					<a href="womens.html"><img src="images/bot_2.jpg" alt=" "><h4>Flat <span>50%</span> offer</h4></a>
+			</div>
+			<div class="clearfix"></div>
+	   </div>							
 <!--/grids-->
 <!-- /new_arrivals --> 
+	<!--<div class="new_arrivals_agile_w3ls_info"> 
+		<div class="container">
+		    <h3 class="wthree_text_info">New <span>Arrivals</span></h3>		
+				<div id="horizontalTab">
+						<ul class="resp-tabs-list">
+							<li> Men's</li>
+							<li> Women's</li>
+							<li> Bags</li>
+							<li> Footwear</li>
+						</ul>
+					<div class="resp-tabs-container">
+					<!--/tab_one-->
+						<!--<div class="tab1">
+							<div class="col-md-3 product-men">
+								<div class="men-pro-item simpleCart_shelfItem">
+									<div class="men-thumb-item">
+									<?php 
+										/* $con=mysqli_connect("localhost","maria","maria","os");
+										$sel_p="SELECT * from product WHERE p_cat='men';";
+										$res_p=mysqli_query($con,$sel_p);
+										while($row_p = mysqli_fetch_array($res_p)){
+										$pid = $row_p['p_id'];
+										$pcat = $row_p['p_cat'];
+										$pbrand = $row_p['p_brand'];
+										$pname = $row_p['p_name']; 
+										$price = $row_p['p_price'];
+										$pdis=$row_p['p_dis'];
+										$pimg = $row_p['p_img'];
+										
+										echo "<img src='images/".$row_p["p_img"]."' alt='' class='pro-image-front'>
+										<img src='images/".$row_p["p_img"]."' alt='' class='pro-image-back'>
+											<div class='men-cart-pro'>
+												<div class='inner-men-cart-pro'>
+													<a href='single.html' class='link-product-add-cart'>Quick View</a>
+												</div>
+											</div>
+											<span class='product-new-top'>New</span>
+											
+									</div>
+									<div class='item-info-product '>
+										<h4><a href='single.html'> $pname</a></h4>
+										<div class='info-product-price'>
+											<span class='item_price'>Discount $pdis</span>
+											<del>$price</del>
+										</div>
+										<div class='snipcart-details top_brand_home_details item_add single-item hvr-outline-out button2'>
+															<form action='#' method='post'>
+																<fieldset>
+																	<input type='hidden' name='cmd' value='_cart' />
+																	<input type='hidden' name='add' value='1' />
+																	<input type='hidden' name='business' value=' ' />
+																	<input type='hidden' name='item_name' value=$pname />
+																	<input type='hidden' name='amount' value=$price />
+																	<input type='hidden' name='discount_amount' value=$pdis />
+																	<input type='hidden' name='currency_code' value='USD' />
+																	<input type='hidden' name='return' value=' ' />
+																	<input type='hidden' name='cancel_return' value=' ' />
+																	<input type='submit' name='submit' value='Add to cart' class='button' />
+																</fieldset>
+															</form>
+														</div
+																			
+													</div>
+												</div>
+											</div>";
+										} */
+									?>-->
+							<div class="clearfix"></div>
+							<div class="clearfix"></div>
+						</div>
+						<!--//tab_one-->
+						<!--/tab_two-->
+						<div class="banner_bottom_agile_info">
+	    <div class="container">
+            <div class="banner_bottom_agile_info_inner_w3ls">
+						<h3 class="wthree_text_info">New <span>Products</span></h3>
+						<?php
+							$con=mysqli_connect("localhost","root","","os");
+										$sel_p="SELECT * from product;";
+										$res_p=mysqli_query($con,$sel_p);
+										while($row_p = mysqli_fetch_array($res_p)){
+										$pid = $row_p['p_id'];
+										$pcat = $row_p['p_cat'];
+										$pbrand = $row_p['p_brand'];
+										$pname = $row_p['p_name']; 
+										$price = $row_p['p_price'];
+										$pdis=$row_p['p_dis'];
+										$pimg = $row_p['p_img'];
+										$qty=$row_p['p_qty'];
+										$p=$price-$pdis;
+							 echo "<div class='col-md-3 product-men'>
+								<div class='men-pro-item simpleCart_shelfItem'>
+									<div class='men-thumb-item'>
+										<img src='images/".$row_p["p_img"]."' alt='' class='pro-image-front'>
+										<img src='images/".$row_p["p_img"]."' alt='' class='pro-image-back'>
+											<div class='men-cart-pro'>
+												<div class='inner-men-cart-pro'>";
+												if($qty<=5){
+													echo "<a class='link-product-add-cart' disabled>Out Of Stock</a>";
+												}
+												else{
+													echo "<a href='single.php?p_id=$pid' class='link-product-add-cart'>Quick View</a>";
+												}
+												echo "</div>
+											</div>
+											<span class='product-new-top'>New</span>
+											
+									</div>
+									<div class='item-info-product '>
+										<h4><a href='single.html'>$pname</a></h4>
+										<div class='info-product-price'>
+											<span class='item_price'>₹$p</span>
+											<del>₹$price</del><br/>
+											
+										</div>";
+										
+										echo "<div class='hvr-outline-out button2' >
+															<form action='a_cart.php?uid=$uid&pid=$pid' method='post'>";
+															if($qty<=5){
+																	echo "<input type='submit' class='hvr-outline-out button2' name='submit' value='Add to cart' onClick='' disabled/>";
+															}
+															else{
+																echo "<input type='submit' class='hvr-outline-out button2' name='submit' value='Add to cart' onClick=''  />";
+															}
+															echo "</form>
+														</div>
+																			
+									</div>
+								</div>
+							</div>";
+							}
+							?>
+							
+							<div class="clearfix"></div>
+						</div>
+					 <!--//tab_two-->
 
+					</div>
+					</div>
+				</div>	
+			</div>
+		</div>
 	<!-- //new_arrivals --> 
 	<!-- /we-offer -->
-		
+		<div class="sale-w3ls">
+			<div class="container">
+				<h6>We Offer Flat <span>40%</span> Discount</h6>
+ 
+				<a class="hvr-outline-out button2" href="single.html">Shop Now </a>
+			</div>
+		</div>
 	<!-- //we-offer -->
 <!--/grids-->
 <div class="coupons">
@@ -490,7 +647,7 @@ tr:hover {background-color:#f5f5f5;}
 			</div>
 			<div class="col-sm-6 newsright">
 				<form action="#" method="post">
-					<input type="email" placeholder="Enter your email..." name="email" required>
+					<input type="email" placeholder="Enter your email..." name="email" required="">
 					<input type="submit" value="Submit">
 				</form>
 			</div>
@@ -517,16 +674,16 @@ tr:hover {background-color:#f5f5f5;}
 										<form>
 											<div class="sign-up">
 												<h4>Email :</h4>
-												<input type="text" value="Type here" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Type here';}" required>	
+												<input type="text" value="Type here" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Type here';}" required="">	
 											</div>
 											<div class="sign-up">
 												<h4>Password :</h4>
-												<input type="password" value="Password" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Password';}" required>
+												<input type="password" value="Password" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Password';}" required="">
 												
 											</div>
 											<div class="sign-up">
 												<h4>Re-type Password :</h4>
-												<input type="password" value="Password" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Password';}" required>
+												<input type="password" value="Password" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Password';}" required="">
 												
 											</div>
 											<div class="sign-up">
@@ -540,11 +697,11 @@ tr:hover {background-color:#f5f5f5;}
 										<form>
 											<div class="sign-in">
 												<h4>Email :</h4>
-												<input type="text" value="Type here" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Type here';}" required>	
+												<input type="text" value="Type here" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Type here';}" required="">	
 											</div>
 											<div class="sign-in">
 												<h4>Password :</h4>
-												<input type="password" value="Password" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Password';}" required>
+												<input type="password" value="Password" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Password';}" required="">
 												<a href="#">Forgot password?</a>
 											</div>
 											<div class="single-bottom">
