@@ -96,15 +96,15 @@ function caltot(a)
 <div class="header-bot">
 	<div class="header-bot_inner_wthreeinfo_header_mid">
 		<div class="col-md-4 header-middle">
-			<form action="#" method="post">
-					<input type="search" name="search" placeholder="Search here..." required>
+			<form action="search.php" method="post">
+					<input type="search" name="search" placeholder="Search here..." required="">
 					<input type="submit" value=" ">
 				<div class="clearfix"></div>
 			</form>
 		</div>
 		<!-- header-bot -->
 			<div class="col-md-4 logo_agile">
-				<h1><a href="index.html"><span>E</span>lite Shoppy <i class="fa fa-shopping-bag top_logo_agile_bag" aria-hidden="true"></i></a></h1>
+				<h1><a href=""><span>E</span>lite Shoppy <i class="fa fa-shopping-bag top_logo_agile_bag" aria-hidden="true"></i></a></h1>
 			</div>
         <!-- header-bot -->
 		<div class="col-md-4 agileits-social top_content">
@@ -131,53 +131,40 @@ function caltot(a)
 				<!-- Collect the nav links, forms, and other content for toggling -->
 				<div class="collapse navbar-collapse menu--shylock" id="bs-example-navbar-collapse-1">
 				  <ul class="nav navbar-nav menu__list">
-					<li class="active menu__item menu__item--current"><a class="menu__link" href="index.html">Home <span class="sr-only">(current)</span></a></li>
-					<li class=" menu__item"><a class="menu__link" href="about.html">About</a></li>
+					<li class=" menu__item"><a class="menu__link" href="index_user.php">Home <span class="sr-only">(current)</span></a></li>
+					<li class=" menu__item"><a class="menu__link" href="about.php">About</a></li>
 					<li class="dropdown menu__item">
 						<a href="#" class="dropdown-toggle menu__link" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Categories <span class="caret"></span></a>
 										<ul class="dropdown-menu agile_short_dropdown">
-									<li><a href="mens.html">Mens</a></li>
-									<li><a href="womens.html">Womens</a></li>
+									<li><a href="fp.php">Featured Products</a></li>
+									<li><a href="mens.php">Men's Fasion</a></li>
+									<li><a href="womens.php">Women's Fasion</a></li>
+									<li><a href="shoes.php">Shoes</a></li>
+									<li><a href="watches.php">Watches</a></li>
+									<li><a href="Bags.php">Bags</a></li>
 									</ul>
 						</li>		
 					
-					<li class="menu__item dropdown">
-					   <a class="menu__link" href="#" class="dropdown-toggle" data-toggle="dropdown">Short Codes <b class="caret"></b></a>
-								<ul class="dropdown-menu agile_short_dropdown">
-									<li><a href="icons.html">Web Icons</a></li>
-									<li><a href="typography.html">Typography</a></li>
-								</ul>
-					</li>
-					<li class=" menu__item"><a class="menu__link" href="contact.html">Contact</a></li>
-					<li>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</li>
+					<li class=" menu__item"><a class="menu__link" href="contact.php">Contact</a></li>
+					<li>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</li>
 					<li class="menu__item dropdown">
 					<a class="menu__link" class="dropdown-toggle" data-toggle="dropdown">
 					<?php
-				$id=$_SESSION["txtusername"];
+			$id=$_SESSION["txtusername"];
 				$con=mysqli_connect("localhost","root","","os");
-				$si="select * from registration where email='$id';";
-				$resi=mysqli_query($con,$si);
-				$rew=mysqli_fetch_assoc($resi);
-				$uid=$rew["uid"];
-				echo "<span class='hidden-xs'>".$rew['name']."</span>";
+				$sq="select * from registration where email='$id';";
+				$res=mysqli_query($con,$sq);
+				$row=mysqli_fetch_assoc($res);
+				$uid=$row["uid"];
+				$uname=$row["name"];
+				$arr = explode(' ',trim($uname));
+				echo "<span class='hidden-xs'>".$arr[0]."</span>";
 			?>
-			
-			 <?php
-							$con=mysqli_connect("localhost","root","","os");
-				$cr="select * from cart where uid='$uid';";
-				$crt=mysqli_query($con,$cr);
-				if(mysqli_num_rows($crt)==0){
-					echo "<script>
-							window.history.back();
-							window.alert('Your Cart Is Empty!!!!!');
-							</script>";
-				}
-				?>
-			
 			<b class="caret"></b></a>
 			<ul class="dropdown-menu agile_short_dropdown">
-									<li><a href="icons.html">Profile</a></li>
-									<li><a href="typography.html">Signout</a></li>
+									<li><a href="profile.php">Profile</a></li>
+									<li><a href="order.php">Orders</a></li>
+									<li><a href="index.php">Signout</a></li>
 			</ul>
 			</a></li>
 				<!--  </ul>
@@ -186,24 +173,36 @@ function caltot(a)
 			</nav>	
 		</div>-->
 		<li></li>
-		<li>
+		<!--<li>
 		<div class="top_nav_right">
 			<div class=""> 
-						<form action="#" method="post" class="last"> 
+						<form action="my_cart.php" method="post" class=""> 
 						<input type="hidden" name="cmd" value="_cart">
 						<input type="hidden" name="display" value="1">
-						<button class="w3view-cart" type="submit" name="submit" value=""><i class="fa fa-cart-arrow-down" aria-hidden="true"></i></button>
+						<button class="w3view-cart" type="submit" name="submit" onClick="" value=""><i class="fa fa-cart-arrow-down" aria-hidden="true"></i></button>
 					</form>  
 			
 			</div>
 		</div>
+		</li> -->
+		<li><?php
+			$id=$_SESSION["txtusername"];
+				$con=mysqli_connect("localhost","root","","os");
+				$sq="select uid from registration where email='$id';";
+				$res=mysqli_query($con,$sq);
+				$rows=mysqli_fetch_assoc($res);
+				
+		echo "<form action='my_cart_test.php' method='post' class=''> 
+		<button class='w3view-cart' type='submit' name='submit' onClick='' value=''><i class='fa fa-cart-arrow-down' aria-hidden='true'></i></button></form>";
+	?>
 		</li>
 		</ul>
 			</div>
 			 </div>
-			 </div>
 			</nav>
 		<div class="clearfix"></div>
+	</div>
+</div>
 	</div>
 </div>
 <!-- //banner-top -->
@@ -234,19 +233,35 @@ tr:hover {background-color:#f5f5f5;}
 </style>
 <div class="banner-bootom-w3-agileits">
 
+<?php
+							$con=mysqli_connect("localhost","root","","os");
+				$cr="select * from cart1 where uid='$uid';";
+				//echo $cr;
+				$crt=mysqli_query($con,$cr);
+				/* if(mysqli_num_rows($crt)==0){
+					echo "		
+							<h2 >Your Cart Is Empty!!!!!</h2>
+							
+							";
+				}
+				else{ */
+				?>
+
 <table align="center">
-									<thead>
+<?php 
+				
+									echo "<thead>
 										<tr>
-											<th>    </th>
-											<th>    </th>
-											<th>    </th>
+											<th>   </th>
+											<th>   </th>
+											<th>   </th>
 											<th>Elite Price</th>
 											<th>Price</th>
 											<th>Quantity</th>
 											<th>Total</th>
 										</tr>
-									</thead>
-
+									</thead>";
+?>
 				<?php
 								//$con=mysqli_connect("localhost","maria","maria","os");
 								
@@ -303,24 +318,31 @@ tr:hover {background-color:#f5f5f5;}
 													<option value='5'>5</option>
 												</select>
 											</td>
-											<td><input type='text' name='price'  id='<?php echo "ff".$i?>' readonly value='<?php  echo $rs["pfinal"]; ?> ' class='' style="width: 60px;"></td>
-						
+											<td><input type='text' name='price'  id='<?php echo "ff".$i?>' readonly value='<?php  echo $rs["pfinal"]; ?> ' class='' style="width: 60px;" /></td>
+											<?php if(mysqli_num_rows($req)>1)
+											{
+											 echo "<td><a  href='dp1.php?x=". $rs["pid"]. "'><img src='imgs/close.jpg'>" ; }?>
+                    </div></td>
 							</tr> 
 							<?php
 							$i++;
 									} 
 									
 									}
-								  
+		  
 							?>
 							
 						</tbody></table></br>
 						
-					<label for="subtotal" style="margin-left: 76%;">Sub Total:  ₹</label> <input type='text' name='Subtotal' id='totl' style="width: 60px;"   class=''value="<?php echo $cn;?>">
+					<label for="subtotal" style="margin-left: 78%;">Sub Total:  ₹</label> <input type='text' name='Subtotal' id='totl' style="width: 60px;"   class=''value="<?php echo $cn;?>">
 					
 					<div class="col-sm-6 newsright">
-					<?php echo "<input type='submit' name='cs' value='Place Order' class='hvr-outline-out button2' onClick=window.location.href='' style='margin-left: 155%;'>";?>
+					<?php echo "<input type='submit' name='cs' value='Continue Shopping' class='hvr-outline-out button2' style='margin-left: 155%;'>";?>
 						</div></div><br/>
+						<?php
+						
+				
+				?>
 						</form>
 	<!-- //banner -->
     
@@ -342,13 +364,14 @@ tr:hover {background-color:#f5f5f5;}
 <div class="coupons">
 		<div class="coupons-grids text-center">
 			<div class="w3layouts_mail_grid">
-				<div class="col-md-3 w3layouts_mail_grid_left">
+				
+				<div style="margin-left: 350px;" class="col-md-3 w3layouts_mail_grid_left">
 					<div class="w3layouts_mail_grid_left1 hvr-radial-out">
 						<i class="fa fa-truck" aria-hidden="true"></i>
 					</div>
-					<div class="w3layouts_mail_grid_left2">
-						<h3>FREE SHIPPING</h3>
-						<p>Lorem ipsum dolor sit amet, consectetur</p>
+					<div  class="w3layouts_mail_grid_left2">
+						<h3>SHIPPING COST</h3>
+						<p>50 INR </p>
 					</div>
 				</div>
 				<div class="col-md-3 w3layouts_mail_grid_left">
@@ -357,26 +380,10 @@ tr:hover {background-color:#f5f5f5;}
 					</div>
 					<div class="w3layouts_mail_grid_left2">
 						<h3>24/7 SUPPORT</h3>
-						<p>Lorem ipsum dolor sit amet, consectetur</p>
+						<p>We offer 24/7 Support</p>
 					</div>
 				</div>
-				<div class="col-md-3 w3layouts_mail_grid_left">
-					<div class="w3layouts_mail_grid_left1 hvr-radial-out">
-						<i class="fa fa-shopping-bag" aria-hidden="true"></i>
-					</div>
-					<div class="w3layouts_mail_grid_left2">
-						<h3>MONEY BACK GUARANTEE</h3>
-						<p>Lorem ipsum dolor sit amet, consectetur</p>
-					</div>
-				</div>
-					<div class="col-md-3 w3layouts_mail_grid_left">
-					<div class="w3layouts_mail_grid_left1 hvr-radial-out">
-						<i class="fa fa-gift" aria-hidden="true"></i>
-					</div>
-					<div class="w3layouts_mail_grid_left2">
-						<h3>FREE GIFT COUPONS</h3>
-						<p>Lorem ipsum dolor sit amet, consectetur</p>
-					</div>
+					
 				</div>
 				<div class="clearfix"> </div>
 			</div>
@@ -388,38 +395,25 @@ tr:hover {background-color:#f5f5f5;}
 <div class="footer">
 	<div class="footer_agile_inner_info_w3l">
 		<div class="col-md-3 footer-left">
-			<h2><a href="index.html"><span>E</span>lite Shoppy </a></h2>
-			<p>Lorem ipsum quia dolor
-			sit amet, consectetur, adipisci velit, sed quia non 
-			numquam eius modi tempora.</p>
+			<h2><a href=""><span>E</span>lite Shoppy </a></h2>
+			<p></p>
 			<ul class="social-nav model-3d-0 footer-social w3_agile_social two">
-															<li><a href="#" class="facebook">
+															<li><a  class="facebook">
 																  <div class="front"><i class="fa fa-facebook" aria-hidden="true"></i></div>
 																  <div class="back"><i class="fa fa-facebook" aria-hidden="true"></i></div></a></li>
-															<li><a href="#" class="twitter"> 
+															<li><a  class="twitter"> 
 																  <div class="front"><i class="fa fa-twitter" aria-hidden="true"></i></div>
 																  <div class="back"><i class="fa fa-twitter" aria-hidden="true"></i></div></a></li>
-															<li><a href="#" class="instagram">
+															<li><a  class="instagram">
 																  <div class="front"><i class="fa fa-instagram" aria-hidden="true"></i></div>
 																  <div class="back"><i class="fa fa-instagram" aria-hidden="true"></i></div></a></li>
-															<li><a href="#" class="pinterest">
+															<li><a  class="pinterest">
 																  <div class="front"><i class="fa fa-linkedin" aria-hidden="true"></i></div>
 																  <div class="back"><i class="fa fa-linkedin" aria-hidden="true"></i></div></a></li>
 														</ul>
 		</div>
 		<div class="col-md-9 footer-right">
 			<div class="sign-grds">
-				<div class="col-md-4 sign-gd">
-					<h4>Our <span>Information</span> </h4>
-					<ul>
-						<li><a href="index.html">Home</a></li>
-						<li><a href="mens.html">Men's Wear</a></li>
-						<li><a href="womens.html">Women's wear</a></li>
-						<li><a href="about.html">About</a></li>
-						<li><a href="typography.html">Short Codes</a></li>
-						<li><a href="contact.html">Contact</a></li>
-					</ul>
-				</div>
 				
 				<div class="col-md-5 sign-gd-two">
 					<h4>Store <span>Information</span></h4>
@@ -440,7 +434,7 @@ tr:hover {background-color:#f5f5f5;}
 							</div>
 							<div class="w3-address-right">
 								<h6>Email Address</h6>
-								<p>Email :<a href="mailto:example@email.com"> mail@example.com</a></p>
+								<p>Email :<a > EliteShoppy@gmail.com</a></p>
 							</div>
 							<div class="clearfix"> </div>
 						</div>
@@ -450,7 +444,7 @@ tr:hover {background-color:#f5f5f5;}
 							</div>
 							<div class="w3-address-right">
 								<h6>Location</h6>
-								<p>Broome St, NY 10002,California, USA. 
+								<p>Pala, Kottayam, Kerala, India
 								
 								</p>
 							</div>
@@ -458,38 +452,13 @@ tr:hover {background-color:#f5f5f5;}
 						</div>
 					</div>
 				</div>
-				<div class="col-md-3 sign-gd flickr-post">
-					<h4>Flickr <span>Posts</span></h4>
-					<ul>
-						<li><a href="single.html"><img src="images/t1.jpg" alt=" " class="img-responsive" /></a></li>
-						<li><a href="single.html"><img src="images/t2.jpg" alt=" " class="img-responsive" /></a></li>
-						<li><a href="single.html"><img src="images/t3.jpg" alt=" " class="img-responsive" /></a></li>
-						<li><a href="single.html"><img src="images/t4.jpg" alt=" " class="img-responsive" /></a></li>
-						<li><a href="single.html"><img src="images/t1.jpg" alt=" " class="img-responsive" /></a></li>
-						<li><a href="single.html"><img src="images/t2.jpg" alt=" " class="img-responsive" /></a></li>
-						<li><a href="single.html"><img src="images/t3.jpg" alt=" " class="img-responsive" /></a></li>
-						<li><a href="single.html"><img src="images/t2.jpg" alt=" " class="img-responsive" /></a></li>
-						<li><a href="single.html"><img src="images/t4.jpg" alt=" " class="img-responsive" /></a></li>
-					</ul>
-				</div>
+				
 				<div class="clearfix"></div>
 			</div>
 		</div>
 		<div class="clearfix"></div>
-			<div class="agile_newsletter_footer">
-					<div class="col-sm-6 newsleft">
-				<h3>SIGN UP FOR NEWSLETTER !</h3>
-			</div>
-			<div class="col-sm-6 newsright">
-				<form action="#" method="post">
-					<input type="email" placeholder="Enter your email..." name="email" required>
-					<input type="submit" value="Submit">
-				</form>
-			</div>
-
-		<div class="clearfix"></div>
-	</div>
-		<p class="copy-right">&copy 2017 Elite shoppy. All rights reserved | Design by <a href="http://w3layouts.com/">W3layouts</a></p>
+		
+		<p class="copy-right">&copy 2018 Elite shoppy. All rights reserved </p>
 	</div>
 </div>
 <!-- //footer -->

@@ -1,7 +1,7 @@
 <?php
+session_start();
 
-?>
-<?php
+
 			$id=$_SESSION["txtusername"];
 				$con=mysqli_connect("localhost","root","","os");
 				$sq="select * from registration where email='$id';";
@@ -223,7 +223,7 @@
 <!-- ./wrapper -->
 
 <!-- jQuery 3 -->
-<script src="../bower_components/jquery/dist/jquery.min.js"></script>
+
 <!-- Bootstrap 3.3.7 -->
 <script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 <!-- FastClick -->

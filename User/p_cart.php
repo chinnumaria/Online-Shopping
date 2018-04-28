@@ -1,4 +1,8 @@
+
 <?php
+session_start();
+
+
 $con=mysqli_connect("localhost","maria","maria","os");
 $uid=$_GET["uid"];
 $pid=$_GET["pid"];
@@ -21,7 +25,8 @@ $name=$row["name"];
 	
 $sql="insert into cart1(uid,pid,quantity,curdate) values($uid,$pid,1,NOW())";
 $rw=mysqli_query($con,$sql);
+echo $sql;
 
-header("location:my_cart_test1.php"); 
+ header("location:my_cart_test1.php");  
 
 ?>

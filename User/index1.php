@@ -6,7 +6,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 -->
 <?php
 session_start();
-$id=$_SESSION["txtusername"];
+session_destroy();
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -27,17 +28,37 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!-- //for bootstrap working -->
 <link href="//fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800" rel="stylesheet">
 <link href='//fonts.googleapis.com/css?family=Lato:400,100,100italic,300,300italic,400italic,700,900,900italic,700italic' rel='stylesheet' type='text/css'>
+
+<script>
+function myFunction() {
+    alert("Please Signin");
+}
+</script>
+
+
+
 </head>
 <body>
-<!-- header 
-
+<!-- header -->
+<div class="header" id="home">
+	<div class="container">
+		<ul>
+		<li> <i aria-hidden="true"></i> </li>
+		<li> <i aria-hidden="true"></i> </li>
+		    <li> <a href="#" data-toggle="modal" data-target="#myModal"><i class="fa fa-unlock-alt" aria-hidden="true"></i> Sign In </a></li>
+			<li> <a href="#" data-toggle="modal" data-target="#myModal2"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Sign Up </a></li>
+			<!--<li><i class="fa fa-phone" aria-hidden="true"></i> Call : 01234567898</li>
+			<li><i class="fa fa-envelope-o" aria-hidden="true"></i> <a href="mailto:info@example.com">info@example.com</a></li>-->
+		</ul>
+	</div>
+</div>
 <!-- //header -->
 <!-- header-bot -->
 <div class="header-bot">
 	<div class="header-bot_inner_wthreeinfo_header_mid">
 		<div class="col-md-4 header-middle">
-			<form action="search.php" method="post">
-					<input type="search" name="search" placeholder="Search here..." required="">
+			<form action="sr1.php" method="post">
+					<input type="search" name="search" id="search" placeholder="Search here..." required="">
 					<input type="submit" value=" ">
 				<div class="clearfix"></div>
 			</form>
@@ -71,72 +92,46 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<!-- Collect the nav links, forms, and other content for toggling -->
 				<div class="collapse navbar-collapse menu--shylock" id="bs-example-navbar-collapse-1">
 				  <ul class="nav navbar-nav menu__list">
-					<li class="active menu__item menu__item--current"><a class="menu__link" href="index_user.php">Home <span class="sr-only">(current)</span></a></li>
-					<li class=" menu__item"><a class="menu__link" href="about.php">About</a></li>
+					<li class="active menu__item menu__item--current"><a class="menu__link" href="index.php">Home <span class="sr-only">(current)</span></a></li>
+					<li class=" menu__item"><a class="menu__link" href="about1.php">About</a></li>
 					<li class="dropdown menu__item">
 						<a href="#" class="dropdown-toggle menu__link" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Categories <span class="caret"></span></a>
 										<ul class="dropdown-menu agile_short_dropdown">
-										
-									<li><a href="fp.php">Featured Products</a></li>
-									<li><a href="Bags.php">Bags</a></li>
-									<li><a href="ep.php">Earphones</a></li>
-									<li><a href="mobile.php">Mobile</a></li>
-									<li><a href="watches.php">Watches</a></li>
-									
+									<li><a href="fp1.php">Featured Products</a></li>
+									<li><a href="mens1.php">Men's Fasion</a></li>
+									<li><a href="womens1.php">Women's Fasion</a></li>
+									<li><a href="shoes1.php">Shoes</a></li>
+									<li><a href="watches1.php">Watches</a></li>
+									<li><a href="Bags1.php">Bags</a></li>
 									</ul>
 						</li>		
 					
-					<li class=" menu__item"><a class="menu__link" href="contact.php">Contact</a></li>
+					<li class=" menu__item"><a class="menu__link" href="contact1.php">Contact</a></li>
 					<li>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</li>
-					<li class="menu__item dropdown">
-					<a class="menu__link" class="dropdown-toggle" data-toggle="dropdown">
-					<?php
-			$id=$_SESSION["txtusername"];
-				$con=mysqli_connect("localhost","root","","os");
-				$sq="select * from registration where email='$id';";
-				$res=mysqli_query($con,$sq);
-				$row=mysqli_fetch_assoc($res);
-				$uid=$row["uid"];
-				$uname=$row["name"];
-				$arr = explode(' ',trim($uname));
-				echo "<span class='hidden-xs'>".$arr[0]."</span>";
-			?>
-			<b class="caret"></b></a>
-			<ul class="dropdown-menu agile_short_dropdown">
-									<li><a href="profile.php">Profile</a></li>
-									<li><a href="order.php">Orders</a></li>
-									<li><a href="index1.php">Signout</a></li>
-			</ul>
-			</a></li>
-				<!--  </ul>
-				</div>
-			  </div>
-			</nav>	
-		</div>-->
-		<li></li>
-		<!--<li>
+					
+		<li>
 		<div class="top_nav_right">
 			<div class=""> 
-						<form action="my_cart.php" method="post" class=""> 
+					 
 						<input type="hidden" name="cmd" value="_cart">
 						<input type="hidden" name="display" value="1">
-						<button class="w3view-cart" type="submit" name="submit" onClick="" value=""><i class="fa fa-cart-arrow-down" aria-hidden="true"></i></button>
-					</form>  
+						<button class="w3view-cart" type="submit" name="submit" onClick="myFunction()" value=""><i class="fa fa-cart-arrow-down" aria-hidden="true"></i></button>
+					 
 			
 			</div>
 		</div>
-		</li> -->
-		<li><?php
-			$id=$_SESSION["txtusername"];
+		</li> 
+		<!--<li><?php
+			/*$id=$_SESSION["txtusername"];
 				$con=mysqli_connect("localhost","root","","os");
 				$sq="select uid from registration where email='$id';";
 				$res=mysqli_query($con,$sq);
 				$rows=mysqli_fetch_assoc($res);
 				
-		echo "<form action='my_cart_test.php' method='post' class=''> 
-		<button class='w3view-cart' type='submit' name='submit' onClick='' value=''><i class='fa fa-cart-arrow-down' aria-hidden='true'></i></button></form>";
+		echo "<form action='my_cart.php' method='post' class=''> 
+		<button class='w3view-cart' type='submit' name='submit' onClick='' value=''><i class='fa fa-cart-arrow-down' aria-hidden='true'></i></button></form>";*/
 	?>
-		</li>
+		</li>-->
 		</ul>
 			</div>
 			 </div>
@@ -145,6 +140,121 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	</div>
 </div>
 <!-- //banner-top -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog">
+			<div class="modal-dialog">
+				<!-- Modal content-->
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+					</div>
+						<div class="modal-body modal-body-sub_agile">
+						<div class="col-md-8 modal_body_left modal_body_left1">
+						<h3 class="agileinfo_sign">Sign In <span>Now</span></h3>
+									<form action="login.php" method="post">
+							<div class="styled-input agile-styled-input-top">
+								<input type="text" name="txtusername" required placeholder="Username">
+								<!-- <label>Name</label> -->
+								<span></span>
+							</div>
+							<div class="styled-input">
+								<input type="password" name="txtpassword" required placeholder="Password"> 
+								<!-- <label>Email</label> -->
+								<span></span>
+							</div> 
+							<input type="submit" value="Sign In">
+						</form>
+						  <ul class="social-nav model-3d-0 footer-social w3_agile_social top_agile_third">
+															<li><a href="#" class="facebook">
+																  <div class="front"><i class="fa fa-facebook" aria-hidden="true"></i></div>
+																  <div class="back"><i class="fa fa-facebook" aria-hidden="true"></i></div></a></li>
+															<li><a href="#" class="twitter"> 
+																  <div class="front"><i class="fa fa-twitter" aria-hidden="true"></i></div>
+																  <div class="back"><i class="fa fa-twitter" aria-hidden="true"></i></div></a></li>
+															<li><a href="#" class="instagram">
+																  <div class="front"><i class="fa fa-instagram" aria-hidden="true"></i></div>
+																  <div class="back"><i class="fa fa-instagram" aria-hidden="true"></i></div></a></li>
+															<li><a href="#" class="pinterest">
+																  <div class="front"><i class="fa fa-linkedin" aria-hidden="true"></i></div>
+																  <div class="back"><i class="fa fa-linkedin" aria-hidden="true"></i></div></a></li>
+														</ul>
+														<div class="clearfix"></div>
+														<p><a href="../pages/examples/s_login.html" data-toggle="modal"  > Signin as seller</a></p>
+														<p><a href="#" data-toggle="modal" data-target="#myModal2" > Don't have an account?</a></p>
+
+						</div>
+						<div class="col-md-4 modal_body_right modal_body_right1">
+							<img src="images/log_pic.jpg" alt=" "/>
+						</div>
+						<div class="clearfix"></div>
+					</div>
+				</div>
+				<!-- //Modal content-->
+			</div>
+		</div>
+<!-- //Modal1 -->
+<!-- Modal2 -->
+		<div class="modal fade" id="myModal2" tabindex="-1" role="dialog">
+			<div class="modal-dialog">
+				<!-- Modal content-->
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+					</div>
+						<div class="modal-body modal-body-sub_agile">
+						<div class="col-md-8 modal_body_left modal_body_left1">
+						<h3 class="agileinfo_sign">Sign Up <span>Now</span></h3>
+						 <form action="register.php" method="post">
+							<div class="styled-input agile-styled-input-top">
+								<input type="text" name="txtname" required>
+								<label>Name</label>
+								<span></span>
+							</div>
+							<div class="styled-input">
+							<input type="radio" name="gender" value="Male" checked>Male&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+			        <input type="radio" name="gender" value="Female" >Female&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+			        <input type="radio" name="gender" value="Others">Others
+							<span></span>
+							</div> 
+							<div class="styled-input">
+								<input type="text" name="txtmob" onKeyPress="if(this.value.length==10) return false;" required> 
+								<label>Mobile</label>
+								<span></span>
+							</div> 
+							<div class="styled-input">
+								<input type="email" name="txtusername" required> 
+								<label>Email</label>
+								<span></span>
+							</div> 
+							<div class="styled-input">
+								<input type="password" name="txtpass" required> 
+								<label>Password</label>
+								<span></span>
+							</div> 
+							<div class="styled-input">
+								<input type="password" name="txtcpass" required> 
+								<label>Confirm Password</label>
+								<span></span>
+							</div> 
+							<input type="submit" value="Sign Up">
+						</form>
+
+														<div class="clearfix"></div>
+														<p><a href="#">By clicking register, I agree to your terms</a></p>
+														<p><a href="../pages/examples/s_reg.html" data-toggle="modal"  > Register as seller</a></p>
+														<p><a href="#" data-toggle="modal" data-target="#myModal">Existing User? Login</a></p>
+
+						</div>
+						<div class="col-md-4 modal_body_right modal_body_right1">
+							<img src="images/log_pic.jpg" alt=" "/>
+						</div>
+						<div class="clearfix"></div>
+					</div>
+				</div>
+				<!-- //Modal content-->
+			</div>
+		</div>
+<!-- //Modal2 -->
+
 <!-- Modal1 -->
 <!-- //Modal1 -->
 <!-- Modal2 -->
@@ -158,8 +268,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
 			<li data-target="#myCarousel" data-slide-to="1" class=""></li>
 			<li data-target="#myCarousel" data-slide-to="2" class=""></li>
-			<!--<li data-target="#myCarousel" data-slide-to="3" class=""></li>
-			<li data-target="#myCarousel" data-slide-to="4" class=""></li> -->
+			<li data-target="#myCarousel" data-slide-to="3" class=""></li>
+			<li data-target="#myCarousel" data-slide-to="4" class=""></li> 
 		</ol>
 		<div class="carousel-inner" role="listbox">
 			<div class="item active"> 
@@ -167,43 +277,43 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<div class="carousel-caption">
 						<h3>The Biggest <span>Sale</span></h3>
 						<p>Featured Products</p>
-						<a class="hvr-outline-out button2" href="fp.php">Shop Now </a>
+						<a class="hvr-outline-out button2" href="fp1.php">Shop Now </a>
 					</div>
 				</div>
 			</div>
-			<!--<div class="item item2"> 
+			<div class="item item2"> 
 				<div class="container">
 					<div class="carousel-caption">
 						<h3>The Biggest <span>Sale</span></h3>
 						<p>Men's Collection</p>
-						<a class="hvr-outline-out button2" href="mens.php">Shop Now </a>
+						<a class="hvr-outline-out button2" href="mens1.php">Shop Now </a>
 					</div>
 				</div>
-			</div>-->
+			</div>
 			<div class="item item3"> 
 				<div class="container">
 					<div class="carousel-caption">
 						<h3>The Biggest <span>Sale</span></h3>
 						<p>Bag Collections</p>
-						<a class="hvr-outline-out button2" href="bags.php">Shop Now </a>
+						<a class="hvr-outline-out button2" href="bags1.php">Shop Now </a>
 					</div>
 				</div>
 			</div>
-			<!--<div class="item item4"> 
+			<div class="item item4"> 
 				<div class="container">
 					<div class="carousel-caption">
 						<h3>The Biggest <span>Sale</span></h3>
 						<p>Shoe Collections</p>
-						<a class="hvr-outline-out button2" href="shoes.php">Shop Now </a>
+						<a class="hvr-outline-out button2" href="shoes1.php">Shop Now </a>
 					</div>
 				</div>
-			</div>-->
+			</div>
 			<div class="item item5"> 
 				<div class="container">
 					<div class="carousel-caption">
 						<h3>The Biggest <span>Sale</span></h3>
 						<p>Watch Collections</p>
-						<a class="hvr-outline-out button2" href="watches.php">Shop Now </a>
+						<a class="hvr-outline-out button2" href="watches1.php">Shop Now </a>
 					</div>
 				</div>
 			</div> 
@@ -220,7 +330,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     </div> 
 	</div>
 	<!-- //banner -->
-
+   
 	</div>
 	<!-- schedule-bottom -->
 	<div class="schedule-bottom">
@@ -229,8 +339,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		</div>
 		<div class="col-md-6 agileits_schedule_bottom_right">
 			<div class="w3ls_schedule_bottom_right_grid">
-				<h3><span></span> </h3>
-				<p></p>
+				
 				<div class="col-md-4 w3l_schedule_bottom_right_grid1">
 					<i class="fa fa-user-o" aria-hidden="true"></i>
 					<h4>Customers</h4>
@@ -276,7 +385,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<h3 class="wthree_text_info">What's <span>Trending</span></h3>
 	
 		<div class="col-md-5 bb-grids bb-left-agileits-w3layouts">
-			<a href="womens.php">
+			<a href="womens1.php">
 			   <div class="bb-left-agileits-w3layouts-inner grid">
 					<figure class="effect-roxy">
 							<img src="images/bb1.jpg" alt=" " class="img-responsive" />
@@ -289,7 +398,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			</a>
 		</div>
 		<div class="col-md-7 bb-grids bb-middle-agileits-w3layouts">
-		      <a href="mens.php">
+		      <a href="mens1.php">
 		       <div class="bb-middle-agileits-w3layouts grid">
 			           <figure class="effect-roxy">
 							<img src="images/bottom3.jpg" alt=" " class="img-responsive" />
@@ -300,7 +409,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						</figure>
 		        </div>
 				</a>
-				<a href="shoes.php">
+				<a href="shoes1.php">
 		      <div class="bb-middle-agileits-w3layouts forth grid">
 						<figure class="effect-roxy">
 							<img src="images/bottom4.jpg" alt=" " class="img-responsive">
@@ -316,14 +425,78 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	</div>
     </div>
 <!--/grids-->
-     						
+      						
 <!--/grids-->
 <!-- /new_arrivals --> 
-	
+	<!--<div class="new_arrivals_agile_w3ls_info"> 
+		<div class="container">
+		    <h3 class="wthree_text_info">New <span>Arrivals</span></h3>		
+				<div id="horizontalTab">
+						<ul class="resp-tabs-list">
+							<li> Men's</li>
+							<li> Women's</li>
+							<li> Bags</li>
+							<li> Footwear</li>
+						</ul>
+					<div class="resp-tabs-container">
+					<!--/tab_one-->
+						<!--<div class="tab1">
+							<div class="col-md-3 product-men">
+								<div class="men-pro-item simpleCart_shelfItem">
+									<div class="men-thumb-item">
+									<?php 
+										/* $con=mysqli_connect("localhost","maria","maria","os");
+										$sel_p="SELECT * from product WHERE p_cat='men';";
+										$res_p=mysqli_query($con,$sel_p);
+										while($row_p = mysqli_fetch_array($res_p)){
+										$pid = $row_p['p_id'];
+										$pcat = $row_p['p_cat'];
+										$pbrand = $row_p['p_brand'];
+										$pname = $row_p['p_name']; 
+										$price = $row_p['p_price'];
+										$pdis=$row_p['p_dis'];
+										$pimg = $row_p['p_img'];
+										
+										echo "<img src='images/".$row_p["p_img"]."' alt='' class='pro-image-front'>
+										<img src='images/".$row_p["p_img"]."' alt='' class='pro-image-back'>
+											<div class='men-cart-pro'>
+												<div class='inner-men-cart-pro'>
+													<a href='single.html' class='link-product-add-cart'>Quick View</a>
+												</div>
+											</div>
+											<span class='product-new-top'>New</span>
+											
+									</div>
+									<div class='item-info-product '>
+										<h4><a href='single.html'> $pname</a></h4>
+										<div class='info-product-price'>
+											<span class='item_price'>Discount $pdis</span>
+											<del>$price</del>
+										</div>
+										<div class='snipcart-details top_brand_home_details item_add single-item hvr-outline-out button2'>
+															<form action='#' method='post'>
+																<fieldset>
+																	<input type='hidden' name='cmd' value='_cart' />
+																	<input type='hidden' name='add' value='1' />
+																	<input type='hidden' name='business' value=' ' />
+																	<input type='hidden' name='item_name' value=$pname />
+																	<input type='hidden' name='amount' value=$price />
+																	<input type='hidden' name='discount_amount' value=$pdis />
+																	<input type='hidden' name='currency_code' value='USD' />
+																	<input type='hidden' name='return' value=' ' />
+																	<input type='hidden' name='cancel_return' value=' ' />
+																	<input type='submit' name='submit' value='Add to cart' class='button' />
+																</fieldset>
+															</form>
+														</div
+																			
+													</div>
+												</div>
+											</div>";
+										} */
+									?>-->
 							<div class="clearfix"></div>
 							<div class="clearfix"></div>
-						</div>
-						<div class="clearfix"></div>
 						</div>
 						<!--//tab_one-->
 						<!--/tab_two-->
@@ -335,12 +508,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							$con=mysqli_connect("localhost","root","","os");
 										$sel_p="SELECT * from product where p_select='apr';";
 										$res_p=mysqli_query($con,$sel_p);
-										
-										
-	
-							
-								if(mysqli_num_rows($res_p)>0){
-									while($row_p = mysqli_fetch_array($res_p)){
+										while($row_p = mysqli_fetch_array($res_p)){
 										$pid = $row_p['p_id'];
 										$pcat = $row_p['p_cat'];
 										$pbrand = $row_p['p_brand'];
@@ -350,9 +518,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 										$pimg = $row_p['p_img'];
 										$qty=$row_p['p_qty'];
 										$p=$price-$pdis;
-										
-							 echo "
-							 <div class='col-md-4 product-men'>
+							 echo "<div class='col-md-4 product-men'>
 								<div class='men-pro-item simpleCart_shelfItem'>
 									<div class='men-thumb-item'>
 										<img src='images/".$row_p["p_img"]."' alt='' class='pro-image-front'>
@@ -363,7 +529,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 													echo "<a class='link-product-add-cart' disabled>Out Of Stock</a>";
 												}
 												else{
-													echo "<a href='single.php?p_id=$pid' class='link-product-add-cart'>Quick View</a>";
+													echo "<a href='single1.php?p_id=$pid' class='link-product-add-cart'>Quick View</a>";
 												}
 												echo "</div>
 											</div>
@@ -378,26 +544,24 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 											
 										</div>";
 										
-										echo "<div class='hvr-outline-out button2' >
-															<form action='a_cart.php?uid=$uid&pid=$pid' method='post'>";
+										echo "<div class='hvr-outline-out button2' >";
+															
 															if($qty<=5){
 																	echo "<input type='submit' class='hvr-outline-out button2' name='submit' value='Add to cart' onClick='' disabled/>";
 															}
 															else{
-																echo "<input type='submit' class='hvr-outline-out button2' name='submit' value='Add to cart' onClick=''  />";
+																echo "<input type='button' class='hvr-outline-out button2' name='submit' value='Add to cart' onClick='myFunction()'  />";
 															}
-															echo "</form>
+															echo "
 														</div>
-										</div>									
+																			
 									</div>
-								
+								</div>
 							</div>";
 							}
-								}
-										
 							?>
 							
-						
+							<div class="clearfix"></div>
 						</div>
 					 <!--//tab_two-->
 

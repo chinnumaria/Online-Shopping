@@ -1,9 +1,3 @@
-<!--
-Author: W3layouts
-Author URL: http://w3layouts.com
-License: Creative Commons Attribution 3.0 Unported
-License URL: http://creativecommons.org/licenses/by/3.0/
--->
 <?php
 session_start();
 
@@ -27,56 +21,36 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 
 
-
+<!--<link href="css1/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+	<link href="css1/style.css" rel="stylesheet" type="text/css" media="all" />-->
+	<link href="css1/font-awesome.css" rel="stylesheet">
+	<!--pop-up-box-->
+	<link href="css1/popuo-box.css" rel="stylesheet" type="text/css" media="all" />
+	<!--//pop-up-box-->
+	<!-- price range -->
+	<link rel="stylesheet" type="text/css" href="css1/jquery-ui1.css">
+	<!-- fonts -->
+	<link href="//fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800" rel="stylesheet">
 
 
 
   <!-- Font Awesome -->
-  <link rel="stylesheet" href="../bower_components/font-awesome/css/font-awesome.min.css">
-  <!-- Ionicons -->
-  <link rel="stylesheet" href="../bower_components/Ionicons/css/ionicons.min.css">
-  <!-- daterange picker -->
-  <link rel="stylesheet" href="../bower_components/bootstrap-daterangepicker/daterangepicker.css">
-  <!-- bootstrap datepicker -->
-  <link rel="stylesheet" href="../bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
-  <!-- iCheck for checkboxes and radio inputs -->
-  <link rel="stylesheet" href="../plugins/iCheck/all.css">
-  <!-- Bootstrap Color Picker -->
-  <link rel="stylesheet" href="../bower_components/bootstrap-colorpicker/dist/css/bootstrap-colorpicker.min.css">
-  <!-- Bootstrap time Picker -->
-  <link rel="stylesheet" href="../plugins/timepicker/bootstrap-timepicker.min.css">
-  <!-- Select2 -->
-  <link rel="stylesheet" href="../bower_components/select2/dist/css/select2.min.css">
-  <!-- Theme style -->
-  <link rel="stylesheet" href="../dist/css/AdminLTE.min.css">
-  <!-- AdminLTE Skins. Choose a skin from the css/skins
-       folder instead of downloading all of them to reduce the load. -->
-  <link rel="stylesheet" href="../../dist/css/skins/_all-skins.min.css">
-<link rel="stylesheet" href="../bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
-<link rel="stylesheet" href="../bower_components/select2/dist/css/select2.min.css">
+  
 <!-- //for bootstrap working -->
 <link href="//fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800" rel="stylesheet">
 <link href='//fonts.googleapis.com/css?family=Lato:400,100,100italic,300,300italic,400italic,700,900,900italic,700italic' rel='stylesheet' type='text/css'>
 
-<script> 
-        function enableButton2() {
-			document.getElementById("btnedit").disabled = true;
-            document.getElementById("btnsave").disabled = false;
-			document.getElementById("btnedit").style.display='none';
-			document.getElementById('txtname').removeAttribute('readonly');
-			document.getElementById('txtmob').removeAttribute('readonly');
-			document.getElementById('txtad').removeAttribute('readonly');
-			document.getElementById('txtpin').removeAttribute('readonly');
-			document.getElementById('txtloc').removeAttribute('readonly');
-			document.getElementById('txtcity').removeAttribute('readonly');
-			document.getElementById("btnsave").style.display='inline';
-        }
-	$("#first-button").click(function(){
-    ev.preventDefault();    
-    $('#second-button').removeClass('hide');
-    $('#first-button').addClass('hide');
-  });
-    </script>
+<script>
+function ClearFields() {
+
+     document.getElementById("fname").value = "";
+     document.getElementById("ph").value = "";
+	 document.getElementById("address").value = "";
+     document.getElementById("locality").value = "";
+	 document.getElementById("pin").value = "";
+     document.getElementById("city").value = "";
+}
+</script>
 
 </head>
 <body>
@@ -137,8 +111,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					
 					<li class=" menu__item"><a class="menu__link" href="contact.php">Contact</a></li>
 					<li>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</li>
-					<li class="menu__item dropdown menu__item--current">
-					   <a class="menu__link" href="#" class="dropdown-toggle" data-toggle="dropdown">
+					<li class="menu__item dropdown">
+					<a class="menu__link" class="dropdown-toggle" data-toggle="dropdown">
 					<?php
 			$id=$_SESSION["txtusername"];
 				$con=mysqli_connect("localhost","root","","os");
@@ -193,198 +167,101 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<div class="clearfix"></div>
 	</div>
 </div>
-</div>
-</div>
-<!-- //banner-top -->
-<!-- Modal1 -->
-<!-- //Modal1 -->
-<!-- Modal2 -->
-	
-<!-- //Modal2 -->
-
-<!-- banner -->
-
-	
-<div class="page-head_agile_info_w3l">
-		<div class="container">
-			<h3>My <span>Profile </span></h3>
-			<!--/w3_short-->
-				 <div class="services-breadcrumb">
-						<div class="agile_inner_breadcrumb">
-
-						   <ul class="w3_short">
-								<li><a>Me</a><i>|</i></li>
-								<li>Profile</li>
-							</ul>
-						 </div>
-				</div>
-	   <!--//w3_short-->
 	</div>
 </div>
-	<!-- //banner -->
+
+
+
+<!-- //banner -->
     <div class="clearfix"></div>
 	<div class="clearfix"></div>
 	<div height="200"></div>
 	<!-- schedule-bottom -->
 	
-	
-	
-	
-	<?php
+	<h3 class="wthree_text_info"> <span></span></h3>	
+	<div class="privacy">
+		<div class="container">
+			<!-- tittle heading -->
+			<h3 class="wthree_text_info">Make Payment Via <span>DEBIT/CREDIT</span></h3>	
+			
+				<h3 class="wthree_text_info"> <span></span></h3>
+			<!-- //tittle heading -->
+			<div class="checkout-right">
+				<!--Horizontal Tab-->
+				<div id="parentHorizontalTab">
+					
+						<?php
 
-$con=mysqli_connect("localhost","root","","os");
+						$con=mysqli_connect("localhost","root","","os");
 
-$sel_pr="SELECT * from u_profile where uid='$uid'";
-$res_pr=mysqli_query($con,$sel_pr);
-
-				if(mysqli_num_rows($res_pr)>0){
-						while($row_pr = mysqli_fetch_array($res_pr)){
-						echo "
-						<section class='content'>
-
-      <form action='uprofile.php' method='post'>
-      <div class='box box-default'>
-        
-        <!-- /.box-header -->
-        <div class='box-body'>
-          <div class='row'>
-            <div class='col-md-6'>
-              <div class='form-group'>
-                <label>Name</label>
-                 <input type='text' class='form-control my-colorpicker1' name='txtname' id='txtname' required readonly value=".$row_pr['f_name'].">
-              </div>
-              <!-- /.form-group -->
-              <div class='form-group'>
-                <label>Phone</label>
-                <input type='text' class='form-control my-colorpicker1' name='txtmob' id='txtmob' required='' readonly value=".$row_pr['ph'].">
-              </div>
-              <!-- /.form-group -->
-			 </div>
-				<div class='col-md-6'>
-              <div class='form-group'>
-                <label>Address</label>
-                 <input type='text' class='form-control my-colorpicker1' name='txtad' id='txtad' required='' readonly value=".$row_pr['address'].">
-              </div>
-              <!-- /.form-group -->
-              <div class='form-group'>
-                <label>Locality</label>
-                <input type='text' class='form-control my-colorpicker1' name='txtloc' id='txtloc' required='' readonly value=".$row_pr['locality'].">
-              </div>
-			  </div>
-              <!-- /.form-group -->
-			  <div class='col-md-6'>
-              <div class='form-group'>
-                <label>Pincode</label>
-                 <input type='text' class='form-control my-colorpicker1' name='txtpin' id='txtpin' required='' readonly value=".$row_pr['pin'].">
-              </div>
-			  </div>
-              <!-- /.form-group -->
-			  <div class='col-md-6'>
-              <div class='form-group'>
-                <label>City</label>
-                <input type='text' class='form-control my-colorpicker1' name='txtcity' id='txtcity' required='' readonly value=".$row_pr['city']." >
-              </div>
-            </div>
-            <!-- /.col -->
-          </div>
-          <!-- /.row -->
-        </div>
-							
-							
-								<span></span>";
+						$sel_pr="SELECT * from u_profile where uid='$uid'";
+						$res_pr=mysqli_query($con,$sel_pr);
+						$rs_pr = mysqli_fetch_array($res_pr);
 						
-							echo "</div> 
-							<input type='submit' value='EDIT'  class='hvr-outline-out button2' id='btnedit' onClick='enableButton2()' style='margin-left:610px;background-color: #2fdab8;border: none;color: white;padding: 15px 32px;text-align: center;text-decoration: none;display: inline-block;font-size: 16px;'>
-							<h3 class='wthree_text_info'> <span></span></h3>
-							<input type='submit' value='SAVE' style='display:none;' id='btnsave' class='hvr-outline-out button2' style='margin-left:610px;background-color: #2fdab8;border: none;color: white;padding: 15px 32px;text-align: center;text-decoration: none;display: inline-block;font-size: 16px;' onClick=window.location.href='profile.php?x=$uid'>
-							
-						</form>
-					</div>
-					</div>";
-					}
+						$sel_p="SELECT * from purchase where uid='$uid' and invoice=(SELECT MAX(invoice) from purchase);";
+						$res_p=mysqli_query($con,$sel_p);
+						$rs_p = mysqli_fetch_array($res_p);
+						$st=$rs_p['t_price'];
 						?>
-			<?php
-				}
-				else{
-					$sq="select * from registration where email='$id';";
-				$res=mysqli_query($con,$sq);
-				$row=mysqli_fetch_assoc($res);
-				$uname=$row["name"];
-					echo "<section class='content'>
+					
+					<div class="resp-tabs-container hor_1">
 
-       <form action='uprofile1.php' method='post'>
-      <div class='box box-default'>
-        
-        <!-- /.box-header -->
-        <div class='box-body'>
-          <div class='row'>
-            <div class='col-md-6'>
-              <div class='form-group'>
-                <label>Name</label>
-                 <input type='text' class='form-control my-colorpicker1' name='txtname' required readonly value='$uname'>
-              </div>
-              <!-- /.form-group -->
-              <div class='form-group'>
-                <label>Phone</label>
-                <input type='text' class='form-control my-colorpicker1' name='txtmob' required='' value=''>
-              </div>
-              <!-- /.form-group -->
-			 </div>
-				<div class='col-md-6'>
-              <div class='form-group'>
-                <label>Address</label>
-                 <input type='text' class='form-control my-colorpicker1' name='txtad' required='' value=''>
-              </div>
-              <!-- /.form-group -->
-              <div class='form-group'>
-                <label>Locality</label>
-                <input type='text' class='form-control my-colorpicker1' name='txtloc' required='' value=''>
-              </div>
-			  </div>
-              <!-- /.form-group -->
-			  <div class='col-md-6'>
-              <div class='form-group'>
-                <label>Pincode</label>
-                 <input type='text' class='form-control my-colorpicker1' name='txtpin' required='' value=''>
-              </div>
-			  </div>
-              <!-- /.form-group -->
-			  <div class='col-md-6'>
-              <div class='form-group'>
-                <label>City</label>
-                <input type='text' class='form-control my-colorpicker1' name='txtcity' required='' value='' >
-              </div>
-            </div>
-            <!-- /.col -->
-          </div>
-          <!-- /.row -->
-        </div>
+						<div>
+							<form action="pp.php" method="post" class="creditly-card-form agileinfo_form">
+								<div class="creditly-wrapper wthree, w3_agileits_wrapper">
+									
+										
+										<h3 class="wthree_text_info"> <span> </span></h3>
+										<h3 class="wthree_text_info"> <span> </span></h3>
+										
+											<h3 class="wthree_text_info"> <span></span></h3>
+										<div class="credit-card-wrapper">
+										<div class="first-row form-group">
+											<div class="controls">
+												<label class="control-label">Name on Card</label>
+												<input class="billing-address-name form-control" type="text" required name="chname" placeholder="John Smith">
+											</div>
+											<div class="w3_agileits_card_number_grids">
+												<div class="w3_agileits_card_number_grid_left">
+													<div class="controls">
+														<label class="control-label">Card Number</label>
+														<input class="number credit-card-number form-control" onKeyPress="if(this.value.length==16) return false;" required type="text" name="cno" inputmode="numeric" autocomplete="cc-number"
+														    autocompletetype="cc-number" x-autocompletetype="cc-number" placeholder="&#149;&#149;&#149;&#149; &#149;&#149;&#149;&#149; &#149;&#149;&#149;&#149; &#149;&#149;&#149;&#149;">
+													</div>
+												</div>
+												<div class="w3_agileits_card_number_grid_right">
+													<div class="controls">
+														<label class="control-label">CVV</label>
+														<input class="security-code form-control" Â· inputmode="numeric" onKeyPress="if(this.value.length==3) return false;" required type="text" name="cvv" placeholder="&#149;&#149;&#149;">
+													</div>
+												</div>
+												<div class="clear"> </div>
+											</div>
+											<div class="controls">
+												<label class="control-label">Expiration Date</label>
+												<input class="expiration-month-and-year form-control" required type="text" name="expiration-month-and-year" placeholder="MM / YY">
+											</div>
+										</div>
+										<button class="submit" onClick="pp.php" name="save">
+											<span>Make a payment </span>
+										</button>
+									</div>
+								</div>
+							</form>
+
+						</div>					
 							
-							
-								<span></span>";
-				
-							echo "</div> 
-							<input type='submit' value='SAVE' align='center' class='hvr-outline-out button2' style='margin-left:610px;background-color: #2fdab8;border: none;color: white;padding: 15px 32px;text-align: center;text-decoration: none;display: inline-block;font-size: 16px;'>";
-								
-						echo "</form>
-					</div>
-					</div>";
-						}
-						echo "<div class='clearfix'></div>
+						
+						</div>
+
 					</div>
 				</div>
-				<!-- //Modal content-->
+				<!--Plug-in Initialisation-->
 			</div>
 		</div>
-					 <!--//tab_two-->
-
-					</div>
-					</div>
-				</div>	
-			</div>
-		</div>";
-		
-		?>
+	</div>
+	
+	
 		<h3 class="wthree_text_info"> <span>  </span></h3>
 	<!-- //new_arrivals --> 
 	<!-- /we-offer -->
@@ -642,5 +519,137 @@ $res_pr=mysqli_query($con,$sel_pr);
 
 <!-- for bootstrap working -->
 <script type="text/javascript" src="js/bootstrap.js"></script>
+
+
+<!-- js1 starts -->
+<!-- jquery -->
+	<script src="js1/jquery-2.1.4.min.js"></script>
+	<!-- //jquery -->
+
+	<!-- popup modal (for signin & signup)-->
+	<script src="js1/jquery.magnific-popup.js"></script>
+	<script>
+		$(document).ready(function () {
+			$('.popup-with-zoom-anim').magnificPopup({
+				type: 'inline',
+				fixedContentPos: false,
+				fixedBgPos: true,
+				overflowY: 'auto',
+				closeBtnInside: true,
+				preloader: false,
+				midClick: true,
+				removalDelay: 300,
+				mainClass: 'my-mfp-zoom-in'
+			});
+
+		});
+	</script>
+	<!-- Large modal -->
+	<!-- <script>
+		$('#').modal('show');
+	</script> -->
+	<!-- //popup modal (for signin & signup)-->
+
+	<!-- cart-js -->
+	
+	
+	<!-- //cart-js -->
+
+	<!-- easy-responsive-tabs -->
+	<link rel="stylesheet" type="text/css" href="css1/easy-responsive-tabs.css " />
+	<script src="js1/easyResponsiveTabs.js"></script>
+
+	<script>
+		$(document).ready(function () {
+			//Horizontal Tab
+			$('#parentHorizontalTab').easyResponsiveTabs({
+				type: 'default', //Types: default, vertical, accordion
+				width: 'auto', //auto or any width like 600px
+				fit: true, // 100% fit in a container
+				tabidentify: 'hor_1', // The tab groups identifier
+				activate: function (event) { // Callback function if tab is switched
+					var $tab = $(this);
+					var $info = $('#nested-tabInfo');
+					var $name = $('span', $info);
+					$name.text($tab.text());
+					$info.show();
+				}
+			});
+		});
+	</script>
+	<!-- //easy-responsive-tabs -->
+
+	<!-- credit-card -->
+	<script src="js1/creditly.js"></script>
+	<link rel="stylesheet" href="css1/creditly.css" type="text/css" media="all" />
+
+	<script>
+		$(function () {
+			var creditly = Creditly.initialize(
+				'.creditly-wrapper .expiration-month-and-year',
+				'.creditly-wrapper .credit-card-number',
+				'.creditly-wrapper .security-code',
+				'.creditly-wrapper .card-type');
+
+			$(".creditly-card-form .submit").click(function (e) {
+				e.preventDefault();
+				var output = creditly.validate();
+				if (output) {
+					// Your validated credit card output
+					console.log(output);
+				}
+			});
+		});
+	</script>
+	<!-- //credit-card -->
+
+	<!-- password-script -->
+	<!-- //password-script -->
+
+	<!-- smoothscroll -->
+	<script src="js1/SmoothScroll.min.js"></script>
+	<!-- //smoothscroll -->
+
+	<!-- start-smooth-scrolling -->
+	<script src="js1/move-top.js"></script>
+	<script src="js1/easing.js"></script>
+	<script>
+		jQuery(document).ready(function ($) {
+			$(".scroll").click(function (event) {
+				event.preventDefault();
+
+				$('html,body').animate({
+					scrollTop: $(this.hash).offset().top
+				}, 1000);
+			});
+		});
+	</script>
+	<!-- //end-smooth-scrolling -->
+
+	<!-- smooth-scrolling-of-move-up -->
+	<script>
+		$(document).ready(function () {
+			/*
+			var defaults = {
+				containerID: 'toTop', // fading element id
+				containerHoverID: 'toTopHover', // fading element hover id
+				scrollSpeed: 1200,
+				easingType: 'linear' 
+			};
+			*/
+			$().UItoTop({
+				easingType: 'easeOutQuart'
+			});
+
+		});
+	</script>
+	<!-- //smooth-scrolling-of-move-up -->
+
+	<!-- for bootstrap working -->
+	<script src="js1/bootstrap.js"></script>
+	<!-- //for bootstrap working -->
+	<!-- //js-files -->
+
+
 </body>
 </html>

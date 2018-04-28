@@ -6,7 +6,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 -->
 <?php
 session_start();
-
+error_reporting(E_ERROR | E_PARSE);
 ?>
 <!DOCTYPE html>
 <html>
@@ -24,59 +24,69 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
 <link href="css/font-awesome.css" rel="stylesheet"> 
 <link href="css/easy-responsive-tabs.css" rel='stylesheet' type='text/css'/>
-
-
-
-
-
-
-
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="../bower_components/font-awesome/css/font-awesome.min.css">
-  <!-- Ionicons -->
-  <link rel="stylesheet" href="../bower_components/Ionicons/css/ionicons.min.css">
-  <!-- daterange picker -->
-  <link rel="stylesheet" href="../bower_components/bootstrap-daterangepicker/daterangepicker.css">
-  <!-- bootstrap datepicker -->
-  <link rel="stylesheet" href="../bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
-  <!-- iCheck for checkboxes and radio inputs -->
-  <link rel="stylesheet" href="../plugins/iCheck/all.css">
-  <!-- Bootstrap Color Picker -->
-  <link rel="stylesheet" href="../bower_components/bootstrap-colorpicker/dist/css/bootstrap-colorpicker.min.css">
-  <!-- Bootstrap time Picker -->
-  <link rel="stylesheet" href="../plugins/timepicker/bootstrap-timepicker.min.css">
-  <!-- Select2 -->
-  <link rel="stylesheet" href="../bower_components/select2/dist/css/select2.min.css">
-  <!-- Theme style -->
-  <link rel="stylesheet" href="../dist/css/AdminLTE.min.css">
-  <!-- AdminLTE Skins. Choose a skin from the css/skins
-       folder instead of downloading all of them to reduce the load. -->
-  <link rel="stylesheet" href="../../dist/css/skins/_all-skins.min.css">
-<link rel="stylesheet" href="../bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
-<link rel="stylesheet" href="../bower_components/select2/dist/css/select2.min.css">
 <!-- //for bootstrap working -->
 <link href="//fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800" rel="stylesheet">
 <link href='//fonts.googleapis.com/css?family=Lato:400,100,100italic,300,300italic,400italic,700,900,900italic,700italic' rel='stylesheet' type='text/css'>
 
-<script> 
-        function enableButton2() {
-			document.getElementById("btnedit").disabled = true;
-            document.getElementById("btnsave").disabled = false;
-			document.getElementById("btnedit").style.display='none';
-			document.getElementById('txtname').removeAttribute('readonly');
-			document.getElementById('txtmob').removeAttribute('readonly');
-			document.getElementById('txtad').removeAttribute('readonly');
-			document.getElementById('txtpin').removeAttribute('readonly');
-			document.getElementById('txtloc').removeAttribute('readonly');
-			document.getElementById('txtcity').removeAttribute('readonly');
-			document.getElementById("btnsave").style.display='inline';
+<script>
+j=0;
+	for(i=0;i<5;i++)
+	{
+	u=document.getElementsByName('price')[i].value;
+	j=parseInt(j) + parseInt(u)
+	document.getElementById('totl').value=j;
+	}
+        var x = 0;
+        var y = 0;
+        var z = 0;
+		var k =0;
+	
+        function calc(obj) {
+			alert(obj)
+            var e = obj.id.toString();
+			
+            if (e == 'aprice') {
+                x = Number(obj.value);
+                y = Number(document.getElementById('quantity').value);
+            } else {
+                x = Number(document.getElementById('aprice').value);
+                y = Number(obj.value);
+            }
+            z = x * y;
+            document.getElementById('price').value = z;
+            document.getElementById('update').innerHTML = z;
         }
-	$("#first-button").click(function(){
-    ev.preventDefault();    
-    $('#second-button').removeClass('hide');
-    $('#first-button').addClass('hide');
-  });
+		function cal(e,id,ff)
+{
+	var a=e.value;
+	//alert(e.value)
+	//alert(id)
+	//var a=document.getElementById("pr"+i).value;
+	//alert(a);
+	var b=document.getElementById(id).value;
+	
+	var c=parseInt(a) * parseInt(b);
+	//alert(c);
+	document.getElementById(ff).value=c;
+	caltot(c);
+	
+	/* i++; */
+}
+function caltot(a)
+{
+	
+	j=0;
+	for(i=0;i<5;i++)
+	{
+	u=document.getElementsByName('price')[i].value;
+	j=parseInt(j) + parseInt(u)
+	document.getElementById('totl').value=j;
+}
+			
+}
     </script>
+    
+
 
 </head>
 <body>
@@ -198,200 +208,158 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!-- //banner-top -->
 <!-- Modal1 -->
 <!-- //Modal1 -->
-<!-- Modal2 -->
-	
+<!-- Modal2 -->	
 <!-- //Modal2 -->
-
 <!-- banner -->
-
+		<style>
+input{
+	border: none;
+    background: transparent;
 	
-<div class="page-head_agile_info_w3l">
-		<div class="container">
-			<h3>My <span>Profile </span></h3>
-			<!--/w3_short-->
-				 <div class="services-breadcrumb">
-						<div class="agile_inner_breadcrumb">
+}
+select option { padding:0px 0px; }
+table {
+    border-collapse: collapse;
+    width: 90%;	
+}
 
-						   <ul class="w3_short">
-								<li><a>Me</a><i>|</i></li>
-								<li>Profile</li>
-							</ul>
-						 </div>
-				</div>
-	   <!--//w3_short-->
-	</div>
-</div>
-	<!-- //banner -->
-    <div class="clearfix"></div>
-	<div class="clearfix"></div>
-	<div height="200"></div>
-	<!-- schedule-bottom -->
-	
-	
-	
-	
-	<?php
+th, td {
+    
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
 
-$con=mysqli_connect("localhost","root","","os");
+tr:hover {background-color:#f5f5f5;}
+</style>
+<div class="banner-bootom-w3-agileits">
 
-$sel_pr="SELECT * from u_profile where uid='$uid'";
-$res_pr=mysqli_query($con,$sel_pr);
-
-				if(mysqli_num_rows($res_pr)>0){
-						while($row_pr = mysqli_fetch_array($res_pr)){
-						echo "
-						<section class='content'>
-
-      <form action='uprofile.php' method='post'>
-      <div class='box box-default'>
-        
-        <!-- /.box-header -->
-        <div class='box-body'>
-          <div class='row'>
-            <div class='col-md-6'>
-              <div class='form-group'>
-                <label>Name</label>
-                 <input type='text' class='form-control my-colorpicker1' name='txtname' id='txtname' required readonly value=".$row_pr['f_name'].">
-              </div>
-              <!-- /.form-group -->
-              <div class='form-group'>
-                <label>Phone</label>
-                <input type='text' class='form-control my-colorpicker1' name='txtmob' id='txtmob' required='' readonly value=".$row_pr['ph'].">
-              </div>
-              <!-- /.form-group -->
-			 </div>
-				<div class='col-md-6'>
-              <div class='form-group'>
-                <label>Address</label>
-                 <input type='text' class='form-control my-colorpicker1' name='txtad' id='txtad' required='' readonly value=".$row_pr['address'].">
-              </div>
-              <!-- /.form-group -->
-              <div class='form-group'>
-                <label>Locality</label>
-                <input type='text' class='form-control my-colorpicker1' name='txtloc' id='txtloc' required='' readonly value=".$row_pr['locality'].">
-              </div>
-			  </div>
-              <!-- /.form-group -->
-			  <div class='col-md-6'>
-              <div class='form-group'>
-                <label>Pincode</label>
-                 <input type='text' class='form-control my-colorpicker1' name='txtpin' id='txtpin' required='' readonly value=".$row_pr['pin'].">
-              </div>
-			  </div>
-              <!-- /.form-group -->
-			  <div class='col-md-6'>
-              <div class='form-group'>
-                <label>City</label>
-                <input type='text' class='form-control my-colorpicker1' name='txtcity' id='txtcity' required='' readonly value=".$row_pr['city']." >
-              </div>
-            </div>
-            <!-- /.col -->
-          </div>
-          <!-- /.row -->
-        </div>
+<?php
+							$con=mysqli_connect("localhost","root","","os");
+				$cr="select * from p_seller where uid='$uid';";
+				$crt=mysqli_query($con,$cr);
+				if(mysqli_num_rows($crt)==0){
+					echo "		
+							<h2 >No Order History!!!!!</h2>
 							
-							
-								<span></span>";
-						
-							echo "</div> 
-							<input type='submit' value='EDIT'  class='hvr-outline-out button2' id='btnedit' onClick='enableButton2()' style='margin-left:610px;background-color: #2fdab8;border: none;color: white;padding: 15px 32px;text-align: center;text-decoration: none;display: inline-block;font-size: 16px;'>
-							<h3 class='wthree_text_info'> <span></span></h3>
-							<input type='submit' value='SAVE' style='display:none;' id='btnsave' class='hvr-outline-out button2' style='margin-left:610px;background-color: #2fdab8;border: none;color: white;padding: 15px 32px;text-align: center;text-decoration: none;display: inline-block;font-size: 16px;' onClick=window.location.href='profile.php?x=$uid'>
-							
-						</form>
-					</div>
-					</div>";
-					}
-						?>
-			<?php
+							";
 				}
 				else{
-					$sq="select * from registration where email='$id';";
-				$res=mysqli_query($con,$sq);
-				$row=mysqli_fetch_assoc($res);
-				$uname=$row["name"];
-					echo "<section class='content'>
-
-       <form action='uprofile1.php' method='post'>
-      <div class='box box-default'>
-        
-        <!-- /.box-header -->
-        <div class='box-body'>
-          <div class='row'>
-            <div class='col-md-6'>
-              <div class='form-group'>
-                <label>Name</label>
-                 <input type='text' class='form-control my-colorpicker1' name='txtname' required readonly value='$uname'>
-              </div>
-              <!-- /.form-group -->
-              <div class='form-group'>
-                <label>Phone</label>
-                <input type='text' class='form-control my-colorpicker1' name='txtmob' required='' value=''>
-              </div>
-              <!-- /.form-group -->
-			 </div>
-				<div class='col-md-6'>
-              <div class='form-group'>
-                <label>Address</label>
-                 <input type='text' class='form-control my-colorpicker1' name='txtad' required='' value=''>
-              </div>
-              <!-- /.form-group -->
-              <div class='form-group'>
-                <label>Locality</label>
-                <input type='text' class='form-control my-colorpicker1' name='txtloc' required='' value=''>
-              </div>
-			  </div>
-              <!-- /.form-group -->
-			  <div class='col-md-6'>
-              <div class='form-group'>
-                <label>Pincode</label>
-                 <input type='text' class='form-control my-colorpicker1' name='txtpin' required='' value=''>
-              </div>
-			  </div>
-              <!-- /.form-group -->
-			  <div class='col-md-6'>
-              <div class='form-group'>
-                <label>City</label>
-                <input type='text' class='form-control my-colorpicker1' name='txtcity' required='' value='' >
-              </div>
-            </div>
-            <!-- /.col -->
-          </div>
-          <!-- /.row -->
-        </div>
-							
-							
-								<span></span>";
 				
-							echo "</div> 
-							<input type='submit' value='SAVE' align='center' class='hvr-outline-out button2' style='margin-left:610px;background-color: #2fdab8;border: none;color: white;padding: 15px 32px;text-align: center;text-decoration: none;display: inline-block;font-size: 16px;'>";
+				
+								//$con=mysqli_connect("localhost","maria","maria","os");
 								
-						echo "</form>
-					</div>
-					</div>";
-						}
-						echo "<div class='clearfix'></div>
-					</div>
-				</div>
-				<!-- //Modal content-->
-			</div>
-		</div>
-					 <!--//tab_two-->
+								/*$se="SELECT * from cart where uid=$uid";
+								$re=mysqli_query($con,$se);
+								$r=mysqli_fetch_assoc($re);
+								$pid=$r["pid"];*/
+								
+								$seq="select * from p_seller where uid='$uid' and u_status!='Delivered!!!';";
+								/* echo $seq;
+								echo "</br>"; */
+								$req=mysqli_query($con,$seq);
+								if(mysqli_num_rows($req)==0){
+					echo "		
+							<h2 >No Orders!!!!</h2>
+							
+							";
+				}
+				else{
+								//$rs=mysqli_fetch_assoc($req);
+								//$pr=$rs["price"];
+								//$dis=$rs["dis"];
+								//$ap=$pr-$dis;
+								
+								//echo mysqli_num_rows($re);
+								echo "<table align='center'>
+								<thead>
+										<tr>
+											<th>   </th>
+											<th>   </th>
+											<th>   </th>
+											<th>Price</th>
+											<th>Quantity</th>
+											<th>Notifications</th>
+										</tr>
+									</thead>";
+								
+								if(mysqli_num_rows($req)>0)
+								{
+								
+										$i=1;
+										$cn=0;
+									while($rs = mysqli_fetch_array($req))
+									{
+										
+										
+									?>
+									<?php
+												$pid=$rs["pid"];
+												//echo $pid;
+												 $sz="select * from product where p_id='$pid';";
+												$rez=mysqli_query($con,$sz);
+												//echo $sz;
+												$rz=mysqli_fetch_assoc($rez);
+												$pimg=$rz["p_img"];
+												/* echo $pimg;  */
+											?>
+									<tbody>
+									<?php echo"<form action='' method='post'>"; ?>
+										<tr>
+											<td>
+											<input type='hidden' id='pid' name='pid' class='' value=<?php  echo $rs["pid"]; ?> style="width: 60px;">
+											</td>
+											<td>
+											
+												<?php echo "<img src='images/".$rz['p_img']." ' width='100px' height='100px'>"; ?>
+											</td>
+											<td> <?php  echo $rs["pname"];?> </td>
+											<td>   <?php  echo $rs["amount"]; ?> </td>
+											
+											<td>
+												<?php  echo $rs["qty"];?> </td>
+											</td>
+											<td>
+												<?php  echo $rs["u_status"];?> </td>
+											</td>
+											
+							<?php echo "<td><input type='button' name='Remove' class='hvr-outline-out button2' value='Cancel' onclick=window.location.href='rp.php?x=". $rs["pid"]. "' >" ; ?>
+                    </div></td>
+							</tr> 
+							<?php
+							
+									} 
+									
+									
+									}
+				}
+		  
+							?>
+							
+						</tbody></table></br>
+						
+					
+						<?php
+						
+				}
+				?>
+						</form>
+	<!-- //banner -->
+    
+	<!-- schedule-bottom -->
+	
+<!-- //schedule-bottom -->
+  <!-- banner-bootom-w3-agileits -->
+	
+<!--/grids-->
+     					
+<!--/grids-->
+<!-- /new_arrivals --> 
 
-					</div>
-					</div>
-				</div>	
-			</div>
-		</div>";
-		
-		?>
-		<h3 class="wthree_text_info"> <span>  </span></h3>
 	<!-- //new_arrivals --> 
 	<!-- /we-offer -->
 		
 	<!-- //we-offer -->
 <!--/grids-->
-</div>
 <div class="coupons">
 		<div class="coupons-grids text-center">
 			<div class="w3layouts_mail_grid">
@@ -509,16 +477,16 @@ $res_pr=mysqli_query($con,$sel_pr);
 										<form>
 											<div class="sign-up">
 												<h4>Email :</h4>
-												<input type="text" value="Type here" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Type here';}" required="">	
+												<input type="text" value="Type here" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Type here';}" required>	
 											</div>
 											<div class="sign-up">
 												<h4>Password :</h4>
-												<input type="password" value="Password" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Password';}" required="">
+												<input type="password" value="Password" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Password';}" required>
 												
 											</div>
 											<div class="sign-up">
 												<h4>Re-type Password :</h4>
-												<input type="password" value="Password" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Password';}" required="">
+												<input type="password" value="Password" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Password';}" required>
 												
 											</div>
 											<div class="sign-up">
@@ -532,11 +500,11 @@ $res_pr=mysqli_query($con,$sel_pr);
 										<form>
 											<div class="sign-in">
 												<h4>Email :</h4>
-												<input type="text" value="Type here" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Type here';}" required="">	
+												<input type="text" value="Type here" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Type here';}" required>	
 											</div>
 											<div class="sign-in">
 												<h4>Password :</h4>
-												<input type="password" value="Password" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Password';}" required="">
+												<input type="password" value="Password" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Password';}" required>
 												<a href="#">Forgot password?</a>
 											</div>
 											<div class="single-bottom">

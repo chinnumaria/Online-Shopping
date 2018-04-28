@@ -45,7 +45,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <div class="header-bot">
 	<div class="header-bot_inner_wthreeinfo_header_mid">
 		<div class="col-md-4 header-middle">
-			<form action="#" method="post">
+			<form action="search.php" method="post">
 					<input type="search" name="search" placeholder="Search here..." required="">
 					<input type="submit" value=" ">
 				<div class="clearfix"></div>
@@ -53,29 +53,16 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		</div>
 		<!-- header-bot -->
 			<div class="col-md-4 logo_agile">
-				<h1><a href="index.html"><span>E</span>lite Shoppy <i class="fa fa-shopping-bag top_logo_agile_bag" aria-hidden="true"></i></a></h1>
+				<h1><a href=""><span>E</span>lite Shoppy <i class="fa fa-shopping-bag top_logo_agile_bag" aria-hidden="true"></i></a></h1>
 			</div>
         <!-- header-bot -->
 		<div class="col-md-4 agileits-social top_content">
-						<ul class="social-nav model-3d-0 footer-social w3_agile_social">
-						                                   <li class="share">Share On : </li>
-															<li><a href="#" class="facebook">
-																  <div class="front"><i class="fa fa-facebook" aria-hidden="true"></i></div>
-																  <div class="back"><i class="fa fa-facebook" aria-hidden="true"></i></div></a></li>
-															<li><a href="#" class="twitter"> 
-																  <div class="front"><i class="fa fa-twitter" aria-hidden="true"></i></div>
-																  <div class="back"><i class="fa fa-twitter" aria-hidden="true"></i></div></a></li>
-															<li><a href="#" class="instagram">
-																  <div class="front"><i class="fa fa-instagram" aria-hidden="true"></i></div>
-																  <div class="back"><i class="fa fa-instagram" aria-hidden="true"></i></div></a></li>
-															<li><a href="#" class="pinterest">
-																  <div class="front"><i class="fa fa-linkedin" aria-hidden="true"></i></div>
-																  <div class="back"><i class="fa fa-linkedin" aria-hidden="true"></i></div></a></li>
-														</ul>
-
-
-
 		</div>
+		<div class="clearfix"></div>
+	</div>
+</div>
+        <!-- header-bot -->
+		
 		<div class="clearfix"></div>
 	</div>
 </div>
@@ -98,39 +85,39 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<!-- Collect the nav links, forms, and other content for toggling -->
 				<div class="collapse navbar-collapse menu--shylock" id="bs-example-navbar-collapse-1">
 				  <ul class="nav navbar-nav menu__list">
-					<li class="active menu__item menu__item--current"><a class="menu__link" href="index.html">Home <span class="sr-only">(current)</span></a></li>
-					<li class=" menu__item"><a class="menu__link" href="about.html">About</a></li>
-					<li class="dropdown menu__item">
-						<a href="#" class="dropdown-toggle menu__link" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Categories <span class="caret"></span></a>
+					<li class=" menu__item"><a class="menu__link" href="index_user.php">Home <span class="sr-only">(current)</span></a></li>
+					<li class=" menu__item"><a class="menu__link" href="about.php">About</a></li>
+					<li class=" menu__item">
+					   <a class="menu__link" href="#" class="dropdown-toggle" data-toggle="dropdown">Categories <b class="caret"></b></a>
 										<ul class="dropdown-menu agile_short_dropdown">
-									<li><a href="mens.html">Mens</a></li>
-									<li><a href="womens.html">Womens</a></li>
+									<li><a href="fp.php">Featured Products</a></li>
+									<li><a href="Bags.php">Bags</a></li>
+									<li><a href="ep.php">Earphones</a></li>
+									<li><a href="mobile.php">Mobile</a></li>
+									<li><a href="watches.php">Watches</a></li>
 									</ul>
 						</li>		
 					
-					<li class="menu__item dropdown">
-					   <a class="menu__link" href="#" class="dropdown-toggle" data-toggle="dropdown">Short Codes <b class="caret"></b></a>
-								<ul class="dropdown-menu agile_short_dropdown">
-									<li><a href="icons.html">Web Icons</a></li>
-									<li><a href="typography.html">Typography</a></li>
-								</ul>
-					</li>
-					<li class=" menu__item"><a class="menu__link" href="contact.html">Contact</a></li>
-					<li>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</li>
+					<li class=" menu__item"><a class="menu__link" href="contact.php">Contact</a></li>
+					<li>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</li>
 					<li class="menu__item dropdown">
 					<a class="menu__link" class="dropdown-toggle" data-toggle="dropdown">
 					<?php
-				$id=$_SESSION["txtusername"];
-				$con=mysqli_connect("localhost","maria","maria","os");
-				$sq="select name from registration where email='$id';";
+			$id=$_SESSION["txtusername"];
+				$con=mysqli_connect("localhost","root","","os");
+				$sq="select * from registration where email='$id';";
 				$res=mysqli_query($con,$sq);
 				$row=mysqli_fetch_assoc($res);
-				echo "<span class='hidden-xs'>".$row['name']."</span>";
+				$uid=$row["uid"];
+				$uname=$row["name"];
+				$arr = explode(' ',trim($uname));
+				echo "<span class='hidden-xs'>".$arr[0]."</span>";
 			?>
 			<b class="caret"></b></a>
 			<ul class="dropdown-menu agile_short_dropdown">
-									<li><a href="icons.html">Profile</a></li>
-									<li><a href="typography.html">Signout</a></li>
+									<li><a href="profile.php">Profile</a></li>
+									<li><a href="order.php">Orders</a></li>
+									<li><a href="index.php">Signout</a></li>
 			</ul>
 			</a></li>
 				<!--  </ul>
@@ -139,17 +126,28 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			</nav>	
 		</div>-->
 		<li></li>
-		<li>
+		<!--<li>
 		<div class="top_nav_right">
 			<div class=""> 
-						<form action="#" method="post" class="last"> 
+						<form action="my_cart.php" method="post" class=""> 
 						<input type="hidden" name="cmd" value="_cart">
 						<input type="hidden" name="display" value="1">
-						<button class="w3view-cart" type="submit" name="submit" value=""><i class="fa fa-cart-arrow-down" aria-hidden="true"></i></button>
+						<button class="w3view-cart" type="submit" name="submit" onClick="" value=""><i class="fa fa-cart-arrow-down" aria-hidden="true"></i></button>
 					</form>  
 			
 			</div>
 		</div>
+		</li> -->
+		<li><?php
+			$id=$_SESSION["txtusername"];
+				$con=mysqli_connect("localhost","root","","os");
+				$sq="select uid from registration where email='$id';";
+				$res=mysqli_query($con,$sq);
+				$rows=mysqli_fetch_assoc($res);
+				
+		echo "<form action='my_cart_test.php' method='post' class=''> 
+		<button class='w3view-cart' type='submit' name='submit' onClick='' value=''><i class='fa fa-cart-arrow-down' aria-hidden='true'></i></button></form>";
+	?>
 		</li>
 		</ul>
 			</div>
@@ -159,120 +157,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	</div>
 </div>
 </div>
+</div>
 <!-- //banner-top -->
 <!-- Modal1 -->
-		<div class="modal fade" id="myModal" tabindex="-1" role="dialog">
-			<div class="modal-dialog">
-				<!-- Modal content-->
-				<div class="modal-content">
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal">&times;</button>
-					</div>
-						<div class="modal-body modal-body-sub_agile">
-						<div class="col-md-8 modal_body_left modal_body_left1">
-						<h3 class="agileinfo_sign">Sign In <span>Now</span></h3>
-									<form action="#" method="post">
-							<div class="styled-input agile-styled-input-top">
-								<input type="text" name="Name" required="">
-								<label>Name</label>
-								<span></span>
-							</div>
-							<div class="styled-input">
-								<input type="email" name="Email" required=""> 
-								<label>Email</label>
-								<span></span>
-							</div> 
-							<input type="submit" value="Sign In">
-						</form>
-						  <ul class="social-nav model-3d-0 footer-social w3_agile_social top_agile_third">
-															<li><a href="#" class="facebook">
-																  <div class="front"><i class="fa fa-facebook" aria-hidden="true"></i></div>
-																  <div class="back"><i class="fa fa-facebook" aria-hidden="true"></i></div></a></li>
-															<li><a href="#" class="twitter"> 
-																  <div class="front"><i class="fa fa-twitter" aria-hidden="true"></i></div>
-																  <div class="back"><i class="fa fa-twitter" aria-hidden="true"></i></div></a></li>
-															<li><a href="#" class="instagram">
-																  <div class="front"><i class="fa fa-instagram" aria-hidden="true"></i></div>
-																  <div class="back"><i class="fa fa-instagram" aria-hidden="true"></i></div></a></li>
-															<li><a href="#" class="pinterest">
-																  <div class="front"><i class="fa fa-linkedin" aria-hidden="true"></i></div>
-																  <div class="back"><i class="fa fa-linkedin" aria-hidden="true"></i></div></a></li>
-														</ul>
-														<div class="clearfix"></div>
-														<p><a href="#" data-toggle="modal" data-target="#myModal2" > Don't have an account?</a></p>
-
-						</div>
-						<div class="col-md-4 modal_body_right modal_body_right1">
-							<img src="images/log_pic.jpg" alt=" "/>
-						</div>
-						<div class="clearfix"></div>
-					</div>
-				</div>
-				<!-- //Modal content-->
-			</div>
-		</div>
+		
 <!-- //Modal1 -->
 <!-- Modal2 -->
-		<div class="modal fade" id="myModal2" tabindex="-1" role="dialog">
-			<div class="modal-dialog">
-				<!-- Modal content-->
-				<div class="modal-content">
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal">&times;</button>
-					</div>
-						<div class="modal-body modal-body-sub_agile">
-						<div class="col-md-8 modal_body_left modal_body_left1">
-						<h3 class="agileinfo_sign">Sign Up <span>Now</span></h3>
-									<form action="#" method="post">
-							<div class="styled-input agile-styled-input-top">
-								<input type="text" name="Name" required="">
-								<label>Name</label>
-								<span></span>
-							</div>
-							<div class="styled-input">
-								<input type="email" name="Email" required=""> 
-								<label>Email</label>
-								<span></span>
-							</div> 
-							<div class="styled-input">
-								<input type="password" name="password" required=""> 
-								<label>Password</label>
-								<span></span>
-							</div> 
-							<div class="styled-input">
-								<input type="password" name="Confirm Password" required=""> 
-								<label>Confirm Password</label>
-								<span></span>
-							</div> 
-							<input type="submit" value="Sign Up">
-						</form>
-						  <ul class="social-nav model-3d-0 footer-social w3_agile_social top_agile_third">
-															<li><a href="#" class="facebook">
-																  <div class="front"><i class="fa fa-facebook" aria-hidden="true"></i></div>
-																  <div class="back"><i class="fa fa-facebook" aria-hidden="true"></i></div></a></li>
-															<li><a href="#" class="twitter"> 
-																  <div class="front"><i class="fa fa-twitter" aria-hidden="true"></i></div>
-																  <div class="back"><i class="fa fa-twitter" aria-hidden="true"></i></div></a></li>
-															<li><a href="#" class="instagram">
-																  <div class="front"><i class="fa fa-instagram" aria-hidden="true"></i></div>
-																  <div class="back"><i class="fa fa-instagram" aria-hidden="true"></i></div></a></li>
-															<li><a href="#" class="pinterest">
-																  <div class="front"><i class="fa fa-linkedin" aria-hidden="true"></i></div>
-																  <div class="back"><i class="fa fa-linkedin" aria-hidden="true"></i></div></a></li>
-														</ul>
-														<div class="clearfix"></div>
-														<p><a href="#">By clicking register, I agree to your terms</a></p>
-
-						</div>
-						<div class="col-md-4 modal_body_right modal_body_right1">
-							<img src="images/log_pic.jpg" alt=" "/>
-						</div>
-						<div class="clearfix"></div>
-					</div>
-				</div>
-				<!-- //Modal content-->
-			</div>
-		</div>
+		
 <!-- //Modal2 -->
 <!--/single_page-->
        <!-- /banner_bottom_agile_info -->
@@ -313,10 +204,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	$pname=mysqli_query($con,$p_name);
 	$rowsss=mysqli_fetch_assoc($pname);
 	$name=$rowsss["p_name"];
-	$p_img="SELECT p_img FROM product WHERE p_id = '$pid';";
+	$p_img="SELECT * FROM product WHERE p_id = '$pid';";
 	$pimg=mysqli_query($con,$p_img);
 	$r=mysqli_fetch_assoc($pimg);
 	$img=$r["p_img"];
+	$pcat=$r["p_cat"];
+	$pb=$r["p_brand"];
+	$ps=$r["p_seller"];
 	$p=$price-$discount;
 	echo "<div class='container'>
 	     <div class='col-md-4 single-right-left '>
@@ -333,9 +227,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			</div>
 		</div>
 		<div class='col-md-8 single-right-left simpleCart_shelfItem'>
-					<h3>$name</h3>
-					<h5>$description</h5>
+					<h3>$name</h3></br>
+					<h4>$description</h4>
 					<p><span class='item_price'> ₹$p</span> <del>-₹$price</del></p>
+					
+					<h4>Brand: $pb</h4></br>
 					<div class='rating1'>
 						<span class='starRating'>
 							<input id='rating5' type='radio' name='rating' value='5'>
@@ -396,7 +292,21 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 																	<input type='submit' class='hvr-outline-out button2' name='submit' value='Buy Now' onClick=''  />
 																
 															</form>
-															</div>
+															
+															
+															</div><br/>
+															<br/><h4  style='color:#2fdab8;font-weight:bold;'>Seller Details</h4><br/>
+															<h4>Seller: $ps</h4><br/>";
+															$pslr="SELECT * FROM seller WHERE s_name = '$ps';";
+															$ppslr=mysqli_query($con,$pslr);
+															$rslr=mysqli_fetch_assoc($ppslr);
+															$mail=$rslr["s_email"];
+															$adr=$rslr["s_adr"];
+															$pin=$rslr["s_pin"];
+															echo "<h4>Email: $mail</h4><br/>
+															<h4>Address: $adr, $pin</h4><br/>
+															
+															
 														</div>
 																			
 					</div>";
@@ -415,41 +325,59 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					  
 <!--grids-->
 <!-- footer -->
+<div class="coupons">
+		<div class="coupons-grids text-center">
+			<div class="w3layouts_mail_grid">
+				
+				<div style="margin-left: 350px;" class="col-md-3 w3layouts_mail_grid_left">
+					<div class="w3layouts_mail_grid_left1 hvr-radial-out">
+						<i class="fa fa-truck" aria-hidden="true"></i>
+					</div>
+					<div  class="w3layouts_mail_grid_left2">
+						<h3>SHIPPING COST</h3>
+						<p>50 INR </p>
+					</div>
+				</div>
+				<div class="col-md-3 w3layouts_mail_grid_left">
+					<div class="w3layouts_mail_grid_left1 hvr-radial-out">
+						<i class="fa fa-headphones" aria-hidden="true"></i>
+					</div>
+					<div class="w3layouts_mail_grid_left2">
+						<h3>24/7 SUPPORT</h3>
+						<p>We offer 24/7 Support</p>
+					</div>
+				</div>
+					
+				</div>
+				<div class="clearfix"> </div>
+			</div>
+
+		</div>
+</div>
+<!--grids-->
+<!-- footer -->
 <div class="footer">
 	<div class="footer_agile_inner_info_w3l">
 		<div class="col-md-3 footer-left">
-			<h2><a href="index.html"><span>E</span>lite Shoppy </a></h2>
-			<p>Lorem ipsum quia dolor
-			sit amet, consectetur, adipisci velit, sed quia non 
-			numquam eius modi tempora.</p>
+			<h2><a href=""><span>E</span>lite Shoppy </a></h2>
+			<p></p>
 			<ul class="social-nav model-3d-0 footer-social w3_agile_social two">
-															<li><a href="#" class="facebook">
+															<li><a  class="facebook">
 																  <div class="front"><i class="fa fa-facebook" aria-hidden="true"></i></div>
 																  <div class="back"><i class="fa fa-facebook" aria-hidden="true"></i></div></a></li>
-															<li><a href="#" class="twitter"> 
+															<li><a  class="twitter"> 
 																  <div class="front"><i class="fa fa-twitter" aria-hidden="true"></i></div>
 																  <div class="back"><i class="fa fa-twitter" aria-hidden="true"></i></div></a></li>
-															<li><a href="#" class="instagram">
+															<li><a  class="instagram">
 																  <div class="front"><i class="fa fa-instagram" aria-hidden="true"></i></div>
 																  <div class="back"><i class="fa fa-instagram" aria-hidden="true"></i></div></a></li>
-															<li><a href="#" class="pinterest">
+															<li><a  class="pinterest">
 																  <div class="front"><i class="fa fa-linkedin" aria-hidden="true"></i></div>
 																  <div class="back"><i class="fa fa-linkedin" aria-hidden="true"></i></div></a></li>
 														</ul>
 		</div>
 		<div class="col-md-9 footer-right">
 			<div class="sign-grds">
-				<div class="col-md-4 sign-gd">
-					<h4>Our <span>Information</span> </h4>
-					<ul>
-						<li><a href="index.html">Home</a></li>
-						<li><a href="mens.html">Men's Wear</a></li>
-						<li><a href="womens.html">Women's wear</a></li>
-						<li><a href="about.html">About</a></li>
-						<li><a href="typography.html">Short Codes</a></li>
-						<li><a href="contact.html">Contact</a></li>
-					</ul>
-				</div>
 				
 				<div class="col-md-5 sign-gd-two">
 					<h4>Store <span>Information</span></h4>
@@ -470,7 +398,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							</div>
 							<div class="w3-address-right">
 								<h6>Email Address</h6>
-								<p>Email :<a href="mailto:example@email.com"> mail@example.com</a></p>
+								<p>Email :<a > EliteShoppy@gmail.com</a></p>
 							</div>
 							<div class="clearfix"> </div>
 						</div>
@@ -480,7 +408,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							</div>
 							<div class="w3-address-right">
 								<h6>Location</h6>
-								<p>Broome St, NY 10002,California, USA. 
+								<p>Pala, Kottayam, Kerala, India
 								
 								</p>
 							</div>
@@ -488,38 +416,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						</div>
 					</div>
 				</div>
-				<div class="col-md-3 sign-gd flickr-post">
-					<h4>Flickr <span>Posts</span></h4>
-					<ul>
-						<li><a href="single.html"><img src="images/t1.jpg" alt=" " class="img-responsive" /></a></li>
-						<li><a href="single.html"><img src="images/t2.jpg" alt=" " class="img-responsive" /></a></li>
-						<li><a href="single.html"><img src="images/t3.jpg" alt=" " class="img-responsive" /></a></li>
-						<li><a href="single.html"><img src="images/t4.jpg" alt=" " class="img-responsive" /></a></li>
-						<li><a href="single.html"><img src="images/t1.jpg" alt=" " class="img-responsive" /></a></li>
-						<li><a href="single.html"><img src="images/t2.jpg" alt=" " class="img-responsive" /></a></li>
-						<li><a href="single.html"><img src="images/t3.jpg" alt=" " class="img-responsive" /></a></li>
-						<li><a href="single.html"><img src="images/t2.jpg" alt=" " class="img-responsive" /></a></li>
-						<li><a href="single.html"><img src="images/t4.jpg" alt=" " class="img-responsive" /></a></li>
-					</ul>
-				</div>
+				
 				<div class="clearfix"></div>
 			</div>
 		</div>
 		<div class="clearfix"></div>
-			<div class="agile_newsletter_footer">
-					<div class="col-sm-6 newsleft">
-				<h3>SIGN UP FOR NEWSLETTER !</h3>
-			</div>
-			<div class="col-sm-6 newsright">
-				<form action="#" method="post">
-					<input type="email" placeholder="Enter your email..." name="email" required="">
-					<input type="submit" value="Submit">
-				</form>
-			</div>
-
-		<div class="clearfix"></div>
-	</div>
-		<p class="copy-right">&copy 2017 Elite shoppy. All rights reserved | Design by <a href="http://w3layouts.com/">W3layouts</a></p>
+		
+		<p class="copy-right">&copy 2018 Elite shoppy. All rights reserved </p>
 	</div>
 </div>
 <!-- //footer -->

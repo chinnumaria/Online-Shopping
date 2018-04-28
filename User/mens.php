@@ -1,12 +1,6 @@
-<!--
-Author: W3layouts
-Author URL: http://w3layouts.com
-License: Creative Commons Attribution 3.0 Unported
-License URL: http://creativecommons.org/licenses/by/3.0/
--->
 <?php
 session_start();
-
+$id=$_SESSION["txtusername"];
 ?>
 <!DOCTYPE html>
 <html>
@@ -24,60 +18,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
 <link href="css/font-awesome.css" rel="stylesheet"> 
 <link href="css/easy-responsive-tabs.css" rel='stylesheet' type='text/css'/>
-
-
-
-
-
-
-
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="../bower_components/font-awesome/css/font-awesome.min.css">
-  <!-- Ionicons -->
-  <link rel="stylesheet" href="../bower_components/Ionicons/css/ionicons.min.css">
-  <!-- daterange picker -->
-  <link rel="stylesheet" href="../bower_components/bootstrap-daterangepicker/daterangepicker.css">
-  <!-- bootstrap datepicker -->
-  <link rel="stylesheet" href="../bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
-  <!-- iCheck for checkboxes and radio inputs -->
-  <link rel="stylesheet" href="../plugins/iCheck/all.css">
-  <!-- Bootstrap Color Picker -->
-  <link rel="stylesheet" href="../bower_components/bootstrap-colorpicker/dist/css/bootstrap-colorpicker.min.css">
-  <!-- Bootstrap time Picker -->
-  <link rel="stylesheet" href="../plugins/timepicker/bootstrap-timepicker.min.css">
-  <!-- Select2 -->
-  <link rel="stylesheet" href="../bower_components/select2/dist/css/select2.min.css">
-  <!-- Theme style -->
-  <link rel="stylesheet" href="../dist/css/AdminLTE.min.css">
-  <!-- AdminLTE Skins. Choose a skin from the css/skins
-       folder instead of downloading all of them to reduce the load. -->
-  <link rel="stylesheet" href="../../dist/css/skins/_all-skins.min.css">
-<link rel="stylesheet" href="../bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
-<link rel="stylesheet" href="../bower_components/select2/dist/css/select2.min.css">
 <!-- //for bootstrap working -->
 <link href="//fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800" rel="stylesheet">
 <link href='//fonts.googleapis.com/css?family=Lato:400,100,100italic,300,300italic,400italic,700,900,900italic,700italic' rel='stylesheet' type='text/css'>
-
-<script> 
-        function enableButton2() {
-			document.getElementById("btnedit").disabled = true;
-            document.getElementById("btnsave").disabled = false;
-			document.getElementById("btnedit").style.display='none';
-			document.getElementById('txtname').removeAttribute('readonly');
-			document.getElementById('txtmob').removeAttribute('readonly');
-			document.getElementById('txtad').removeAttribute('readonly');
-			document.getElementById('txtpin').removeAttribute('readonly');
-			document.getElementById('txtloc').removeAttribute('readonly');
-			document.getElementById('txtcity').removeAttribute('readonly');
-			document.getElementById("btnsave").style.display='inline';
-        }
-	$("#first-button").click(function(){
-    ev.preventDefault();    
-    $('#second-button').removeClass('hide');
-    $('#first-button').addClass('hide');
-  });
-    </script>
-
 </head>
 <body>
 <!-- header 
@@ -124,21 +67,22 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				  <ul class="nav navbar-nav menu__list">
 					<li class=" menu__item"><a class="menu__link" href="index_user.php">Home <span class="sr-only">(current)</span></a></li>
 					<li class=" menu__item"><a class="menu__link" href="about.php">About</a></li>
-					<li class="dropdown menu__item">
-						<a href="#" class="dropdown-toggle menu__link" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Categories <span class="caret"></span></a>
+					<li class="menu__item dropdown menu__item--current">
+					   <a class="menu__link" href="#" class="dropdown-toggle" data-toggle="dropdown">Categories <b class="caret"></b></a>
 										<ul class="dropdown-menu agile_short_dropdown">
 									<li><a href="fp.php">Featured Products</a></li>
-									<li><a href="Bags.php">Bags</a></li>
-									<li><a href="ep.php">Earphones</a></li>
-									<li><a href="mobile.php">Mobile</a></li>
+									<li><a href="mens.php">Men's Fasion</a></li>
+									<li><a href="womens.php">Women's Fasion</a></li>
+									<li><a href="shoes.php">Shoes</a></li>
 									<li><a href="watches.php">Watches</a></li>
+									<li><a href="Bags.php">Bags</a></li>
 									</ul>
 						</li>		
 					
 					<li class=" menu__item"><a class="menu__link" href="contact.php">Contact</a></li>
 					<li>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</li>
-					<li class="menu__item dropdown menu__item--current">
-					   <a class="menu__link" href="#" class="dropdown-toggle" data-toggle="dropdown">
+					<li class="menu__item dropdown">
+					<a class="menu__link" class="dropdown-toggle" data-toggle="dropdown">
 					<?php
 			$id=$_SESSION["txtusername"];
 				$con=mysqli_connect("localhost","root","","os");
@@ -203,18 +147,17 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!-- //Modal2 -->
 
 <!-- banner -->
-
 	
 <div class="page-head_agile_info_w3l">
 		<div class="container">
-			<h3>My <span>Profile </span></h3>
+			<h3>Men's <span>Fasion </span></h3>
 			<!--/w3_short-->
 				 <div class="services-breadcrumb">
 						<div class="agile_inner_breadcrumb">
 
 						   <ul class="w3_short">
-								<li><a>Me</a><i>|</i></li>
-								<li>Profile</li>
+								<li><a href="user_index.php">Categories</a><i>|</i></li>
+								<li>Men's Fasion</li>
 							</ul>
 						 </div>
 				</div>
@@ -222,176 +165,96 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	</div>
 </div>
 	<!-- //banner -->
-    <div class="clearfix"></div>
-	<div class="clearfix"></div>
-	<div height="200"></div>
+    
 	<!-- schedule-bottom -->
 	
 	
-	
-	
-	<?php
-
-$con=mysqli_connect("localhost","root","","os");
-
-$sel_pr="SELECT * from u_profile where uid='$uid'";
-$res_pr=mysqli_query($con,$sel_pr);
-
-				if(mysqli_num_rows($res_pr)>0){
-						while($row_pr = mysqli_fetch_array($res_pr)){
-						echo "
-						<section class='content'>
-
-      <form action='uprofile.php' method='post'>
-      <div class='box box-default'>
-        
-        <!-- /.box-header -->
-        <div class='box-body'>
-          <div class='row'>
-            <div class='col-md-6'>
-              <div class='form-group'>
-                <label>Name</label>
-                 <input type='text' class='form-control my-colorpicker1' name='txtname' id='txtname' required readonly value=".$row_pr['f_name'].">
-              </div>
-              <!-- /.form-group -->
-              <div class='form-group'>
-                <label>Phone</label>
-                <input type='text' class='form-control my-colorpicker1' name='txtmob' id='txtmob' required='' readonly value=".$row_pr['ph'].">
-              </div>
-              <!-- /.form-group -->
-			 </div>
-				<div class='col-md-6'>
-              <div class='form-group'>
-                <label>Address</label>
-                 <input type='text' class='form-control my-colorpicker1' name='txtad' id='txtad' required='' readonly value=".$row_pr['address'].">
-              </div>
-              <!-- /.form-group -->
-              <div class='form-group'>
-                <label>Locality</label>
-                <input type='text' class='form-control my-colorpicker1' name='txtloc' id='txtloc' required='' readonly value=".$row_pr['locality'].">
-              </div>
-			  </div>
-              <!-- /.form-group -->
-			  <div class='col-md-6'>
-              <div class='form-group'>
-                <label>Pincode</label>
-                 <input type='text' class='form-control my-colorpicker1' name='txtpin' id='txtpin' required='' readonly value=".$row_pr['pin'].">
-              </div>
-			  </div>
-              <!-- /.form-group -->
-			  <div class='col-md-6'>
-              <div class='form-group'>
-                <label>City</label>
-                <input type='text' class='form-control my-colorpicker1' name='txtcity' id='txtcity' required='' readonly value=".$row_pr['city']." >
-              </div>
-            </div>
-            <!-- /.col -->
-          </div>
-          <!-- /.row -->
-        </div>
-							
-							
-								<span></span>";
+						<!--//tab_one-->
+						<!--/tab_two-->
+						<div class="banner_bottom_agile_info">
+					<div class="container">
+					<div class="banner_bottom_agile_info_inner_w3ls">
 						
-							echo "</div> 
-							<input type='submit' value='EDIT'  class='hvr-outline-out button2' id='btnedit' onClick='enableButton2()' style='margin-left:610px;background-color: #2fdab8;border: none;color: white;padding: 15px 32px;text-align: center;text-decoration: none;display: inline-block;font-size: 16px;'>
-							<h3 class='wthree_text_info'> <span></span></h3>
-							<input type='submit' value='SAVE' style='display:none;' id='btnsave' class='hvr-outline-out button2' style='margin-left:610px;background-color: #2fdab8;border: none;color: white;padding: 15px 32px;text-align: center;text-decoration: none;display: inline-block;font-size: 16px;' onClick=window.location.href='profile.php?x=$uid'>
+						<?php
+							$con=mysqli_connect("localhost","root","","os");
+										$sel_p="SELECT * from product where p_cat='Mens' and p_select='apr';";
+										$res_p=mysqli_query($con,$sel_p);
+										
+										
+	
 							
-						</form>
-					</div>
-					</div>";
-					}
-						?>
-			<?php
-				}
-				else{
-					$sq="select * from registration where email='$id';";
-				$res=mysqli_query($con,$sq);
-				$row=mysqli_fetch_assoc($res);
-				$uname=$row["name"];
-					echo "<section class='content'>
-
-       <form action='uprofile1.php' method='post'>
-      <div class='box box-default'>
-        
-        <!-- /.box-header -->
-        <div class='box-body'>
-          <div class='row'>
-            <div class='col-md-6'>
-              <div class='form-group'>
-                <label>Name</label>
-                 <input type='text' class='form-control my-colorpicker1' name='txtname' required readonly value='$uname'>
-              </div>
-              <!-- /.form-group -->
-              <div class='form-group'>
-                <label>Phone</label>
-                <input type='text' class='form-control my-colorpicker1' name='txtmob' required='' value=''>
-              </div>
-              <!-- /.form-group -->
-			 </div>
-				<div class='col-md-6'>
-              <div class='form-group'>
-                <label>Address</label>
-                 <input type='text' class='form-control my-colorpicker1' name='txtad' required='' value=''>
-              </div>
-              <!-- /.form-group -->
-              <div class='form-group'>
-                <label>Locality</label>
-                <input type='text' class='form-control my-colorpicker1' name='txtloc' required='' value=''>
-              </div>
-			  </div>
-              <!-- /.form-group -->
-			  <div class='col-md-6'>
-              <div class='form-group'>
-                <label>Pincode</label>
-                 <input type='text' class='form-control my-colorpicker1' name='txtpin' required='' value=''>
-              </div>
-			  </div>
-              <!-- /.form-group -->
-			  <div class='col-md-6'>
-              <div class='form-group'>
-                <label>City</label>
-                <input type='text' class='form-control my-colorpicker1' name='txtcity' required='' value='' >
-              </div>
-            </div>
-            <!-- /.col -->
-          </div>
-          <!-- /.row -->
-        </div>
+								if(mysqli_num_rows($res_p)>0){
+									while($row_p = mysqli_fetch_array($res_p)){
+										$pid = $row_p['p_id'];
+										$pcat = $row_p['p_cat'];
+										$pbrand = $row_p['p_brand'];
+										$pname = $row_p['p_name']; 
+										$price = $row_p['p_price'];
+										$pdis=$row_p['p_dis'];
+										$pimg = $row_p['p_img'];
+										$qty=$row_p['p_qty'];
+										$p=$price-$pdis;
+										
+							 echo "<div class='tab2'>
+							 <div class='col-md-4 product-men'>
+								<div class='men-pro-item simpleCart_shelfItem'>
+									<div class='men-thumb-item'>
+										<img src='images/".$row_p["p_img"]."' alt='' class='pro-image-front'>
+										<img src='images/".$row_p["p_img"]."' alt='' class='pro-image-back'>
+											<div class='men-cart-pro'>
+												<div class='inner-men-cart-pro'>";
+												if($qty<=5){
+													echo "<a class='link-product-add-cart' disabled>Out Of Stock</a>";
+												}
+												else{
+													echo "<a href='single.php?p_id=$pid' class='link-product-add-cart'>Quick View</a>";
+												}
+												echo "</div>
+											</div>
+											
+											
+									</div>
+									<div class='item-info-product '>
+										<h4><a href='single.html'>$pname</a></h4>
+										<div class='info-product-price'>
+											<span class='item_price'>₹$p</span>
+											<del>₹$price</del><br/>
+											
+										</div>";
+										
+										echo "<div class='hvr-outline-out button2' >
+															<form action='a_cart.php?uid=$uid&pid=$pid' method='post'>";
+															if($qty<=5){
+																	echo "<input type='submit' class='hvr-outline-out button2' name='submit' value='Add to cart' onClick='' disabled/>";
+															}
+															else{
+																echo "<input type='submit' class='hvr-outline-out button2' name='submit' value='Add to cart' onClick=''  />";
+															}
+															echo "</form>
+														</div>
+										</div>									
+									</div>
+								</div>
+							</div>";
+							}
+								}
+										
+							?>
 							
-							
-								<span></span>";
-				
-							echo "</div> 
-							<input type='submit' value='SAVE' align='center' class='hvr-outline-out button2' style='margin-left:610px;background-color: #2fdab8;border: none;color: white;padding: 15px 32px;text-align: center;text-decoration: none;display: inline-block;font-size: 16px;'>";
-								
-						echo "</form>
-					</div>
-					</div>";
-						}
-						echo "<div class='clearfix'></div>
-					</div>
-				</div>
-				<!-- //Modal content-->
-			</div>
-		</div>
+						
+						</div>
 					 <!--//tab_two-->
 
 					</div>
 					</div>
 				</div>	
 			</div>
-		</div>";
-		
-		?>
-		<h3 class="wthree_text_info"> <span>  </span></h3>
+		</div>
 	<!-- //new_arrivals --> 
 	<!-- /we-offer -->
 		
 	<!-- //we-offer -->
 <!--/grids-->
-</div>
 <div class="coupons">
 		<div class="coupons-grids text-center">
 			<div class="w3layouts_mail_grid">

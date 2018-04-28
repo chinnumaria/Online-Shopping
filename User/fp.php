@@ -1,11 +1,6 @@
-<!--
-Author: W3layouts
-Author URL: http://w3layouts.com
-License: Creative Commons Attribution 3.0 Unported
-License URL: http://creativecommons.org/licenses/by/3.0/
--->
 <?php
 session_start();
+$id=$_SESSION["txtusername"];
 ?>
 <!DOCTYPE html>
 <html>
@@ -35,7 +30,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <div class="header-bot">
 	<div class="header-bot_inner_wthreeinfo_header_mid">
 		<div class="col-md-4 header-middle">
-			<form action="#" method="post">
+			<form action="search.php" method="post">
 					<input type="search" name="search" placeholder="Search here..." required="">
 					<input type="submit" value=" ">
 				<div class="clearfix"></div>
@@ -43,7 +38,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		</div>
 		<!-- header-bot -->
 			<div class="col-md-4 logo_agile">
-				<h1><a href="index_user.php"><span>E</span>lite Shoppy <i class="fa fa-shopping-bag top_logo_agile_bag" aria-hidden="true"></i></a></h1>
+				<h1><a href=""><span>E</span>lite Shoppy <i class="fa fa-shopping-bag top_logo_agile_bag" aria-hidden="true"></i></a></h1>
 			</div>
         <!-- header-bot -->
 		<div class="col-md-4 agileits-social top_content">
@@ -70,20 +65,20 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<!-- Collect the nav links, forms, and other content for toggling -->
 				<div class="collapse navbar-collapse menu--shylock" id="bs-example-navbar-collapse-1">
 				  <ul class="nav navbar-nav menu__list">
-					<li class="active menu__item menu__item--current"><a class="menu__link" href="index_user.php">Home <span class="sr-only">(current)</span></a></li>
-					<li class=" menu__item"><a class="menu__link" href="about.html">About</a></li>
-					<li class="dropdown menu__item">
-						<a href="#" class="dropdown-toggle menu__link" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Categories <span class="caret"></span></a>
+					<li class=" menu__item"><a class="menu__link" href="index_user.php">Home <span class="sr-only">(current)</span></a></li>
+					<li class=" menu__item"><a class="menu__link" href="about.php">About</a></li>
+					<li class="menu__item dropdown menu__item--current">
+					   <a class="menu__link" href="#" class="dropdown-toggle" data-toggle="dropdown">Categories <b class="caret"></b></a>
 										<ul class="dropdown-menu agile_short_dropdown">
-									<li><a href="mens.html">Men's Fasion</a></li>
-									<li><a href="womens.php">Women's Fasion</a></li>
-									<li><a href="mens.html">Shoes</a></li>
-									<li><a href="womens.html">Watches</a></li>
-									<li><a href="mens.html">Bags</a></li>
+									<li><a href="fp.php">Featured Products</a></li>
+									<li><a href="Bags.php">Bags</a></li>
+									<li><a href="ep.php">Earphones</a></li>
+									<li><a href="mobile.php">Mobile</a></li>
+									<li><a href="watches.php">Watches</a></li>
 									</ul>
 						</li>		
 					
-					<li class=" menu__item"><a class="menu__link" href="contact.html">Contact</a></li>
+					<li class=" menu__item"><a class="menu__link" href="contact.php">Contact</a></li>
 					<li>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</li>
 					<li class="menu__item dropdown">
 					<a class="menu__link" class="dropdown-toggle" data-toggle="dropdown">
@@ -94,12 +89,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				$res=mysqli_query($con,$sq);
 				$row=mysqli_fetch_assoc($res);
 				$uid=$row["uid"];
-				echo "<span class='hidden-xs'>".$row['name']."</span>";
+				$uname=$row["name"];
+				$arr = explode(' ',trim($uname));
+				echo "<span class='hidden-xs'>".$arr[0]."</span>";
 			?>
 			<b class="caret"></b></a>
 			<ul class="dropdown-menu agile_short_dropdown">
-									<li><a href="icons.html">Profile</a></li>
-									<li><a href="typography.html">Signout</a></li>
+									<li><a href="profile.php">Profile</a></li>
+									<li><a href="order.php">Orders</a></li>
+									<li><a href="index.php">Signout</a></li>
 			</ul>
 			</a></li>
 				<!--  </ul>
@@ -127,7 +125,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				$res=mysqli_query($con,$sq);
 				$rows=mysqli_fetch_assoc($res);
 				
-		echo "<form action='my_cart.php' method='post' class=''> 
+		echo "<form action='my_cart_test.php' method='post' class=''> 
 		<button class='w3view-cart' type='submit' name='submit' onClick='' value=''><i class='fa fa-cart-arrow-down' aria-hidden='true'></i></button></form>";
 	?>
 		</li>
@@ -137,6 +135,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			</nav>
 		<div class="clearfix"></div>
 	</div>
+</div>
 </div>
 </div>
 <!-- //banner-top -->
@@ -205,7 +204,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 												}
 												echo "</div>
 											</div>
-											<span class='product-new-top'>New</span>
+											
 											
 									</div>
 									<div class='item-info-product '>
@@ -249,34 +248,59 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		
 	<!-- //we-offer -->
 <!--/grids-->
+<div class="coupons">
+		<div class="coupons-grids text-center">
+			<div class="w3layouts_mail_grid">
+				
+				<div style="margin-left: 350px;" class="col-md-3 w3layouts_mail_grid_left">
+					<div class="w3layouts_mail_grid_left1 hvr-radial-out">
+						<i class="fa fa-truck" aria-hidden="true"></i>
+					</div>
+					<div  class="w3layouts_mail_grid_left2">
+						<h3>SHIPPING COST</h3>
+						<p>50 INR </p>
+					</div>
+				</div>
+				<div class="col-md-3 w3layouts_mail_grid_left">
+					<div class="w3layouts_mail_grid_left1 hvr-radial-out">
+						<i class="fa fa-headphones" aria-hidden="true"></i>
+					</div>
+					<div class="w3layouts_mail_grid_left2">
+						<h3>24/7 SUPPORT</h3>
+						<p>We offer 24/7 Support</p>
+					</div>
+				</div>
+					
+				</div>
+				<div class="clearfix"> </div>
+			</div>
 
+		</div>
+</div>
 <!--grids-->
 <!-- footer -->
 <div class="footer">
 	<div class="footer_agile_inner_info_w3l">
 		<div class="col-md-3 footer-left">
-			<h2><a href="index.html"><span>E</span>lite Shoppy </a></h2>
-			<p>Lorem ipsum quia dolor
-			sit amet, consectetur, adipisci velit, sed quia non 
-			numquam eius modi tempora.</p>
+			<h2><a href=""><span>E</span>lite Shoppy </a></h2>
+			<p></p>
 			<ul class="social-nav model-3d-0 footer-social w3_agile_social two">
-															<li><a href="" class="facebook">
+															<li><a  class="facebook">
 																  <div class="front"><i class="fa fa-facebook" aria-hidden="true"></i></div>
 																  <div class="back"><i class="fa fa-facebook" aria-hidden="true"></i></div></a></li>
-															<li><a href="" class="twitter"> 
+															<li><a  class="twitter"> 
 																  <div class="front"><i class="fa fa-twitter" aria-hidden="true"></i></div>
 																  <div class="back"><i class="fa fa-twitter" aria-hidden="true"></i></div></a></li>
-															<li><a href="" class="instagram">
+															<li><a  class="instagram">
 																  <div class="front"><i class="fa fa-instagram" aria-hidden="true"></i></div>
 																  <div class="back"><i class="fa fa-instagram" aria-hidden="true"></i></div></a></li>
-															<li><a href="" class="pinterest">
+															<li><a  class="pinterest">
 																  <div class="front"><i class="fa fa-linkedin" aria-hidden="true"></i></div>
 																  <div class="back"><i class="fa fa-linkedin" aria-hidden="true"></i></div></a></li>
 														</ul>
 		</div>
 		<div class="col-md-9 footer-right">
 			<div class="sign-grds">
-				
 				
 				<div class="col-md-5 sign-gd-two">
 					<h4>Store <span>Information</span></h4>
@@ -297,7 +321,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							</div>
 							<div class="w3-address-right">
 								<h6>Email Address</h6>
-								<p>Email : EliteShoppy@gmail.com</p>
+								<p>Email :<a > EliteShoppy@gmail.com</a></p>
 							</div>
 							<div class="clearfix"> </div>
 						</div>
@@ -307,7 +331,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							</div>
 							<div class="w3-address-right">
 								<h6>Location</h6>
-								<p>Broome St, NY 10002,California, USA. 
+								<p>Pala, Kottayam, Kerala, India
 								
 								</p>
 							</div>
@@ -320,7 +344,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			</div>
 		</div>
 		<div class="clearfix"></div>
-			
+		
 		<p class="copy-right">&copy 2018 Elite shoppy. All rights reserved </p>
 	</div>
 </div>

@@ -1,12 +1,6 @@
-<!--
-Author: W3layouts
-Author URL: http://w3layouts.com
-License: Creative Commons Attribution 3.0 Unported
-License URL: http://creativecommons.org/licenses/by/3.0/
--->
 <?php
 session_start();
-
+$id=$_SESSION["txtusername"];
 ?>
 <!DOCTYPE html>
 <html>
@@ -24,60 +18,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
 <link href="css/font-awesome.css" rel="stylesheet"> 
 <link href="css/easy-responsive-tabs.css" rel='stylesheet' type='text/css'/>
-
-
-
-
-
-
-
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="../bower_components/font-awesome/css/font-awesome.min.css">
-  <!-- Ionicons -->
-  <link rel="stylesheet" href="../bower_components/Ionicons/css/ionicons.min.css">
-  <!-- daterange picker -->
-  <link rel="stylesheet" href="../bower_components/bootstrap-daterangepicker/daterangepicker.css">
-  <!-- bootstrap datepicker -->
-  <link rel="stylesheet" href="../bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
-  <!-- iCheck for checkboxes and radio inputs -->
-  <link rel="stylesheet" href="../plugins/iCheck/all.css">
-  <!-- Bootstrap Color Picker -->
-  <link rel="stylesheet" href="../bower_components/bootstrap-colorpicker/dist/css/bootstrap-colorpicker.min.css">
-  <!-- Bootstrap time Picker -->
-  <link rel="stylesheet" href="../plugins/timepicker/bootstrap-timepicker.min.css">
-  <!-- Select2 -->
-  <link rel="stylesheet" href="../bower_components/select2/dist/css/select2.min.css">
-  <!-- Theme style -->
-  <link rel="stylesheet" href="../dist/css/AdminLTE.min.css">
-  <!-- AdminLTE Skins. Choose a skin from the css/skins
-       folder instead of downloading all of them to reduce the load. -->
-  <link rel="stylesheet" href="../../dist/css/skins/_all-skins.min.css">
-<link rel="stylesheet" href="../bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
-<link rel="stylesheet" href="../bower_components/select2/dist/css/select2.min.css">
 <!-- //for bootstrap working -->
 <link href="//fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800" rel="stylesheet">
 <link href='//fonts.googleapis.com/css?family=Lato:400,100,100italic,300,300italic,400italic,700,900,900italic,700italic' rel='stylesheet' type='text/css'>
-
-<script> 
-        function enableButton2() {
-			document.getElementById("btnedit").disabled = true;
-            document.getElementById("btnsave").disabled = false;
-			document.getElementById("btnedit").style.display='none';
-			document.getElementById('txtname').removeAttribute('readonly');
-			document.getElementById('txtmob').removeAttribute('readonly');
-			document.getElementById('txtad').removeAttribute('readonly');
-			document.getElementById('txtpin').removeAttribute('readonly');
-			document.getElementById('txtloc').removeAttribute('readonly');
-			document.getElementById('txtcity').removeAttribute('readonly');
-			document.getElementById("btnsave").style.display='inline';
-        }
-	$("#first-button").click(function(){
-    ev.preventDefault();    
-    $('#second-button').removeClass('hide');
-    $('#first-button').addClass('hide');
-  });
-    </script>
-
 </head>
 <body>
 <!-- header 
@@ -135,10 +78,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 									</ul>
 						</li>		
 					
-					<li class=" menu__item"><a class="menu__link" href="contact.php">Contact</a></li>
+					<li class="active menu__item menu__item--current"><a class="menu__link" href="contact.php">Contact</a></li>
 					<li>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</li>
-					<li class="menu__item dropdown menu__item--current">
-					   <a class="menu__link" href="#" class="dropdown-toggle" data-toggle="dropdown">
+					<li class="menu__item dropdown">
+					<a class="menu__link" class="dropdown-toggle" data-toggle="dropdown">
 					<?php
 			$id=$_SESSION["txtusername"];
 				$con=mysqli_connect("localhost","root","","os");
@@ -197,201 +140,233 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </div>
 <!-- //banner-top -->
 <!-- Modal1 -->
+		<div class="modal fade" id="myModal" tabindex="-1" role="dialog">
+			<div class="modal-dialog">
+				<!-- Modal content-->
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+					</div>
+						<div class="modal-body modal-body-sub_agile">
+						<div class="col-md-8 modal_body_left modal_body_left1">
+						<h3 class="agileinfo_sign">Sign In <span>Now</span></h3>
+									<form action="#" method="post">
+							<div class="styled-input agile-styled-input-top">
+								<input type="text" name="Name" required="">
+								<label>Name</label>
+								<span></span>
+							</div>
+							<div class="styled-input">
+								<input type="email" name="Email" required=""> 
+								<label>Email</label>
+								<span></span>
+							</div> 
+							<input type="submit" value="Sign In">
+						</form>
+						  <ul class="social-nav model-3d-0 footer-social w3_agile_social top_agile_third">
+															<li><a href="#" class="facebook">
+																  <div class="front"><i class="fa fa-facebook" aria-hidden="true"></i></div>
+																  <div class="back"><i class="fa fa-facebook" aria-hidden="true"></i></div></a></li>
+															<li><a href="#" class="twitter"> 
+																  <div class="front"><i class="fa fa-twitter" aria-hidden="true"></i></div>
+																  <div class="back"><i class="fa fa-twitter" aria-hidden="true"></i></div></a></li>
+															<li><a href="#" class="instagram">
+																  <div class="front"><i class="fa fa-instagram" aria-hidden="true"></i></div>
+																  <div class="back"><i class="fa fa-instagram" aria-hidden="true"></i></div></a></li>
+															<li><a href="#" class="pinterest">
+																  <div class="front"><i class="fa fa-linkedin" aria-hidden="true"></i></div>
+																  <div class="back"><i class="fa fa-linkedin" aria-hidden="true"></i></div></a></li>
+														</ul>
+														<div class="clearfix"></div>
+														<p><a href="#" data-toggle="modal" data-target="#myModal2" > Don't have an account?</a></p>
+
+						</div>
+						<div class="col-md-4 modal_body_right modal_body_right1">
+							<img src="images/log_pic.jpg" alt=" "/>
+						</div>
+						<div class="clearfix"></div>
+					</div>
+				</div>
+				<!-- //Modal content-->
+			</div>
+		</div>
 <!-- //Modal1 -->
 <!-- Modal2 -->
-	
+		<div class="modal fade" id="myModal2" tabindex="-1" role="dialog">
+			<div class="modal-dialog">
+				<!-- Modal content-->
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+					</div>
+						<div class="modal-body modal-body-sub_agile">
+						<div class="col-md-8 modal_body_left modal_body_left1">
+						<h3 class="agileinfo_sign">Sign Up <span>Now</span></h3>
+									<form action="#" method="post">
+							<div class="styled-input agile-styled-input-top">
+								<input type="text" name="Name" required="">
+								<label>Name</label>
+								<span></span>
+							</div>
+							<div class="styled-input">
+								<input type="email" name="Email" required=""> 
+								<label>Email</label>
+								<span></span>
+							</div> 
+							<div class="styled-input">
+								<input type="password" name="password" required=""> 
+								<label>Password</label>
+								<span></span>
+							</div> 
+							<div class="styled-input">
+								<input type="password" name="Confirm Password" required=""> 
+								<label>Confirm Password</label>
+								<span></span>
+							</div> 
+							<input type="submit" value="Sign Up">
+						</form>
+						  <ul class="social-nav model-3d-0 footer-social w3_agile_social top_agile_third">
+															<li><a href="#" class="facebook">
+																  <div class="front"><i class="fa fa-facebook" aria-hidden="true"></i></div>
+																  <div class="back"><i class="fa fa-facebook" aria-hidden="true"></i></div></a></li>
+															<li><a href="#" class="twitter"> 
+																  <div class="front"><i class="fa fa-twitter" aria-hidden="true"></i></div>
+																  <div class="back"><i class="fa fa-twitter" aria-hidden="true"></i></div></a></li>
+															<li><a href="#" class="instagram">
+																  <div class="front"><i class="fa fa-instagram" aria-hidden="true"></i></div>
+																  <div class="back"><i class="fa fa-instagram" aria-hidden="true"></i></div></a></li>
+															<li><a href="#" class="pinterest">
+																  <div class="front"><i class="fa fa-linkedin" aria-hidden="true"></i></div>
+																  <div class="back"><i class="fa fa-linkedin" aria-hidden="true"></i></div></a></li>
+														</ul>
+														<div class="clearfix"></div>
+														<p><a href="#">By clicking register, I agree to your terms</a></p>
+
+						</div>
+						<div class="col-md-4 modal_body_right modal_body_right1">
+							<img src="images/log_pic.jpg" alt=" "/>
+						</div>
+						<div class="clearfix"></div>
+					</div>
+				</div>
+				<!-- //Modal content-->
+			</div>
+		</div>
 <!-- //Modal2 -->
-
-<!-- banner -->
-
-	
+<!-- /banner_bottom_agile_info -->
 <div class="page-head_agile_info_w3l">
 		<div class="container">
-			<h3>My <span>Profile </span></h3>
+			<h3>C<span>ontact Us </span></h3>
 			<!--/w3_short-->
 				 <div class="services-breadcrumb">
 						<div class="agile_inner_breadcrumb">
 
 						   <ul class="w3_short">
-								<li><a>Me</a><i>|</i></li>
-								<li>Profile</li>
+								<li><a href="index.html">Home</a><i>|</i></li>
+								<li>Contact</li>
 							</ul>
 						 </div>
 				</div>
 	   <!--//w3_short-->
 	</div>
 </div>
-	<!-- //banner -->
-    <div class="clearfix"></div>
-	<div class="clearfix"></div>
-	<div height="200"></div>
-	<!-- schedule-bottom -->
-	
-	
-	
-	
-	<?php
-
-$con=mysqli_connect("localhost","root","","os");
-
-$sel_pr="SELECT * from u_profile where uid='$uid'";
-$res_pr=mysqli_query($con,$sel_pr);
-
-				if(mysqli_num_rows($res_pr)>0){
-						while($row_pr = mysqli_fetch_array($res_pr)){
-						echo "
-						<section class='content'>
-
-      <form action='uprofile.php' method='post'>
-      <div class='box box-default'>
-        
-        <!-- /.box-header -->
-        <div class='box-body'>
-          <div class='row'>
-            <div class='col-md-6'>
-              <div class='form-group'>
-                <label>Name</label>
-                 <input type='text' class='form-control my-colorpicker1' name='txtname' id='txtname' required readonly value=".$row_pr['f_name'].">
-              </div>
-              <!-- /.form-group -->
-              <div class='form-group'>
-                <label>Phone</label>
-                <input type='text' class='form-control my-colorpicker1' name='txtmob' id='txtmob' required='' readonly value=".$row_pr['ph'].">
-              </div>
-              <!-- /.form-group -->
-			 </div>
-				<div class='col-md-6'>
-              <div class='form-group'>
-                <label>Address</label>
-                 <input type='text' class='form-control my-colorpicker1' name='txtad' id='txtad' required='' readonly value=".$row_pr['address'].">
-              </div>
-              <!-- /.form-group -->
-              <div class='form-group'>
-                <label>Locality</label>
-                <input type='text' class='form-control my-colorpicker1' name='txtloc' id='txtloc' required='' readonly value=".$row_pr['locality'].">
-              </div>
-			  </div>
-              <!-- /.form-group -->
-			  <div class='col-md-6'>
-              <div class='form-group'>
-                <label>Pincode</label>
-                 <input type='text' class='form-control my-colorpicker1' name='txtpin' id='txtpin' required='' readonly value=".$row_pr['pin'].">
-              </div>
-			  </div>
-              <!-- /.form-group -->
-			  <div class='col-md-6'>
-              <div class='form-group'>
-                <label>City</label>
-                <input type='text' class='form-control my-colorpicker1' name='txtcity' id='txtcity' required='' readonly value=".$row_pr['city']." >
-              </div>
-            </div>
-            <!-- /.col -->
-          </div>
-          <!-- /.row -->
-        </div>
-							
-							
-								<span></span>";
-						
-							echo "</div> 
-							<input type='submit' value='EDIT'  class='hvr-outline-out button2' id='btnedit' onClick='enableButton2()' style='margin-left:610px;background-color: #2fdab8;border: none;color: white;padding: 15px 32px;text-align: center;text-decoration: none;display: inline-block;font-size: 16px;'>
-							<h3 class='wthree_text_info'> <span></span></h3>
-							<input type='submit' value='SAVE' style='display:none;' id='btnsave' class='hvr-outline-out button2' style='margin-left:610px;background-color: #2fdab8;border: none;color: white;padding: 15px 32px;text-align: center;text-decoration: none;display: inline-block;font-size: 16px;' onClick=window.location.href='profile.php?x=$uid'>
-							
-						</form>
+   <!--/contact-->
+    <div class="banner_bottom_agile_info">
+	    <div class="container">
+		  <div class="contact-grid-agile-w3s">
+				<div class="col-md-4 contact-grid-agile-w3">
+						<div class="contact-grid-agile-w31">
+							<i class="fa fa-map-marker" aria-hidden="true"></i>
+							<h4>Address</h4>
+							<p>Pala, Kottayam<span>Kerala, India.</span></p>
+						</div>
 					</div>
-					</div>";
-					}
-						?>
-			<?php
-				}
-				else{
-					$sq="select * from registration where email='$id';";
-				$res=mysqli_query($con,$sq);
-				$row=mysqli_fetch_assoc($res);
-				$uname=$row["name"];
-					echo "<section class='content'>
-
-       <form action='uprofile1.php' method='post'>
-      <div class='box box-default'>
-        
-        <!-- /.box-header -->
-        <div class='box-body'>
-          <div class='row'>
-            <div class='col-md-6'>
-              <div class='form-group'>
-                <label>Name</label>
-                 <input type='text' class='form-control my-colorpicker1' name='txtname' required readonly value='$uname'>
-              </div>
-              <!-- /.form-group -->
-              <div class='form-group'>
-                <label>Phone</label>
-                <input type='text' class='form-control my-colorpicker1' name='txtmob' required='' value=''>
-              </div>
-              <!-- /.form-group -->
-			 </div>
-				<div class='col-md-6'>
-              <div class='form-group'>
-                <label>Address</label>
-                 <input type='text' class='form-control my-colorpicker1' name='txtad' required='' value=''>
-              </div>
-              <!-- /.form-group -->
-              <div class='form-group'>
-                <label>Locality</label>
-                <input type='text' class='form-control my-colorpicker1' name='txtloc' required='' value=''>
-              </div>
-			  </div>
-              <!-- /.form-group -->
-			  <div class='col-md-6'>
-              <div class='form-group'>
-                <label>Pincode</label>
-                 <input type='text' class='form-control my-colorpicker1' name='txtpin' required='' value=''>
-              </div>
-			  </div>
-              <!-- /.form-group -->
-			  <div class='col-md-6'>
-              <div class='form-group'>
-                <label>City</label>
-                <input type='text' class='form-control my-colorpicker1' name='txtcity' required='' value='' >
-              </div>
-            </div>
-            <!-- /.col -->
-          </div>
-          <!-- /.row -->
-        </div>
-							
-							
-								<span></span>";
-				
-							echo "</div> 
-							<input type='submit' value='SAVE' align='center' class='hvr-outline-out button2' style='margin-left:610px;background-color: #2fdab8;border: none;color: white;padding: 15px 32px;text-align: center;text-decoration: none;display: inline-block;font-size: 16px;'>";
-								
-						echo "</form>
+					<div class="col-md-4 contact-grid-agile-w3">
+						<div class="contact-grid-agile-w32">
+							<i class="fa fa-phone" aria-hidden="true"></i>
+							<h4>Call Us</h4>
+							<p>+1234 758 839<span>+1273 748 730</span></p>
+						</div>
 					</div>
-					</div>";
-						}
-						echo "<div class='clearfix'></div>
+					<div class="col-md-4 contact-grid-agile-w3">
+						<div class="contact-grid-agile-w33">
+							<i class="fa fa-envelope-o" aria-hidden="true"></i>
+							<h4>Email</h4>
+							<p><a href="mailto:info@example.com">EliteShoppy@gmail.com</a><span><a href="mailto:info@example.com">EliteShoppyforu@gmail.com</a></span></p>
+						</div>
 					</div>
+					<div class="clearfix"> </div>
 				</div>
-				<!-- //Modal content-->
-			</div>
-		</div>
-					 <!--//tab_two-->
-
+	   </div>
+	 </div>
+	   
+   <div class="banner_bottom_agile_info">
+	<div class="container">
+	   <div class="agile-contact-grids">
+				<div class="agile-contact-left">
+					<div class="col-md-6 address-grid">
+						<h4>For More <span>Information</span></h4>
+							<div class="mail-agileits-w3layouts">
+								<i class="fa fa-volume-control-phone" aria-hidden="true"></i>
+								<div class="contact-right">
+									<p>Telephone </p><span>+1 (100)222-23-33</span>
+								</div>
+								<div class="clearfix"> </div>
+							</div>
+							<div class="mail-agileits-w3layouts">
+								<i class="fa fa-envelope-o" aria-hidden="true"></i>
+								<div class="contact-right">
+									<p>Mail </p><a href="mailto:info@example.com">EliteShoppy@gmail.com</a>
+								</div>
+								<div class="clearfix"> </div>
+							</div>
+							<div class="mail-agileits-w3layouts">
+								<i class="fa fa-map-marker" aria-hidden="true"></i>
+								<div class="contact-right">
+									<p>Location</p><span>Pala, Kottayam, Kerala, India.</span>
+								</div>
+								<div class="clearfix"> </div>
+							</div>
+							<ul class="social-nav model-3d-0 footer-social w3_agile_social two contact">
+							                              <li class="share">SHARE ON : </li>
+															<li><a href="#" class="facebook">
+																  <div class="front"><i class="fa fa-facebook" aria-hidden="true"></i></div>
+																  <div class="back"><i class="fa fa-facebook" aria-hidden="true"></i></div></a></li>
+															<li><a href="#" class="twitter"> 
+																  <div class="front"><i class="fa fa-twitter" aria-hidden="true"></i></div>
+																  <div class="back"><i class="fa fa-twitter" aria-hidden="true"></i></div></a></li>
+															<li><a href="#" class="instagram">
+																  <div class="front"><i class="fa fa-instagram" aria-hidden="true"></i></div>
+																  <div class="back"><i class="fa fa-instagram" aria-hidden="true"></i></div></a></li>
+															<li><a href="#" class="pinterest">
+																  <div class="front"><i class="fa fa-linkedin" aria-hidden="true"></i></div>
+																  <div class="back"><i class="fa fa-linkedin" aria-hidden="true"></i></div></a></li>
+														</ul>
 					</div>
-					</div>
-				</div>	
+					<div class="col-md-6 contact-form">
+						<h4 class="white-w3ls"><span>Enter Your </span>Feedback</h4>
+						<form action="fd.php" method="post">
+							<div class="styled-input">
+								<input type="text" name="sub" required="">
+								<label>Subject</label>
+								<span></span>
+							</div>
+							<div class="styled-input">
+								<textarea name="msg" required=""></textarea>
+								<label>Message</label>
+								<span></span>
+							</div>	 
+							<input type="submit" value="SEND">
+						</form>
+				</div>
+				<div class="clearfix"> </div>
 			</div>
-		</div>";
-		
-		?>
-		<h3 class="wthree_text_info"> <span>  </span></h3>
-	<!-- //new_arrivals --> 
-	<!-- /we-offer -->
-		
-	<!-- //we-offer -->
+       </div>
+	</div>
+ <!--//contact-->
 <!--/grids-->
-</div>
+
+<!--grids-->
 <div class="coupons">
 		<div class="coupons-grids text-center">
 			<div class="w3layouts_mail_grid">
@@ -416,12 +391,11 @@ $res_pr=mysqli_query($con,$sel_pr);
 				</div>
 					
 				</div>
-				<div class="clearfix"> </div>
+				
 			</div>
 
 		</div>
 </div>
-<!--grids-->
 <!-- footer -->
 <div class="footer">
 	<div class="footer_agile_inner_info_w3l">
@@ -558,12 +532,9 @@ $res_pr=mysqli_query($con,$sel_pr);
 			</div>
 <!-- //login -->
 <a href="#home" class="scroll" id="toTop" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>
-
 <!-- js -->
 <script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
-<!-- //js -->
-<script src="js/modernizr.custom.js"></script>
-	<!-- Custom-JavaScript-File-Links --> 
+<!-- //js -->	
 	<!-- cart-js -->
 	<script src="js/minicart.min.js"></script>
 <script>
@@ -578,31 +549,7 @@ $res_pr=mysqli_query($con,$sel_pr);
 </script>
 
 	<!-- //cart-js --> 
-<!-- script for responsive tabs -->						
-<script src="js/easy-responsive-tabs.js"></script>
-<script>
-	$(document).ready(function () {
-	$('#horizontalTab').easyResponsiveTabs({
-	type: 'default', //Types: default, vertical, accordion           
-	width: 'auto', //auto or any width like 600px
-	fit: true,   // 100% fit in a container
-	closed: 'accordion', // Start closed if in accordion view
-	activate: function(event) { // Callback function if tab is switched
-	var $tab = $(this);
-	var $info = $('#tabInfo');
-	var $name = $('span', $info);
-	$name.text($tab.text());
-	$info.show();
-	}
-	});
-	$('#verticalTab').easyResponsiveTabs({
-	type: 'vertical',
-	width: 'auto',
-	fit: true
-	});
-	});
-</script>
-<!-- //script for responsive tabs -->		
+
 <!-- stats -->
 	<script src="js/jquery.waypoints.min.js"></script>
 	<script src="js/jquery.countup.js"></script>
@@ -638,7 +585,6 @@ $res_pr=mysqli_query($con,$sel_pr);
 			});
 	</script>
 <!-- //here ends scrolling icon -->
-
 
 <!-- for bootstrap working -->
 <script type="text/javascript" src="js/bootstrap.js"></script>

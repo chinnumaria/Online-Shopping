@@ -44,8 +44,8 @@
 				else{
 				$sql="insert into registration(name,gender,mob,email,pass,curdate)values('$name','$g',$mob,'$email','$pass',NOW());";
 				mysqli_query($con,$sql);
-				$_SESSION['username'] = $_POST['txtemail'];
-				header('location:Index_user.php');
+				$_SESSION['txtusername'] = $_POST['txtusername'];
+				header('location:myprofile.php');
 				}
 				
 		

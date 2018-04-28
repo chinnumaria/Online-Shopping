@@ -14,14 +14,14 @@ $fname=$_POST["fname"];
 				$loc=$_POST["locality"];
 				$pin=$_POST["pin"];
 				$city=$_POST["city"];
-	echo $fname;
+	
 				
 $sqs="insert into p_address(uid,name,phone,address,locality,pin,city,curdate) values('$uid','$fname','$mob','$adr','$loc','$pin','$city',NOW());";
 $s=mysqli_query($con,$sqs);
 echo $s;
+echo "<br/>";
 
-$se="DELETE FROM `cart` WHERE uid='$uid'";
-$a=mysqli_query($con,$se);
 
-header('location:success1.php');				
+
+ header('location:py1.php'); 	 	 
 ?>

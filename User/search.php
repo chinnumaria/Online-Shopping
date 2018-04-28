@@ -115,16 +115,16 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<!-- Collect the nav links, forms, and other content for toggling -->
 				<div class="collapse navbar-collapse menu--shylock" id="bs-example-navbar-collapse-1">
 				  <ul class="nav navbar-nav menu__list">
-					<li class="active menu__item menu__item--current"><a class="menu__link" href="index_user.php">Home <span class="sr-only">(current)</span></a></li>
+					<li class=" menu__item"><a class="menu__link" href="index_user.php">Home <span class="sr-only">(current)</span></a></li>
 					<li class=" menu__item"><a class="menu__link" href="about.html">About</a></li>
 					<li class="dropdown menu__item">
 						<a href="#" class="dropdown-toggle menu__link" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Categories <span class="caret"></span></a>
 										<ul class="dropdown-menu agile_short_dropdown">
-									<li><a href="mens.html">Men's Fasion</a></li>
-									<li><a href="womens.php">Women's Fasion</a></li>
-									<li><a href="mens.html">Shoes</a></li>
-									<li><a href="womens.html">Watches</a></li>
-									<li><a href="mens.html">Bags</a></li>
+									<li><a href="fp.php">Featured Products</a></li>
+									<li><a href="Bags.php">Bags</a></li>
+									<li><a href="ep.php">Earphones</a></li>
+									<li><a href="mobile.php">Mobile</a></li>
+									<li><a href="watches.php">Watches</a></li>
 									</ul>
 						</li>		
 					
@@ -139,12 +139,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				$res=mysqli_query($con,$sq);
 				$row=mysqli_fetch_assoc($res);
 				$uid=$row["uid"];
-				echo "<span class='hidden-xs'>".$row['name']."</span>";
+				$uname=$row["name"];
+				$arr = explode(' ',trim($uname));
+				echo "<span class='hidden-xs'>".$arr[0]."</span>";
 			?>
 			<b class="caret"></b></a>
 			<ul class="dropdown-menu agile_short_dropdown">
-									<li><a href="icons.html">Profile</a></li>
-									<li><a href="typography.html">Signout</a></li>
+									<li><a href="profile.php">Profile</a></li>
+									<li><a href="order.php">Orders</a></li>
+									<li><a href="index.php">Signout</a></li>
 			</ul>
 			</a></li>
 				<!--  </ul>
@@ -199,14 +202,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	
 <div class="page-head_agile_info_w3l">
 		<div class="container">
-			<h3>My <span>Profile </span></h3>
+			<h3>Search <span>Results </span></h3>
 			<!--/w3_short-->
 				 <div class="services-breadcrumb">
 						<div class="agile_inner_breadcrumb">
 
 						   <ul class="w3_short">
-								<li><a></a><i>|</i></li>
-								<li>Profile</li>
+								<li><a>Search</a><i>|</i></li>
+								<li>Results</li>
 							</ul>
 						 </div>
 				</div>
@@ -235,11 +238,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 								}
 								else{
 								$sel="SELECT * FROM `product` WHERE `p_name` LIKE '%$ser%'";
-								$res=mysqli_query($con,$sel);
-								if(mysqli_num_rows($res)>0){
-									while($row_p=$res->fetch_assoc()){
-										
-									$pid = $row_p['p_id'];
+								$res_p=mysqli_query($con,$sel);
+								if(mysqli_num_rows($res_p)>0){
+									while($row_p = mysqli_fetch_array($res_p)){
+										$pid = $row_p['p_id'];
 										$pcat = $row_p['p_cat'];
 										$pbrand = $row_p['p_brand'];
 										$pname = $row_p['p_name']; 
@@ -249,53 +251,57 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 										$qty=$row_p['p_qty'];
 										$p=$price-$pdis;
 										
-										echo "
-									<div class='col-md-4 product-men'>
-										<div class='men-pro-item simpleCart_shelfItem'>
-											<div class='men-thumb-item'>
-												<img src='images/".$row_p["p_img"]."' alt='' class='pro-image-front'>
-												<img src='images/".$row_p["p_img"]."' alt='' class='pro-image-back'>
-												<div class='men-cart-pro'>
-													<div class='inner-men-cart-pro'>";
-														if($qty<=5){
-														echo "<a class='link-product-add-cart' disabled>Out Of Stock</a>";
-														}
-													else{
-													echo "<a href='single1.php?p_id=$pid' class='link-product-add-cart'>Quick View</a>";
-													}
+							 echo "<div class='tab2'>
+							 <div class='col-md-4 product-men'>
+								<div class='men-pro-item simpleCart_shelfItem'>
+									<div class='men-thumb-item'>
+										<img src='images/".$row_p["p_img"]."' alt='' class='pro-image-front'>
+										<img src='images/".$row_p["p_img"]."' alt='' class='pro-image-back'>
+											<div class='men-cart-pro'>
+												<div class='inner-men-cart-pro'>";
+												if($qty<=5){
+													echo "<a class='link-product-add-cart' disabled>Out Of Stock</a>";
+												}
+												else{
+													echo "<a href='single.php?p_id=$pid' class='link-product-add-cart'>Quick View</a>";
+												}
 												echo "</div>
-												</div>
-											<span class='product-new-top'>New</span>
-											
 											</div>
-											<div class='item-info-product '>
-												<h4><a href='single.html'>$pname</a></h4>
-												<div class='info-product-price'>
-													<span class='item_price'>₹$p</span>
-														<del>₹$price</del><br/>
 											
-												</div>";
+											
+									</div>
+									<div class='item-info-product '>
+										<h4><a href='single.html'>$pname</a></h4>
+										<div class='info-product-price'>
+											<span class='item_price'>₹$p</span>
+											<del>₹$price</del><br/>
+											
+										</div>";
 										
-											echo "<div class='hvr-outline-out button2' >";
-															
+										echo "<div class='hvr-outline-out button2' >
+															<form action='a_cart.php?uid=$uid&pid=$pid' method='post'>";
 															if($qty<=5){
 																	echo "<input type='submit' class='hvr-outline-out button2' name='submit' value='Add to cart' onClick='' disabled/>";
 															}
 															else{
-																echo "<input type='button' class='hvr-outline-out button2' name='submit' value='Add to cart' onClick='myFunction()'  />";
-									}}
-															?>
-													</div>
-																			
-											</div>
-										</div>
+																echo "<input type='submit' class='hvr-outline-out button2' name='submit' value='Add to cart' onClick=''  />";
+															}
+															echo "</form>
+														</div>
+										</div>									
 									</div>
-								
-						<?php
-								}
+								</div>
+							</div>";
 							}
-		?>
-								<div class="clearfix"></div>
+								}
+								else{
+									echo "No Results Found";
+								}
+								}
+										
+							?>
+							
+						
 						</div>
 					 <!--//tab_two-->
 
@@ -310,33 +316,59 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		
 	<!-- //we-offer -->
 <!--/grids-->
+<div class="coupons">
+		<div class="coupons-grids text-center">
+			<div class="w3layouts_mail_grid">
+				
+				<div style="margin-left: 350px;" class="col-md-3 w3layouts_mail_grid_left">
+					<div class="w3layouts_mail_grid_left1 hvr-radial-out">
+						<i class="fa fa-truck" aria-hidden="true"></i>
+					</div>
+					<div  class="w3layouts_mail_grid_left2">
+						<h3>SHIPPING COST</h3>
+						<p>50 INR </p>
+					</div>
+				</div>
+				<div class="col-md-3 w3layouts_mail_grid_left">
+					<div class="w3layouts_mail_grid_left1 hvr-radial-out">
+						<i class="fa fa-headphones" aria-hidden="true"></i>
+					</div>
+					<div class="w3layouts_mail_grid_left2">
+						<h3>24/7 SUPPORT</h3>
+						<p>We offer 24/7 Support</p>
+					</div>
+				</div>
+					
+				</div>
+				<div class="clearfix"> </div>
+			</div>
+
+		</div>
+</div>
 <!--grids-->
 <!-- footer -->
 <div class="footer">
 	<div class="footer_agile_inner_info_w3l">
 		<div class="col-md-3 footer-left">
-			<h2><a href="index.html"><span>E</span>lite Shoppy </a></h2>
-			<p>Lorem ipsum quia dolor
-			sit amet, consectetur, adipisci velit, sed quia non 
-			numquam eius modi tempora.</p>
+			<h2><a href=""><span>E</span>lite Shoppy </a></h2>
+			<p></p>
 			<ul class="social-nav model-3d-0 footer-social w3_agile_social two">
-															<li><a href="" class="facebook">
+															<li><a  class="facebook">
 																  <div class="front"><i class="fa fa-facebook" aria-hidden="true"></i></div>
 																  <div class="back"><i class="fa fa-facebook" aria-hidden="true"></i></div></a></li>
-															<li><a href="" class="twitter"> 
+															<li><a  class="twitter"> 
 																  <div class="front"><i class="fa fa-twitter" aria-hidden="true"></i></div>
 																  <div class="back"><i class="fa fa-twitter" aria-hidden="true"></i></div></a></li>
-															<li><a href="" class="instagram">
+															<li><a  class="instagram">
 																  <div class="front"><i class="fa fa-instagram" aria-hidden="true"></i></div>
 																  <div class="back"><i class="fa fa-instagram" aria-hidden="true"></i></div></a></li>
-															<li><a href="" class="pinterest">
+															<li><a  class="pinterest">
 																  <div class="front"><i class="fa fa-linkedin" aria-hidden="true"></i></div>
 																  <div class="back"><i class="fa fa-linkedin" aria-hidden="true"></i></div></a></li>
 														</ul>
 		</div>
 		<div class="col-md-9 footer-right">
 			<div class="sign-grds">
-				
 				
 				<div class="col-md-5 sign-gd-two">
 					<h4>Store <span>Information</span></h4>
@@ -357,7 +389,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							</div>
 							<div class="w3-address-right">
 								<h6>Email Address</h6>
-								<p>Email : EliteShoppy@gmail.com</p>
+								<p>Email :<a > EliteShoppy@gmail.com</a></p>
 							</div>
 							<div class="clearfix"> </div>
 						</div>
@@ -367,7 +399,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							</div>
 							<div class="w3-address-right">
 								<h6>Location</h6>
-								<p>Broome St, NY 10002,California, USA. 
+								<p>Pala, Kottayam, Kerala, India
 								
 								</p>
 							</div>
@@ -380,7 +412,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			</div>
 		</div>
 		<div class="clearfix"></div>
-			
+		
 		<p class="copy-right">&copy 2018 Elite shoppy. All rights reserved </p>
 	</div>
 </div>

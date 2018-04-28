@@ -66,7 +66,7 @@ echo "<br/>";
 echo $st;
 echo "<br/>"; */
 
-$qvalue="('$invoice','$pid','$uid','$pr','$qty','$dis','$dc','$st','$sbt',NOW())";
+$qvalue="('$invoice','$pid','$uid','$pr','$qty','$dis','$dc','$sub','$sbt',NOW())";
 $sql = $query.$qvalue;
 
 $sse="select * from product where p_id='$pid';";
@@ -74,12 +74,17 @@ $eqs=mysqli_query($con,$sse);
 
 $reqs = mysqli_fetch_assoc($eqs);
 $pqty=$reqs["p_qty"];
+$pname=$reqs["p_name"];
+$pimg=$reqs["p_img"];
 $pq=$pqty-$qty;
+$sel=$reqs["p_seller"];
 
 echo $pqty;
 echo "<br/>";
 echo $pq;
 echo "<br/>";
+
+$ql="INSERT INTO `p_seller`(`uid`,`pid`,`pimg`,`pname`,`qty`, `sname`, `amount`,`status`,`date`) VALUES ('$uid','$pid','$pimg','$pname','$qty','$sel','$sbt','ns',NOW())";
 
 
 $sl="UPDATE `product` SET `p_qty`=$pq where p_id='$pid';";
@@ -89,16 +94,21 @@ $c="DELETE FROM `cart` WHERE pid='$pid';";
 if($itemValues!=0) 
 	{
 	echo $sql;
+	echo "<br/>";
     mysqli_query($con,$sql);
 	$qvalue=""; 
 	
+	mysqli_query($con,$ql);
+	echo $ql;
 	
      $w=mysqli_query($con,$sl);
 	 echo $sl;
+	 echo "<br/>";
 	$sl="";
 	
 	$r=mysqli_query($con,$c);
 	 echo $r;
+	 echo "<br/>";
 	$c="";
 	
 	
@@ -125,10 +135,10 @@ echo "<br/>";
 echo $acc;
 
 
-$sss="UPDATE `account` SET `amount`=$acc";
-mysqli_query($con,$sss);
+  $sss="UPDATE `account` SET `amount`=$acc";
+mysqli_query($con,$sss);  
 
 
 
- header('location:pay.php'); 
+ header('location:pay.php');  
 ?>

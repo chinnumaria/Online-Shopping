@@ -43,12 +43,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <script>
 function ClearFields() {
 
-     document.getElementById("fname").value = "";
-     document.getElementById("ph").value = "";
-	 document.getElementById("address").value = "";
-     document.getElementById("locality").value = "";
-	 document.getElementById("pin").value = "";
-     document.getElementById("city").value = "";
+	  document.getElementById("fname").removeAttribute('readonly');
+    
+     document.getElementById("ph").removeAttribute('readonly');
+	 document.getElementById("address").removeAttribute('readonly');
+     document.getElementById("locality").removeAttribute('readonly');
+	 document.getElementById("pin").removeAttribute('readonly');
+     document.getElementById("city").removeAttribute('readonly');
 }
 </script>
 
@@ -61,7 +62,7 @@ function ClearFields() {
 <div class="header-bot">
 	<div class="header-bot_inner_wthreeinfo_header_mid">
 		<div class="col-md-4 header-middle">
-			<form action="#" method="post">
+			<form action="search.php" method="post">
 					<input type="search" name="search" placeholder="Search here..." required="">
 					<input type="submit" value=" ">
 				<div class="clearfix"></div>
@@ -69,7 +70,7 @@ function ClearFields() {
 		</div>
 		<!-- header-bot -->
 			<div class="col-md-4 logo_agile">
-				<h1><a href="index_user.php"><span>E</span>lite Shoppy <i class="fa fa-shopping-bag top_logo_agile_bag" aria-hidden="true"></i></a></h1>
+				<h1><a href=""><span>E</span>lite Shoppy <i class="fa fa-shopping-bag top_logo_agile_bag" aria-hidden="true"></i></a></h1>
 			</div>
         <!-- header-bot -->
 		<div class="col-md-4 agileits-social top_content">
@@ -96,20 +97,20 @@ function ClearFields() {
 				<!-- Collect the nav links, forms, and other content for toggling -->
 				<div class="collapse navbar-collapse menu--shylock" id="bs-example-navbar-collapse-1">
 				  <ul class="nav navbar-nav menu__list">
-					<li class="active menu__item menu__item--current"><a class="menu__link" href="index_user.php">Home <span class="sr-only">(current)</span></a></li>
-					<li class=" menu__item"><a class="menu__link" href="about.html">About</a></li>
+					<li class=" menu__item"><a class="menu__link" href="index_user.php">Home <span class="sr-only">(current)</span></a></li>
+					<li class=" menu__item"><a class="menu__link" href="about.php">About</a></li>
 					<li class="dropdown menu__item">
 						<a href="#" class="dropdown-toggle menu__link" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Categories <span class="caret"></span></a>
 										<ul class="dropdown-menu agile_short_dropdown">
-									<li><a href="mens.html">Men's Fasion</a></li>
-									<li><a href="womens.php">Women's Fasion</a></li>
-									<li><a href="mens.html">Shoes</a></li>
-									<li><a href="womens.html">Watches</a></li>
-									<li><a href="mens.html">Bags</a></li>
+									<li><a href="fp.php">Featured Products</a></li>
+									<li><a href="Bags.php">Bags</a></li>
+									<li><a href="ep.php">Earphones</a></li>
+									<li><a href="mobile.php">Mobile</a></li>
+									<li><a href="watches.php">Watches</a></li>
 									</ul>
 						</li>		
 					
-					<li class=" menu__item"><a class="menu__link" href="contact.html">Contact</a></li>
+					<li class=" menu__item"><a class="menu__link" href="contact.php">Contact</a></li>
 					<li>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</li>
 					<li class="menu__item dropdown">
 					<a class="menu__link" class="dropdown-toggle" data-toggle="dropdown">
@@ -120,22 +121,43 @@ function ClearFields() {
 				$res=mysqli_query($con,$sq);
 				$row=mysqli_fetch_assoc($res);
 				$uid=$row["uid"];
-				echo "<span class='hidden-xs'>".$row['name']."</span>";
+				$uname=$row["name"];
+				$arr = explode(' ',trim($uname));
+				echo "<span class='hidden-xs'>".$arr[0]."</span>";
 			?>
 			<b class="caret"></b></a>
 			<ul class="dropdown-menu agile_short_dropdown">
-									<li><a href="icons.html">Profile</a></li>
-									<li><a href="typography.html">Signout</a></li>
+									<li><a href="profile.php">Profile</a></li>
+									<li><a href="order.php">Orders</a></li>
+									<li><a href="index.php">Signout</a></li>
 			</ul>
 			</a></li>
-			<li><?php
+				<!--  </ul>
+				</div>
+			  </div>
+			</nav>	
+		</div>-->
+		<li></li>
+		<!--<li>
+		<div class="top_nav_right">
+			<div class=""> 
+						<form action="my_cart.php" method="post" class=""> 
+						<input type="hidden" name="cmd" value="_cart">
+						<input type="hidden" name="display" value="1">
+						<button class="w3view-cart" type="submit" name="submit" onClick="" value=""><i class="fa fa-cart-arrow-down" aria-hidden="true"></i></button>
+					</form>  
+			
+			</div>
+		</div>
+		</li> -->
+		<li><?php
 			$id=$_SESSION["txtusername"];
 				$con=mysqli_connect("localhost","root","","os");
 				$sq="select uid from registration where email='$id';";
 				$res=mysqli_query($con,$sq);
 				$rows=mysqli_fetch_assoc($res);
 				
-		echo "<form action='my_cart.php' method='post' class=''> 
+		echo "<form action='my_cart_test.php' method='post' class=''> 
 		<button class='w3view-cart' type='submit' name='submit' onClick='' value=''><i class='fa fa-cart-arrow-down' aria-hidden='true'></i></button></form>";
 	?>
 		</li>
@@ -146,8 +168,8 @@ function ClearFields() {
 		<div class="clearfix"></div>
 	</div>
 </div>
+	</div>
 </div>
-
 
 
 
@@ -195,61 +217,37 @@ function ClearFields() {
 										<div class="first-row form-group">
 										<div class="controls">
 												<label class="control-label">Full Name</label>
-												<input class="billing-address-name form-control" type="text" name="fname" id="fname" value=<?php  echo $rs_pr["f_name"]; ?> placeholder="">
+												<input class="billing-address-name form-control" readonly required type="text" name="fname" id="fname" value=<?php  echo $rs_pr["f_name"]; ?> placeholder="">
 											</div>
 											<div class="controls">
 												<label class="control-label">Phone</label>
-												<input class="billing-address-name form-control" type="number" name="ph" id="ph" value=<?php  echo $rs_pr["ph"]; ?> placeholder="">
+												<input class="billing-address-name form-control" readonly required type="number" name="ph" id="ph" value=<?php  echo $rs_pr["ph"]; ?> placeholder="">
 											</div>
 											<div class="controls">
 												<label class="control-label">Address</label>
-												<input class="billing-address-name form-control" type="text" name="address" id="address" value=<?php  echo $rs_pr["address"]; ?> placeholder="">
+												<input class="billing-address-name form-control" readonly required type="text" name="address" id="address" value=<?php  echo $rs_pr["address"]; ?> placeholder="">
 											</div>
 											<div class="controls">
 												<label class="control-label">Locality</label>
-												<input class="billing-address-name form-control" type="text" name="locality" id="locality" value=<?php  echo $rs_pr["locality"]; ?> placeholder="">
+												<input class="billing-address-name form-control" readonly required type="text" name="locality" id="locality" value=<?php  echo $rs_pr["locality"]; ?> placeholder="">
 											</div>
 											<div class="controls">
 												<label class="control-label">Pin</label>
-												<input class="billing-address-name form-control" type="text" name="pin" id="pin" value=<?php  echo $rs_pr["pin"]; ?> placeholder="">
+												<input class="billing-address-name form-control" readonly required type="text" name="pin" id="pin" value=<?php  echo $rs_pr["pin"]; ?> placeholder="">
 											</div>
 											<div class="controls">
 												<label class="control-label">City</label>
-												<input class="billing-address-name form-control" type="text" name="city" id="city" value=<?php  echo $rs_pr["city"]; ?> placeholder="">
+												<input class="billing-address-name form-control" readonly required type="text" name="city" id="city" value=<?php  echo $rs_pr["city"]; ?> placeholder="">
 											</div>
 										</div>
 										</div>
-										<h3 class="tittle-w3l" style="color:black; margin-top: 0.83em;margin-bottom: 0.53em;">Your Amount is <span>₹<?php echo $st;  ?></span></h3>
-										<h3 class="tittle-w3l" style="color:black; margin-top: 0.83em;margin-bottom: 0.53em;">Delivery Charges <span>₹50</span> May Applay</h3>
+										<h2 class="tittle-w3l" style="color:black; margin-top: 0.83em;margin-bottom: 0.53em;">Your Amount is <span>₹<?php echo $st;  ?></span></h2>
+										<h2 class="tittle-w3l" style="color:black; margin-top: 0.83em;margin-bottom: 0.53em;">Delivery Charges <span>₹50</span> May Apply</h2>
 										<h3 class="wthree_text_info"> <span> </span></h3>
 										<h3 class="wthree_text_info"> <span> </span></h3>
-										<h3 class="tittle-w3l" style="color:#17c3a2; margin-top: 0.83em;margin-bottom: 0.53em;font-weight: bold;">Make Payment Via DEBIT/CREDIT</h3>
-											<h3 class="wthree_text_info"> <span></span></h3>
-										<div class="credit-card-wrapper">
-										<div class="first-row form-group">
-											<div class="controls">
-												<label class="control-label">Name on Card</label>
-												<input class="billing-address-name form-control" type="text" name="chname" placeholder="John Smith">
-											</div>
-											<div class="w3_agileits_card_number_grids">
-												<div class="w3_agileits_card_number_grid_left">
-													<div class="controls">
-														<label class="control-label">Card Number</label>
-														<input class="number credit-card-number form-control" type="text" name="cno" inputmode="numeric" autocomplete="cc-number"
-														    autocompletetype="cc-number" x-autocompletetype="cc-number" placeholder="&#149;&#149;&#149;&#149; &#149;&#149;&#149;&#149; &#149;&#149;&#149;&#149; &#149;&#149;&#149;&#149;">
-													</div>
-												</div>
-												<div class="w3_agileits_card_number_grid_right">
-													<div class="controls">
-														<label class="control-label">CVV</label>
-														<input class="security-code form-control" Â· inputmode="numeric" type="text" name="cvv" placeholder="&#149;&#149;&#149;">
-													</div>
-												</div>
-												<div class="clear"> </div>
-											</div>
-										</div>
-										<button class="submit" onClick="p.php" name="save">
-											<span>Make a payment </span>
+										
+										<button class="submit"align="right" style="margin-left=80px;" onClick="p.php" name="save">
+											<span>Continue </span>
 										</button>
 									</div>
 								</div>
@@ -275,33 +273,59 @@ function ClearFields() {
 	<!-- //we-offer -->
 <!--/grids-->
 </div>
+<div class="coupons">
+		<div class="coupons-grids text-center">
+			<div class="w3layouts_mail_grid">
+				
+				<div style="margin-left: 350px;" class="col-md-3 w3layouts_mail_grid_left">
+					<div class="w3layouts_mail_grid_left1 hvr-radial-out">
+						<i class="fa fa-truck" aria-hidden="true"></i>
+					</div>
+					<div  class="w3layouts_mail_grid_left2">
+						<h3>SHIPPING COST</h3>
+						<p>50 INR </p>
+					</div>
+				</div>
+				<div class="col-md-3 w3layouts_mail_grid_left">
+					<div class="w3layouts_mail_grid_left1 hvr-radial-out">
+						<i class="fa fa-headphones" aria-hidden="true"></i>
+					</div>
+					<div class="w3layouts_mail_grid_left2">
+						<h3>24/7 SUPPORT</h3>
+						<p>We offer 24/7 Support</p>
+					</div>
+				</div>
+					
+				</div>
+				<div class="clearfix"> </div>
+			</div>
+
+		</div>
+</div>
 <!--grids-->
 <!-- footer -->
 <div class="footer">
 	<div class="footer_agile_inner_info_w3l">
 		<div class="col-md-3 footer-left">
-			<h2><a href="index.html"><span>E</span>lite Shoppy </a></h2>
-			<p>Lorem ipsum quia dolor
-			sit amet, consectetur, adipisci velit, sed quia non 
-			numquam eius modi tempora.</p>
+			<h2><a href=""><span>E</span>lite Shoppy </a></h2>
+			<p></p>
 			<ul class="social-nav model-3d-0 footer-social w3_agile_social two">
-															<li><a href="" class="facebook">
+															<li><a  class="facebook">
 																  <div class="front"><i class="fa fa-facebook" aria-hidden="true"></i></div>
 																  <div class="back"><i class="fa fa-facebook" aria-hidden="true"></i></div></a></li>
-															<li><a href="" class="twitter"> 
+															<li><a  class="twitter"> 
 																  <div class="front"><i class="fa fa-twitter" aria-hidden="true"></i></div>
 																  <div class="back"><i class="fa fa-twitter" aria-hidden="true"></i></div></a></li>
-															<li><a href="" class="instagram">
+															<li><a  class="instagram">
 																  <div class="front"><i class="fa fa-instagram" aria-hidden="true"></i></div>
 																  <div class="back"><i class="fa fa-instagram" aria-hidden="true"></i></div></a></li>
-															<li><a href="" class="pinterest">
+															<li><a  class="pinterest">
 																  <div class="front"><i class="fa fa-linkedin" aria-hidden="true"></i></div>
 																  <div class="back"><i class="fa fa-linkedin" aria-hidden="true"></i></div></a></li>
 														</ul>
 		</div>
 		<div class="col-md-9 footer-right">
 			<div class="sign-grds">
-				
 				
 				<div class="col-md-5 sign-gd-two">
 					<h4>Store <span>Information</span></h4>
@@ -322,7 +346,7 @@ function ClearFields() {
 							</div>
 							<div class="w3-address-right">
 								<h6>Email Address</h6>
-								<p>Email : EliteShoppy@gmail.com</p>
+								<p>Email :<a > EliteShoppy@gmail.com</a></p>
 							</div>
 							<div class="clearfix"> </div>
 						</div>
@@ -332,7 +356,7 @@ function ClearFields() {
 							</div>
 							<div class="w3-address-right">
 								<h6>Location</h6>
-								<p>Broome St, NY 10002,California, USA. 
+								<p>Pala, Kottayam, Kerala, India
 								
 								</p>
 							</div>
@@ -345,7 +369,7 @@ function ClearFields() {
 			</div>
 		</div>
 		<div class="clearfix"></div>
-			
+		
 		<p class="copy-right">&copy 2018 Elite shoppy. All rights reserved </p>
 	</div>
 </div>
