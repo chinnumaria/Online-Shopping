@@ -6,7 +6,7 @@ session_start();
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>AdminLTE 2 | Dashboard</title>
+  <title>Elite | Seller</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.7 -->
@@ -40,9 +40,9 @@ session_start();
   <header class="main-header">
 
     <!-- Logo -->
-    <a href="" class="logo">
+    <a href="Seller_home.php" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
-      <span class="logo-mini"><b>A</b>H</span>
+      <span class="logo-mini"><b>E</b>S</span>
       <!-- logo for regular state and mobile devices -->
       <span class="logo-lg"><b>Elite Shoppy</b></span>
     </a>
@@ -123,10 +123,10 @@ session_start();
               <!-- Menu Footer-->
               <li class="user-footer">
                 <div class="pull-left">
-                 <!--<a href="" class="btn btn-default btn-flat">Profile</a>-->
+                  <a href="s_profile.php" class="btn btn-default btn-flat" class="active">Profile</a>
                 </div>
                 <div class="pull-right">
-                  <a href="pages/layout/logout.php" class="btn btn-default btn-flat">Sign out</a>
+                  <a href="Elite/index.php" class="btn btn-default btn-flat">Sign out</a>
                 </div>
               </li>
             </ul>
@@ -169,9 +169,11 @@ session_start();
           <?php
 				$id=$_SESSION["txtemail"];
 				$con=mysqli_connect("localhost","maria","maria","os");
-				$sq="select s_name from seller where s_email='$id';";
+				$sq="select * from seller where s_email='$id';";
 				$res=mysqli_query($con,$sq);
 				$row=mysqli_fetch_assoc($res);
+				$sname=$row['s_name'];
+				$sid=$row['s_id'];
 				echo "<p>".$row['s_name']."</p>";
 			?>
 			 <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
@@ -224,8 +226,12 @@ session_start();
             </span>
           </a>
           <ul class="treeview-menu">
-			<li><a href="seller_pview.php"><i class="fa fa-circle-o"></i> View Products</a></li>
-            <li><a href=""><i class="fa fa-circle-o"></i> View Profile</a></li>
+			<li><a href="s_msg.php"><i class="fa fa-circle-o"></i> Messages</a></li>
+			<li><a href="seller_oview.php"><i class="fa fa-circle-o"></i> Orders</a></li>
+			<li><a href="s_odet.php"><i class="fa fa-circle-o"></i> Order Details</a></li>
+			<li><a href="seller_pview.php"><i class="fa fa-circle-o"></i> Products</a></li>
+			<li><a href="s_w.php"><i class="fa fa-circle-o"></i> Warnings</a></li>
+			
 <!--<li><a href=""><i class="fa fa-circle-o"></i> View Sellors</a></li>
 			<li><a href=""><i class="fa fa-circle-o"></i> View Feedback</a></li>-->
           </ul>
@@ -252,26 +258,63 @@ session_start();
     <!-- Main content -->
     <section class="content">
       <!-- Info boxes -->
-      <div class="row">
-        
-        <!-- fix for small devices only -->
- 
-        <!-- /.col -->
- 
-        <!-- /.col -->
-      </div>
-	  <!-- page content -->
-       <div class="right_col" role="main">
-          <div class="">
-            <div class="page-title">
-              <div class="title_left">
-                <h3></h3>
-              </div>
-
-              
+     <div class="row">
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-aqua">
+            <div class="inner">
+			
+			<?php
+				$con=mysqli_connect("localhost","maria","maria","os");
+				$sq="select p_id from product where p_seller='$sname' and p_select='apr';";
+				$res=mysqli_query($con,$sq);
+				$rowCount = mysqli_num_rows($res);
+				echo "<h3>".$rowCount."</h3>";
+			 ?>
+              <p>Products</p>
             </div>
-            <div class="clearfix"></div>
-               </div>
+            <div class="icon">
+              <i class="fa fa-shopping-cart"></i>
+            </div>
+            <a href="seller_pview.php" class="small-box-footer">
+              More info <i class="fa fa-arrow-circle-right"></i>
+            </a>
+          </div>
+        </div>
+        <!-- ./col -->
+        
+        <!-- ./col -->
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-green">
+            <div class="inner">
+          
+			  <?php
+				$con=mysqli_connect("localhost","maria","maria","os");
+				$sq="SELECT * from p_seller where sname='$sname' and status='ns';;";
+				$res=mysqli_query($con,$sq);
+				$rowCount = mysqli_num_rows($res);
+				echo "<h3>".$rowCount."</h3>";
+			   ?>
+
+              <p>Orders</p>
+            </div>
+            <div class="icon">
+              <i class="fa fa-shopping-cart"></i>
+            </div>
+            <a href="seller_oview.php" class="small-box-footer">
+              More info <i class="fa fa-arrow-circle-right"></i>
+            </a>
+          </div>
+        </div>
+        <!-- ./col -->
+        
+		 
+		
+		
+		
+        <!-- ./col -->
+      </div>
 			
             <!-- /.box-header -->
             <!-- form start -->

@@ -103,13 +103,13 @@ session_start();
 				echo "<img src='dist/imgs/FEMALE.jpg' class='user-image' alt='User Image'>";
 				/* if($row['gender']=='Female')
 				{
-					echo "<img src='dist/imgs/FEMALE.jpg' class='img-circle' alt='User Image'>";
+					echo "<img src='dist/imgs/FEMALE.jpg' class='user-image' alt='User Image'>";
 				}
 				else
 				{
 					echo "<img src='dist/imgs/MALE.jpg' class='user-image' alt='User Image'>";
-				}  */
-				
+				} 
+				 */
 			    ?>
 
                <p>
@@ -211,8 +211,8 @@ session_start();
             
 			<li ><a href="Admin_seller.php"><i class="fa fa-circle-o"></i> Add Seller</a></li>
 			<li ><a href="Admin_epro.php"><i class="fa fa-circle-o"></i> Edit Product</a></li>
-			<li ><a href="Admin_epr.php"><i class="fa fa-circle-o"></i> Delete Product</a></li>
-			<li class="active"><a href="Admin_addsp.php"><i class="fa fa-circle-o"></i> Seller Product</a></li>
+			<li class="active"><a href="Admin_epr.php"><i class="fa fa-circle-o"></i> Delete Product</a></li>
+			<li ><a href="Admin_addsp.php"><i class="fa fa-circle-o"></i> Seller Product</a></li>
           </ul>
         </li>
 		  <li class="treeview">
@@ -271,7 +271,7 @@ session_start();
 					
 			<div class="box">
             <div class="box-header">
-              <h2 align="center">Requested Products</h3>
+              <h2 align="center">Delete Product</h3>
             </div>
 					
 			<div class="box-body">
@@ -295,7 +295,7 @@ session_start();
 				 <?php
 								$con=mysqli_connect("localhost","maria","maria","os");
 								
-								$sel="SELECT * from product where p_select='a'";
+								$sel="SELECT * from product where p_select='d'";
 								$res=mysqli_query($con,$sel);
 							
 								if(mysqli_num_rows($res)>0){
@@ -310,8 +310,7 @@ session_start();
                     <span class='sr-only'>Toggle Dropdown</span>				
                   </button>
                         <ul class='dropdown-menu'>
-                          <li><a href='Admin_papr.php?x=". $row["p_id"]. "'>Approve</a></li>
-                          <li><a href='Admin_prjct.php?x=". $row["p_id"]. "'>Reject</a></li>
+                          <li><a href='Admin_pdpr.php?x=". $row["p_id"]. "'>Approve</a></li>
                         </ul>
                    </div>
                     </div></td></tr>";

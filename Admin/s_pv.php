@@ -1,5 +1,20 @@
 <?php
-session_start();
+	session_start();
+	$con=mysqli_connect("localhost","maria","maria","os");
+	$x=$_GET['x'];
+	$y=$_GET['y'];
+	
+				
+				$sq="select * from registration where name='$y';";
+				$res=mysqli_query($con,$sq);
+				$row=mysqli_fetch_assoc($res);
+				$uid=$row["uid"];
+				
+				
+	
+	
+	
+	
 ?>
 
 <!DOCTYPE html>
@@ -7,7 +22,7 @@ session_start();
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Elite | Seller</title>
+  <title>AdminLTE 2 | General Form Elements</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.7 -->
@@ -16,8 +31,6 @@ session_start();
   <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css">
   <!-- Ionicons -->
   <link rel="stylesheet" href="bower_components/Ionicons/css/ionicons.min.css">
-  <!-- DataTables -->
-  <link rel="stylesheet" href="bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="dist/css/AdminLTE.min.css">
   <!-- AdminLTE Skins. Choose a skin from the css/skins
@@ -32,15 +45,14 @@ session_start();
   <![endif]-->
 
   <!-- Google Font -->
-  <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
 
   <header class="main-header">
     <!-- Logo -->
-       <a href="Seller_home.php" class="logo">
+   <a href="Seller_home.php" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class="logo-mini"><b>E</b>S</span>
       <!-- logo for regular state and mobile devices -->
@@ -123,9 +135,9 @@ session_start();
               <!-- Menu Body -->
               
               <!-- Menu Footer-->
-               <li class="user-footer">
+              <li class="user-footer">
                 <div class="pull-left">
-                  <a href="s_profile.php" class="btn btn-default btn-flat" class="active">Profile</a>
+                 <!--<a href="" class="btn btn-default btn-flat">Profile</a>-->
                 </div>
                 <div class="pull-right">
                   <a href="Elite/index.php" class="btn btn-default btn-flat">Sign out</a>
@@ -193,7 +205,7 @@ session_start();
       </form>
       <!-- /.search form -->
       <!-- sidebar menu: : style can be found in sidebar.less -->
-         <ul class="sidebar-menu" data-widget="tree">
+        <ul class="sidebar-menu" data-widget="tree">
         <li class="header">MAIN NAVIGATION</li>
         <li class="treeview">
           <a href="index_Admin.php">
@@ -225,9 +237,9 @@ session_start();
           </a>
           <ul class="treeview-menu">
 			<li><a href="s_msg.php"><i class="fa fa-circle-o"></i> Messages</a></li>
-			<li><a href="seller_oview.php"><i class="fa fa-circle-o"></i> Orders</a></li>
+			<li class="active"><a href="seller_oview.php"><i class="fa fa-circle-o"></i> Orders</a></li>
 			<li><a href="s_odet.php"><i class="fa fa-circle-o"></i> Order Details</a></li>
-			<li class="active"><a href="seller_pview.php"><i class="fa fa-circle-o"></i> Products</a></li>
+			<li><a href="seller_pview.php"><i class="fa fa-circle-o"></i> Products</a></li>
 			<li><a href="s_w.php"><i class="fa fa-circle-o"></i> Warnings</a></li>
 <!--<li><a href=""><i class="fa fa-circle-o"></i> View Sellors</a></li>
 			<li><a href=""><i class="fa fa-circle-o"></i> View Feedback</a></li>-->
@@ -236,90 +248,186 @@ session_start();
 		
   </aside>
 
-
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     
-	<section class="content" background-color="red">
 
-       
-					
-			<div class="box">
-            <div class="box-header">
-              <h2 align="center">View Products</h3>
+    <!-- Main content -->
+    <section class="content">
+      <div class="row">
+        <!-- left column -->
+        <div class="col-md-6">
+          <!-- general form elements -->
+          <div class="box box-primary">
+            <div class="box-header with-border">
+              <h3 class="box-title">Product Details</h3>
             </div>
-					
-			<div class="box-body">
-              <table id="example1" class="table table-bordered table-striped">
-                <thead>
-                <tr>
-                  <th>ID</th>
-                  <th>NAME</th>
-                  <th>CATEGORY</th>
-                  <th>BRAND</th>
-                  <th>PRICE</th>
-				  <th>DISCOUNT</th>
-				  <th>DESCRIPTION</th>
-				  <th>IMAGE</th>
-				  <th>QUANTITY</th>
-				  <th>OPTIONS</th>
-                </tr>
-                </thead>
-				 <tbody>
-				 <?php
+            <!-- /.box-header -->
+            <!-- form start -->
+           <form class="form-horizontal">
+              <div class="box-body">
+                
+				<?php
 								$id=$_SESSION["txtemail"];
 								$con=mysqli_connect("localhost","maria","maria","os");
-								$sq="select s_name from seller where s_email='$id';";
+								$sq="select * from registration where name='$y';";
 								$ress=mysqli_query($con,$sq);
-								$row=mysqli_fetch_assoc($ress);
-								$n=$row["s_name"];
-								/* while($row=$ress->fetch_assoc())
-								{
-									$n=$row['s_name'];
-								} */
-								$sel="SELECT * from product where p_seller='$n' and p_select!='d';";
+								$rowe=mysqli_fetch_assoc($ress);
+								$uid=$rowe["uid"];
+								
+								$sel="SELECT * from p_seller where pid='$x' and uid='$uid'";
 								$res=mysqli_query($con,$sel);
+								$row=mysqli_fetch_assoc($res);
 							
-								if(mysqli_num_rows($res)>0){
-									while($row=$res->fetch_assoc()){
-									
-									echo "<tr><td>". $row["p_id"]. "</td><td>" .$row["p_name"]. "</td><td>" .$row["p_cat"]. "</td><td>" .$row["p_brand"]. "</td><td>" .$row["p_price"]. "</td><td>" .$row["p_dis"]. "</td><td>" .$row["p_desc"]. "</td><td><img src='images/".$row["p_img"]."' width='100px' height='100px'></td><td>" .$row["p_qty"]. "</td><td align='middle'> <div class='btn-group'>
-				  <div class='btn-group'>
-                        
-                  <button type='button' class='btn btn-default dropdown-toggle btn-sm' data-toggle='dropdown'>
-				  Options
-                    <span class='caret'></span>
-                    <span class='sr-only'>Toggle Dropdown</span>				
-                  </button>
+								/* echo $sel; */
+										$unn=$row["uid"];
+										$pn=$row["pname"];
+										$qty=$row["qty"];
+										$amt=$row["amount"];
+										$date=$row["date"];
+										
+					echo "
+					<div class='form-group'>					
+                  <label for='inputEmail3' class='col-sm-2 control-label' >Product Name</label>
+				  <div class='col-sm-10'>
+                  <input type='text' class='form-control' id='inputEmail3' readonly value='$pn' >
+                </div> </div>
+				
+				<div class='form-group'>					
+                  <label for='inputEmail3' class='col-sm-2 control-label'>Quantity</label>
+				  <div class='col-sm-10'>
+                  <input type='text' class='form-control' id='inputEmail3' readonly value='$qty'>
+                </div> </div>
+				<div class='form-group'>					
+                  <label for='inputEmail3' class='col-sm-2 control-label'>Price</label>
+				  <div class='col-sm-10'>
+                  <input type='text' class='form-control' id='inputEmail3' readonly value='$amt'>
+                </div> </div>
+				<div class='form-group'>					
+                  <label class='col-sm-2 control-label' for='inputEmail3'>Date</label>
+				  <div class='col-sm-10'>
+                  <input type='text' class='form-control' id='inputEmail3' readonly value='$date'>
+                </div> </div>
+				";
+                ?>
+              </div>
+              <!-- /.box-body -->
 
-                        <ul class='dropdown-menu'>
-                          <li><a href='seller_epreq.php?x=". $row["p_id"]. "'>Edit</a></li>
-                          <li><a href='seller_dpreq.php?x=". $row["p_id"]. "''>Delete</a></li>
-                        </ul>
-                   </div>
-                    </div></td></tr>";
-									} 
-									
-									}
-								  
-							?>
-							</table>
-	
+             
+            </form>
+          </div>
+          <!-- /.box -->
+
+       
+
+        </div>
+        <!--/.col (left) -->
+        <!-- right column -->
+        <div class="col-md-6">
+          <!-- Horizontal Form -->
+          <div class="box box-info">
+            <div class="box-header with-border">
+              <h3 class="box-title">User Address</h3>
+            </div>
+            <!-- /.box-header -->
+            <!-- form start -->
+            <form class="form-horizontal">
+              <div class="box-body">
+			  <?php
+			  $sez="SELECT * from registration where uid='$unn';";
+											$rez=mysqli_query($con,$sez);
+											$rw=mysqli_fetch_assoc($rez);
+											$una=$rw["name"];
+											$mail=$rw["email"];
+				 $sz="SELECT * from u_profile where uid='$unn';";
+											$rz=mysqli_query($con,$sz);
+											$rwz=mysqli_fetch_assoc($rz);
+											$mob=$rwz["ph"];
+											$adr=$rwz["address"];
+											$loc=$rwz["locality"];
+											$city=$rwz["city"];
+											$pin=$rwz["pin"];
+											
+											
+                echo "<div class='form-group'>
+                  <label for='inputEmail3' class='col-sm-2 control-label'>Name</label>
+
+                  <div class='col-sm-10'>
+                    <input type='email' class='form-control' id='inputEmail3' readonly value='$una'>
+                  </div>
+                </div>
+				<div class='form-group'>
+                  <label for='inputEmail3' class='col-sm-2 control-label'>Email</label>
+
+                  <div class='col-sm-10'>
+                    <input type='email' class='form-control' id='inputEmail3' readonly value='$mail'>
+                  </div>
+                </div>
+				<div class='form-group'>
+                  <label for='inputEmail3' class='col-sm-2 control-label'>Mobile</label>
+
+                  <div class='col-sm-10'>
+                    <input type='email' class='form-control' id='inputEmail3' readonly value='$mob'>
+                  </div>
+                </div>
+				<div class='form-group'>
+                  <label for='inputEmail3' class='col-sm-2 control-label'>Address</label>
+
+                  <div class='col-sm-10'>
+                    <input type='email' class='form-control' id='inputEmail3' readonly value='$adr'>
+                  </div>
+                </div>
+				<div class='form-group'>
+                  <label for='inputEmail3' class='col-sm-2 control-label'>Location</label>
+
+                  <div class='col-sm-10'>
+                    <input type='email' class='form-control' id='inputEmail3' readonly value='$loc'>
+                  </div>
+                </div>
+				<div class='form-group'>
+                  <label for='inputEmail3' class='col-sm-2 control-label'>City</label>
+
+                  <div class='col-sm-10'>
+                    <input type='email' class='form-control' id='inputEmail3' readonly value='$city'>
+                  </div>
+                </div>
+				<div class='form-group'>
+                  <label for='inputEmail3' class='col-sm-2 control-label'>Pin Code</label>
+
+                  <div class='col-sm-10'>
+                    <input type='email' class='form-control' id='inputEmail3' readonly value='$pin'>
+                  </div>
+                </div>";
+				?>
+                
+              </div>
+              <!-- /.box-body -->
+              <div class="box-footer">
+                
+                <?php echo "<button type='button' onClick=window.location.href='s_pa.php?x=$x&y=$unn' class='btn btn-info pull-right'>Aprove</button>";?>
+              </div>
+              <!-- /.box-footer -->
+            </form>
+          </div>
+          <!-- /.box -->
+          <!-- general form elements disabled -->
+          
+      <!-- /.row -->
     </section>
-
+    <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
-  <!-- <footer class="main-footer">
+  <footer class="main-footer">
     <div class="pull-right hidden-xs">
       <b>Version</b> 2.4.0
     </div>
     <strong>Copyright &copy; 2014-2016 <a href="https://adminlte.io">Almsaeed Studio</a>.</strong> All rights
     reserved.
-  </footer> -->
+  </footer>
 
   <!-- Control Sidebar -->
-  
+  <div class="control-sidebar-bg"></div>
   <!-- /.control-sidebar -->
   <!-- Add the sidebar's background. This div must be placed
        immediately after the control sidebar -->
@@ -328,33 +436,14 @@ session_start();
 <!-- ./wrapper -->
 
 <!-- jQuery 3 -->
-<script src="bower_components/jquery/dist/jquery.min.js"></script>
+<script src="../../bower_components/jquery/dist/jquery.min.js"></script>
 <!-- Bootstrap 3.3.7 -->
-<script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-<!-- DataTables -->
-<script src="bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
-<script src="bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
-<!-- SlimScroll -->
-<script src="bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+<script src="../../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 <!-- FastClick -->
-<script src="bower_components/fastclick/lib/fastclick.js"></script>
+<script src="../../bower_components/fastclick/lib/fastclick.js"></script>
 <!-- AdminLTE App -->
-<script src="dist/js/adminlte.min.js"></script>
+<script src="../../dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
-<script src="dist/js/demo.js"></script>
-<!-- page script -->
-<script>
-  $(function () {
-    $('#example1').DataTable()
-    $('#example2').DataTable({
-      'paging'      : true,
-      'lengthChange': false,
-      'searching'   : false,
-      'ordering'    : true,
-      'info'        : true,
-      'autoWidth'   : false
-    })
-  })
-</script>
+<script src="../../dist/js/demo.js"></script>
 </body>
 </html>

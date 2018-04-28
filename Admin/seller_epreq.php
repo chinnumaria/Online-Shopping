@@ -2,7 +2,7 @@
 session_start();
 $x=$_GET['x'];
 $con=mysqli_connect("localhost","maria","maria","os");
-$sq="select p_name,p_price,p_dis,p_desc,p_img,p_key,p_qty from product where p_id='$x';";
+$sq="select * from product where p_id='$x';";
 $res=mysqli_query($con,$sq);
 $chin=mysqli_fetch_assoc($res);
 ?>
@@ -12,7 +12,7 @@ $chin=mysqli_fetch_assoc($res);
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>AdminLTE 2 | Dashboard</title>
+  <title>Elite | Seller</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.7 -->
@@ -46,9 +46,9 @@ $chin=mysqli_fetch_assoc($res);
   <header class="main-header">
 
     <!-- Logo -->
-    <a href="" class="logo">
+        <a href="Seller_home.php" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
-      <span class="logo-mini"><b>A</b>H</span>
+      <span class="logo-mini"><b><b>E</b>S</span>
       <!-- logo for regular state and mobile devices -->
       <span class="logo-lg"><b>Elite Shoppy</b></span>
     </a>
@@ -127,12 +127,12 @@ $chin=mysqli_fetch_assoc($res);
               <!-- Menu Body -->
               
               <!-- Menu Footer-->
-              <li class="user-footer">
+               <li class="user-footer">
                 <div class="pull-left">
-                 <!--<a href="" class="btn btn-default btn-flat">Profile</a>-->
+                  <a href="s_profile.php" class="btn btn-default btn-flat" class="active">Profile</a>
                 </div>
                 <div class="pull-right">
-                  <a href="pages/layout/logout.php" class="btn btn-default btn-flat">Sign out</a>
+                  <a href="Elite/index.php" class="btn btn-default btn-flat">Sign out</a>
                 </div>
               </li>
             </ul>
@@ -231,23 +231,13 @@ $chin=mysqli_fetch_assoc($res);
           </a>
           <ul class="treeview-menu">
 			<li><a href="seller_pview.php"><i class="fa fa-circle-o"></i> View Products</a></li>
-            <li><a href=""><i class="fa fa-circle-o"></i> View Profile</a></li>
+			<li><a href="seller_oview.php"><i class="fa fa-circle-o"></i> View Orders</a></li>
+			<li><a href="s_odet.php"><i class="fa fa-circle-o"></i> Order Details</a></li>
 <!--<li><a href=""><i class="fa fa-circle-o"></i> View Sellors</a></li>
 			<li><a href=""><i class="fa fa-circle-o"></i> View Feedback</a></li>-->
           </ul>
         </li>
-		<li class="treeview">
-          <a href="#">
-            <i class="fa fa-edit"></i> <span>EDIT</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href=""><i class="fa fa-circle-o"></i> Edit Products</a></li>
-			<li><a href="seller_dpreq.php"><i class="fa fa-circle-o"></i> Delete Products</a></li>
-          </ul>
-        </li>
+		
   </aside>
 
         
@@ -316,7 +306,7 @@ $chin=mysqli_fetch_assoc($res);
                       </div>
 					  
 					    <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">DISCOUND <span class="required">*</span>
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">DISCOUNT <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
                           <!--<input type="text" name="txt_pdis" placeholder="DISCOUND"  required="required" class="form-control col-md-7 col-xs-12">-->
@@ -351,17 +341,7 @@ $chin=mysqli_fetch_assoc($res);
                         </div>
                       </div>
 					  
-					   <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">KEY WORDS<span class="required">*</span>
-                        </label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                          <!--<input type="text" name="kwords" placeholder="KEY WORDS"  required="required" class="form-control col-md-7 col-xs-12">-->
-						  <?php
-					
-									echo "<input type='text' name='kwords' required='required' class='form-control col-md-7 col-xs-12' value='".$chin['p_key']."' >";
-						   ?>
-                        </div>
-                      </div>
+					   
 					  
 					  <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">QUANTITY<span class="required">*</span>

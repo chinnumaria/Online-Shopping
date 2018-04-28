@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 	$con=mysqli_connect("localhost","maria","maria","os");
 	$x=$_GET['x'];
 	$sql="delete from seller where s_id=$x;";

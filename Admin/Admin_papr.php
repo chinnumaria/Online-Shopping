@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 	$con=mysqli_connect("localhost","maria","maria","os");
 	$x=$_GET['x'];
 	$sql="update product set p_select='apr' where p_id=$x;";

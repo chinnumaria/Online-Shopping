@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 	$con=mysqli_connect("localhost","maria","maria","os");
 	$x=$_GET['x'];
 	$p_pr="SELECT p_price FROM e_product WHERE p_id = '$x';";

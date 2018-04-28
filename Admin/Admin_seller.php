@@ -13,7 +13,7 @@ session_start();
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>AdminLTE 2 | Dashboard</title>
+  <title>Admin</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.7 -->
@@ -22,13 +22,14 @@ session_start();
   <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css">
   <!-- Ionicons -->
   <link rel="stylesheet" href="bower_components/Ionicons/css/ionicons.min.css">
-  <!-- jvectormap -->
-  <link rel="stylesheet" href="bower_components/jvectormap/jquery-jvectormap.css">
+  <!-- DataTables -->
+  <link rel="stylesheet" href="bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="dist/css/AdminLTE.min.css">
   <!-- AdminLTE Skins. Choose a skin from the css/skins
        folder instead of downloading all of them to reduce the load. -->
   <link rel="stylesheet" href="dist/css/skins/_all-skins.min.css">
+
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -44,10 +45,10 @@ session_start();
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
 
-  <header class="main-header">
+   <header class="main-header">
 
     <!-- Logo -->
-    <a href="" class="logo">
+    <a href="Admin_Home.php" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class="logo-mini"><b>A</b>H</span>
       <!-- logo for regular state and mobile devices -->
@@ -71,14 +72,15 @@ session_start();
 				$sq="select gender from registration where email='$id';"; 
 				$res=mysqli_query($con,$sq);
 				$row=mysqli_fetch_assoc($res);
-				if($row['gender']=='Female')
+				echo "<img src='dist/imgs/FEMALE.jpg' class='user-image' alt='User Image'>";
+				/* if($row['gender']=='Female')
 				{
 					echo "<img src='dist/imgs/FEMALE.jpg' class='user-image' alt='User Image'>";
 				}
 				else
 				{
 					echo "<img src='dist/imgs/MALE.jpg' class='user-image' alt='User Image'>";
-				}	
+				}	 */
 			   
 				$id=$_SESSION["txtemail"];
 				$con=mysqli_connect("localhost","maria","maria","os");
@@ -99,14 +101,15 @@ session_start();
 				$sq="select gender from registration where email='$id';"; 
 				$res=mysqli_query($con,$sq);
 				$row=mysqli_fetch_assoc($res);
-				if($row['gender']=='Female')
+				echo "<img src='dist/imgs/FEMALE.jpg' class='user-image' alt='User Image'>";
+				/* if($row['gender']=='Female')
 				{
 					echo "<img src='dist/imgs/FEMALE.jpg' class='img-circle' alt='User Image'>";
 				}
 				else
 				{
-					echo "<img src='dist/imgs/MALE.jpg' class='img-circle' alt='User Image'>";
-				} 
+					echo "<img src='dist/imgs/MALE.jpg' class='user-image' alt='User Image'>";
+				}  */
 				
 			    ?>
 
@@ -131,7 +134,7 @@ session_start();
                  <!--<a href="" class="btn btn-default btn-flat">Profile</a>-->
                 </div>
                 <div class="pull-right">
-                  <a href="pages/layout/logout.php" class="btn btn-default btn-flat">Sign out</a>
+                  <a href="pages/examples/A_login.html" class="btn btn-default btn-flat">Sign out</a>
                 </div>
               </li>
             </ul>
@@ -155,17 +158,17 @@ session_start();
 		<?php
 				$id=$_SESSION["txtemail"];
 				$con=mysqli_connect("localhost","maria","maria","os");
-				/* $sq="select gender from registration where email='$id';";*/ 
-				echo "<img src='dist/imgs/FEMALE.jpg' class='img-circle' alt='User Image'>";
+				/* $sq="select gender from registration where email='$id';"; */
+				echo "<img src='dist/imgs/FEMALE.jpg' class='user-image' alt='User Image'>";
 				/*$res=mysqli_query($con,$sq);
 				$row=mysqli_fetch_assoc($res);
 				 if($row['gender']=='Female')
 				{
-					echo "<img src='dist/imgs/FEMALE.jpg' class='img-circle' alt='User Image'>";
+					echo "<img src='dist/imgs/FEMALE.jpg' class='user-image' alt='User Image'>";
 				}
 				else
 				{
-					echo "<img src='dist/imgs/MALE.jpg' class='img-circle' alt='User Image'>";
+					echo "<img src='dist/imgs/MALE.jpg' class='user-image' alt='User Image'>";
 				} */
 				
 			    ?>
@@ -184,16 +187,7 @@ session_start();
         </div>
       </div>
       <!-- search form -->
-      <form action="#" method="get" class="sidebar-form">
-        <div class="input-group">
-          <input type="text" name="q" class="form-control" placeholder="Search...">
-          <span class="input-group-btn">
-                <button type="submit" name="search" id="search-btn" class="btn btn-flat">
-                  <i class="fa fa-search"></i>
-                </button>
-              </span>
-        </div>
-      </form>
+      
       <!-- /.search form -->
       <!-- sidebar menu: : style can be found in sidebar.less -->
      
@@ -206,17 +200,19 @@ session_start();
               <i class="fa fa-angle-left pull-right"></i>
             </span>
           </a>
-		      <li class="treeview">
+		     <li class="treeview active">
           <a href="#">
             <i class="fa fa-pie-chart"></i>
-            <span>ADD</span>
+            <span>REQUESTS</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
           </a>
-         <ul class="treeview-menu">
-            <li ><a href="Add_Product.php"><i class="fa fa-circle-o"></i> Add Product</a></li>
-			<li ><a href="Admin_seller.php"><i class="fa fa-circle-o"></i> Add Seller</a></li>
+        <ul class="treeview-menu">
+            
+			<li class="active"><a href="Admin_seller.php"><i class="fa fa-circle-o"></i> Add Seller</a></li>
+			<li ><a href="Admin_epro.php"><i class="fa fa-circle-o"></i> Edit Product</a></li>
+			<li ><a href="Admin_epr.php"><i class="fa fa-circle-o"></i> Delete Product</a></li>
 			<li ><a href="Admin_addsp.php"><i class="fa fa-circle-o"></i> Seller Product</a></li>
           </ul>
         </li>
@@ -229,22 +225,36 @@ session_start();
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="View_Users.php"><i class="fa fa-circle-o"></i> View Users</a></li>
-			<li><a href="View_Product.php"><i class="fa fa-circle-o"></i> View Products</a></li>
-			<li><a href="Admin_dslr.php"><i class="fa fa-circle-o"></i> View Sellors</a></li>
-			<li><a href=""><i class="fa fa-circle-o"></i> View Feedback</a></li>
+		  <li><a href="Admin_fp.php"><i class="fa fa-circle-o"></i> Featured Products</a></li>
+		  <li><a href="feedback.php"><i class="fa fa-circle-o"></i>Feedback</a></li>
+		  <li><a href="p_details.php"><i class="fa fa-circle-o"></i>Payment Details</a></li>
+		  <li><a href="View_Product.php"><i class="fa fa-circle-o"></i> Products</a></li>
+		  <li><a href="Admin_dslr.php"><i class="fa fa-circle-o"></i> Sellors</a></li>
+            <li><a href="View_Users.php"><i class="fa fa-circle-o"></i> Users</a></li>
           </ul>
         </li>
 		<li class="treeview">
           <a href="#">
-            <i class="fa fa-edit"></i> <span>EDIT</span>
+            <i class="fa fa-files-o"></i> <span>Salary</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="Admin_pedr.php"><i class="fa fa-circle-o"></i> Edit Products</a></li>
-			<li><a href="Admin_dsp.php"><i class="fa fa-circle-o"></i> Delete Products</a></li>
+            <li><a href="Admin_pays.php"><i class="fa fa-circle-o"></i> Pay Salary</a></li>
+			
+          </ul>
+        </li>
+		<li class="treeview">
+          <a href="#">
+            <i class="fa fa-edit"></i> <span>Reports</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="Admin_pd.php"><i class="fa fa-circle-o"></i> Purchase</a></li>
+			 <li><a href="Admin_ssalary.php"><i class="fa fa-circle-o"></i> Salary</a></li>
           </ul>
         </li>
   </aside>
@@ -269,73 +279,15 @@ session_start();
     <!-- Main content -->
     <section class="content">
       <!-- Info boxes -->
-      <div class="row">
-        <div class="col-md-3 col-sm-6 col-xs-12">
-          <div class="info-box">
-            <!--<span class="info-box-icon bg-aqua"><i class="ion ion-ios-gear-outline"></i></span>-->
-
-            <div class="info-box-content">
-              <span class="info-box-text">Members</span>
-			  <?php
-				$con=mysqli_connect("localhost","maria","maria","os");
-				$sq="select name from registration where usertype=1;";
-				$res=mysqli_query($con,$sq);
-				$rowCount = mysqli_num_rows($res);
-				echo "<span class='info-box-number'>".$rowCount."<small></small></span>";
-			   ?>
-              
-            </div>
-            <!-- /.info-box-content -->
-          </div>
-          <!-- /.info-box -->
-        </div>
-        <!-- /.col -->
-        <div class="col-md-3 col-sm-6 col-xs-12">
-          <div class="info-box">
-            <!--<span class="info-box-icon bg-red"><i class="fa fa-google-plus"></i></span>-->
-
-            <div class="info-box-content">
-              <span class="info-box-text">Products</span>
-              <?php
-				$con=mysqli_connect("localhost","maria","maria","os");
-				$sq="select p_id from product;";
-				$res=mysqli_query($con,$sq);
-				$rowCount = mysqli_num_rows($res);
-				echo "<span class='info-box-number'>".$rowCount."<small></small></span>";
-			   ?>
-            </div>
-            <!-- /.info-box-content -->
-          </div>
-          <!-- /.info-box -->
-        </div>
-        <!-- /.col -->
-
-        <!-- fix for small devices only -->
- 
-        <!-- /.col -->
- 
-        <!-- /.col -->
-      </div>
+      
 	  <!-- page content -->
-       <div class="right_col" role="main">
-          <div class="">
-            <div class="page-title">
-              <div class="title_left">
-                <h3></h3>
-              </div>
-			<div class="x_title">
-                    <h2 align="center">ADD SELLER</h2>
-                    
-                    <div class="clearfix"></div>
-                  </div>
-                  </div>
-              
+       <div class="box">
+            <div class="box-header">
+              <h2 align="center">Sellers</h3>
             </div>
-            <div class="clearfix"></div>
-               </div>
 			
 			<div class="box-body">
-              <table id="example1" class="table table-bordered table-striped">
+             <table id="example1" class="table table-bordered table-striped">
                 <thead>
                 <tr>
                   <th>ID</th>
@@ -343,7 +295,9 @@ session_start();
                   <th>OWNER</th>
                   <th>EMAIL</th>
                   <th>MOBILE</th>
-				  <th>PLACE</th>
+				  <th>ADDRESS</th>
+				  <th>PIN CODE</th>
+				  <th>LICENCE</th>
 				  <th>DATE</th>
 				  <th>OPTIONS</th>
                 </tr>
@@ -357,8 +311,9 @@ session_start();
 							
 								if(mysqli_num_rows($res)>0){
 									while($row=$res->fetch_assoc()){
+										$PDF=$row["s_file"];
 									
-									echo "<tr><td>". $row["s_id"]. "</td><td>" .$row["s_name"]. "</td><td>" .$row["s_owner"]. "</td><td>" .$row["s_email"]. "</td><td>" .$row["s_mob"]. "</td><td>" .$row["s_place"]. "</td><td>" .$row["curdate"]. "</td><td align='middle'> <div class='btn-group'>
+									echo "<tr><td>". $row["s_id"]. "</td><td>" .$row["s_name"]. "</td><td>" .$row["s_owner"]. "</td><td>" .$row["s_email"]. "</td><td>" .$row["s_mob"]. "</td><td>" .$row["s_adr"]. "</td><td>" .$row["s_pin"]. "</td><td><a href='files/$PDF' target='_blank'>open</a></td><td>" .$row["curdate"]. "</td><td align='middle'> <div class='btn-group'>
 				  <div class='btn-group'>
                         
                   <button type='button' class='btn btn-default dropdown-toggle btn-sm' data-toggle='dropdown'>
@@ -466,22 +421,30 @@ session_start();
 <script src="bower_components/jquery/dist/jquery.min.js"></script>
 <!-- Bootstrap 3.3.7 -->
 <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<!-- DataTables -->
+<script src="bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+<script src="bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+<!-- SlimScroll -->
+<script src="bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
 <!-- FastClick -->
 <script src="bower_components/fastclick/lib/fastclick.js"></script>
 <!-- AdminLTE App -->
 <script src="dist/js/adminlte.min.js"></script>
-<!-- Sparkline -->
-<script src="bower_components/jquery-sparkline/dist/jquery.sparkline.min.js"></script>
-<!-- jvectormap  -->
-<script src="plugins/jvectormap/jquery-jvectormap-1.2.2.min.js"></script>
-<script src="plugins/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
-<!-- SlimScroll -->
-<script src="bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
-<!-- ChartJS -->
-<script src="bower_components/Chart.js/Chart.js"></script>
-<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-<script src="dist/js/pages/dashboard2.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="dist/js/demo.js"></script>
+<!-- page script -->
+<script>
+  $(function () {
+    $('#example1').DataTable()
+    $('#example2').DataTable({
+      'paging'      : true,
+      'lengthChange': false,
+      'searching'   : false,
+      'ordering'    : true,
+      'info'        : true,
+      'autoWidth'   : false
+    })
+  })
+</script>
 </body>
 </html>

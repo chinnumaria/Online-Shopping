@@ -47,7 +47,7 @@ session_start();
   <header class="main-header">
 
     <!-- Logo -->
-   <a href="Admin_Home.php" class="logo">
+    <a href="Admin_Home.php" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class="logo-mini"><b>A</b>H</span>
       <!-- logo for regular state and mobile devices -->
@@ -210,9 +210,9 @@ session_start();
          <ul class="treeview-menu">
             
 			<li ><a href="Admin_seller.php"><i class="fa fa-circle-o"></i> Add Seller</a></li>
-			<li ><a href="Admin_epro.php"><i class="fa fa-circle-o"></i> Edit Product</a></li>
+			<li class="active"><a href="Admin_epro.php"><i class="fa fa-circle-o"></i> Edit Product</a></li>
 			<li ><a href="Admin_epr.php"><i class="fa fa-circle-o"></i> Delete Product</a></li>
-			<li class="active"><a href="Admin_addsp.php"><i class="fa fa-circle-o"></i> Seller Product</a></li>
+			<li ><a href="Admin_addsp.php"><i class="fa fa-circle-o"></i> Seller Product</a></li>
           </ul>
         </li>
 		  <li class="treeview">
@@ -271,7 +271,7 @@ session_start();
 					
 			<div class="box">
             <div class="box-header">
-              <h2 align="center">Requested Products</h3>
+              <h2 align="center">Edit Products</h3>
             </div>
 					
 			<div class="box-body">
@@ -295,13 +295,13 @@ session_start();
 				 <?php
 								$con=mysqli_connect("localhost","maria","maria","os");
 								
-								$sel="SELECT * from product where p_select='a'";
+								$sel="SELECT * from e_product where p_select='e'";
 								$res=mysqli_query($con,$sel);
 							
 								if(mysqli_num_rows($res)>0){
 									while($row=$res->fetch_assoc()){
 									
-									echo "<tr><td>". $row["p_id"]. "</td><td>" .$row["p_name"]. "</td><td>" .$row["p_cat"]. "</td><td>" .$row["p_brand"]. "</td><td>" .$row["p_price"]. "</td><td>" .$row["p_dis"]. "</td><td>" .$row["p_desc"]. "</td><td><img src='images/".$row["p_img"]."' width='100px' height='100px'></td><td>" .$row["p_qty"]. "</td><td>" .$row["p_seller"]. "</td><td align='middle'> <div class='btn-group'>
+									echo "<tr><td>". $row["p_pid"]. "</td><td>" .$row["p_name"]. "</td><td>" .$row["p_cat"]. "</td><td>" .$row["p_brand"]. "</td><td>" .$row["p_price"]. "</td><td>" .$row["p_dis"]. "</td><td>" .$row["p_desc"]. "</td><td><img src='images/".$row["p_img"]."' width='100px' height='100px'></td><td>" .$row["p_qty"]. "</td><td>" .$row["p_seller"]. "</td><td align='middle'> <div class='btn-group'>
 				  <div class='btn-group'>
                         
                   <button type='button' class='btn btn-default dropdown-toggle btn-sm' data-toggle='dropdown'>
@@ -310,8 +310,7 @@ session_start();
                     <span class='sr-only'>Toggle Dropdown</span>				
                   </button>
                         <ul class='dropdown-menu'>
-                          <li><a href='Admin_papr.php?x=". $row["p_id"]. "'>Approve</a></li>
-                          <li><a href='Admin_prjct.php?x=". $row["p_id"]. "'>Reject</a></li>
+                          <li><a href='Admin_pedit.php?x=". $row["p_pid"]. "'>Approve</a></li>
                         </ul>
                    </div>
                     </div></td></tr>";

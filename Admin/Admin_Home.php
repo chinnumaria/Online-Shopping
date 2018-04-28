@@ -1,12 +1,21 @@
 <?php
 session_start();
 ?>
+<?php
+$con=mysqli_connect("localhost","maria","maria","os");
+$s=mysqli_query($con,"SELECT p_id,p_seller,COUNT(p_seller) as ct from product where p_id IN (SELECT `pid` FROM `purchase`) GROUP BY `p_seller` ORDER BY COUNT(p_seller) DESC");
+
+ while($row = $s->fetch_assoc()){
+    $dataPoints[] = array("label" => $row['p_seller'], "y" => $row['ct']);
+  }
+
+?>
 <!DOCTYPE html>
 <html>
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>AdminLTE 2 | Dashboard</title>
+  <title>Elite | Admin</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.7 -->
@@ -33,6 +42,30 @@ session_start();
   <!-- Google Font -->
   <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+		
+		<script>
+window.onload = function () {
+ 
+var chart = new CanvasJS.Chart("chartContainer", {
+	animationEnabled: true,
+	theme: "light2", // "light1", "light2", "dark1", "dark2"
+	title: {
+		text: "Purchase - Seller Chart"
+	},
+	axisY: {
+		title: "Number of Purchase",
+		includeZero: false
+	},
+	data: [{
+		type: "column",
+		yValueFormatString: "$#,##0.00",
+		dataPoints: <?php echo json_encode($dataPoints, JSON_NUMERIC_CHECK); ?>
+	}]
+});
+chart.render();
+ 
+}
+</script>
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
@@ -40,9 +73,9 @@ session_start();
   <header class="main-header">
 
     <!-- Logo -->
-    <a href="" class="logo">
+    <a href="Admin_Home.php" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
-      <span class="logo-mini"><b>A</b>H</span>
+      <span class="logo-mini"><b>E</b>S</span>
       <!-- logo for regular state and mobile devices -->
       <span class="logo-lg"><b>Elite Shoppy</b></span>
     </a>
@@ -64,14 +97,15 @@ session_start();
 				$sq="select gender from registration where email='$id';"; 
 				$res=mysqli_query($con,$sq);
 				$row=mysqli_fetch_assoc($res);
-				if($row['gender']=='Female')
+				echo "<img src='dist/imgs/FEMALE.jpg' class='user-image' alt='User Image'>";
+				/* if($row['gender']=='Female')
 				{
 					echo "<img src='dist/imgs/FEMALE.jpg' class='user-image' alt='User Image'>";
 				}
 				else
 				{
-					echo "<img src='dist/imgs/MALE.jpg' class='user-image' alt='User Image'>";
-				}	
+					echo "<img src='dist/imgs/FEMALE.jpg' class='user-image' alt='User Image'>";
+				}	 */
 			   
 				$id=$_SESSION["txtemail"];
 				$con=mysqli_connect("localhost","maria","maria","os");
@@ -92,14 +126,15 @@ session_start();
 				$sq="select gender from registration where email='$id';"; 
 				$res=mysqli_query($con,$sq);
 				$row=mysqli_fetch_assoc($res);
-				if($row['gender']=='Female')
+				echo "<img src='dist/imgs/FEMALE.jpg' class='user-image' alt='User Image'>";
+				/* if($row['gender']=='Female')
 				{
-					echo "<img src='dist/imgs/FEMALE.jpg' class='img-circle' alt='User Image'>";
+					
 				}
 				else
 				{
-					echo "<img src='dist/imgs/MALE.jpg' class='img-circle' alt='User Image'>";
-				} 
+					echo "<img src='dist/imgs/FEMALE.jpg' class='user-image' alt='User Image'>";
+				}  */
 				
 			    ?>
 
@@ -124,7 +159,7 @@ session_start();
                  <!--<a href="" class="btn btn-default btn-flat">Profile</a>-->
                 </div>
                 <div class="pull-right">
-                  <a href="pages/layout/logout.php" class="btn btn-default btn-flat">Sign out</a>
+                  <a href="pages/examples/A_login.html" class="btn btn-default btn-flat">Sign out</a>
                 </div>
               </li>
             </ul>
@@ -149,16 +184,16 @@ session_start();
 				$id=$_SESSION["txtemail"];
 				$con=mysqli_connect("localhost","maria","maria","os");
 				/* $sq="select gender from registration where email='$id';"; */
-				echo "<img src='dist/imgs/FEMALE.jpg' class='img-circle' alt='User Image'>";
+				echo "<img src='dist/imgs/FEMALE.jpg' class='user-image' alt='User Image'>";
 				/*$res=mysqli_query($con,$sq);
 				$row=mysqli_fetch_assoc($res);
 				 if($row['gender']=='Female')
 				{
-					echo "<img src='dist/imgs/FEMALE.jpg' class='img-circle' alt='User Image'>";
+					echo "<img src='dist/imgs/FEMALE.jpg' class='user-image' alt='User Image'>";
 				}
 				else
 				{
-					echo "<img src='dist/imgs/MALE.jpg' class='img-circle' alt='User Image'>";
+					echo "<img src='dist/imgs/MALE.jpg' class='user-image' alt='User Image'>";
 				} */
 				
 			    ?>
@@ -177,16 +212,7 @@ session_start();
         </div>
       </div>
       <!-- search form -->
-      <form action="#" method="get" class="sidebar-form">
-        <div class="input-group">
-          <input type="text" name="q" class="form-control" placeholder="Search...">
-          <span class="input-group-btn">
-                <button type="submit" name="search" id="search-btn" class="btn btn-flat">
-                  <i class="fa fa-search"></i>
-                </button>
-              </span>
-        </div>
-      </form>
+      
       <!-- /.search form -->
       <!-- sidebar menu: : style can be found in sidebar.less -->
      
@@ -202,14 +228,16 @@ session_start();
 		      <li class="treeview">
           <a href="#">
             <i class="fa fa-pie-chart"></i>
-            <span>ADD</span>
+            <span>REQUESTS</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
           </a>
          <ul class="treeview-menu">
-            <li ><a href="Add_Product.php"><i class="fa fa-circle-o"></i> Add Product</a></li>
+            
 			<li ><a href="Admin_seller.php"><i class="fa fa-circle-o"></i> Add Seller</a></li>
+			<li ><a href="Admin_epro.php"><i class="fa fa-circle-o"></i> Edit Product</a></li>
+			<li ><a href="Admin_epr.php"><i class="fa fa-circle-o"></i> Delete Product</a></li>
 			<li ><a href="Admin_addsp.php"><i class="fa fa-circle-o"></i> Seller Product</a></li>
           </ul>
         </li>
@@ -222,24 +250,36 @@ session_start();
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="View_Users.php"><i class="fa fa-circle-o"></i> View Users</a></li>
-			<li><a href="View_Product.php"><i class="fa fa-circle-o"></i> View Products</a></li>
-			<li><a href="Admin_dslr.php"><i class="fa fa-circle-o"></i> View Sellors</a></li>
-			<li><a href="Admin_fp.php"><i class="fa fa-circle-o"></i> Featured Products</a></li>
-			<li><a href="p_details.php"><i class="fa fa-circle-o"></i>Payment Details</a></li>
-			<li><a href=""><i class="fa fa-circle-o"></i> View Feedback</a></li>
+		  <li><a href="Admin_fp.php"><i class="fa fa-circle-o"></i> Featured Products</a></li>
+		  <li><a href="feedback.php"><i class="fa fa-circle-o"></i>Feedback</a></li>
+		  <li><a href="p_details.php"><i class="fa fa-circle-o"></i>Payment Details</a></li>
+		  <li><a href="View_Product.php"><i class="fa fa-circle-o"></i> Products</a></li>
+		  <li><a href="Admin_dslr.php"><i class="fa fa-circle-o"></i> Sellors</a></li>
+            <li><a href="View_Users.php"><i class="fa fa-circle-o"></i> Users</a></li>
           </ul>
         </li>
 		<li class="treeview">
           <a href="#">
-            <i class="fa fa-edit"></i> <span>EDIT</span>
+            <i class="fa fa-files-o"></i> <span>SALARY</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="Admin_fp.php"><i class="fa fa-circle-o"></i> Featured Products</a></li>
+            <li><a href="Admin_pays.php"><i class="fa fa-circle-o"></i> Pay Salary</a></li>
 			
+          </ul>
+        </li>
+		<li class="treeview">
+          <a href="#">
+            <i class="fa fa-edit"></i> <span>REPORTS</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="Admin_pd.php"><i class="fa fa-circle-o"></i> Purchase</a></li>
+			 <li><a href="Admin_ssalary.php"><i class="fa fa-circle-o"></i> Salary</a></li>
           </ul>
         </li>
   </aside>
@@ -373,7 +413,10 @@ session_start();
             <!-- form start -->
  
             <!-- /.box-body -->
-            
+    <div id="chartContainer" style="height: 370px; max-width: 820px; margin: 0px auto;"></div>
+  </div>
+   </div>
+    </div>
   <!-- /.content-wrapper -->
 
   <!--<footer class="main-footer">
@@ -415,7 +458,7 @@ session_start();
 
 </div>
 <!-- ./wrapper -->
-
+<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>      
 <!-- jQuery 3 -->
 <script src="bower_components/jquery/dist/jquery.min.js"></script>
 <!-- Bootstrap 3.3.7 -->

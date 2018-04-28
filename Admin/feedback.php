@@ -1,19 +1,12 @@
 <?php
 session_start();
-
-/* if(!empty($_GET["x"]))
-{
-	$xx=$_GET["x"];
-	echo $xx;
-	
-} */
 ?>
 <!DOCTYPE html>
 <html>
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Admin</title>
+  <title>Elite | Admin</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.7 -->
@@ -22,8 +15,9 @@ session_start();
   <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css">
   <!-- Ionicons -->
   <link rel="stylesheet" href="bower_components/Ionicons/css/ionicons.min.css">
-  <!-- DataTables -->
-  <link rel="stylesheet" href="bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
+  <!-- jvectormap -->
+  <link rel="stylesheet" href="bower_components/jvectormap/jquery-jvectormap.css">
+   <link rel="stylesheet" href="bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="dist/css/AdminLTE.min.css">
   <!-- AdminLTE Skins. Choose a skin from the css/skins
@@ -47,9 +41,9 @@ session_start();
   <header class="main-header">
 
     <!-- Logo -->
-   <a href="Admin_Home.php" class="logo">
+    <a href="Admin_Home.php" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
-      <span class="logo-mini"><b>A</b>H</span>
+      <span class="logo-mini"><b>E</b>S</span>
       <!-- logo for regular state and mobile devices -->
       <span class="logo-lg"><b>Elite Shoppy</b></span>
     </a>
@@ -78,7 +72,7 @@ session_start();
 				}
 				else
 				{
-					echo "<img src='dist/imgs/MALE.jpg' class='user-image' alt='User Image'>";
+					echo "<img src='dist/imgs/FEMALE.jpg' class='user-image' alt='User Image'>";
 				}	 */
 			   
 				$id=$_SESSION["txtemail"];
@@ -103,11 +97,11 @@ session_start();
 				echo "<img src='dist/imgs/FEMALE.jpg' class='user-image' alt='User Image'>";
 				/* if($row['gender']=='Female')
 				{
-					echo "<img src='dist/imgs/FEMALE.jpg' class='img-circle' alt='User Image'>";
+					
 				}
 				else
 				{
-					echo "<img src='dist/imgs/MALE.jpg' class='user-image' alt='User Image'>";
+					echo "<img src='dist/imgs/FEMALE.jpg' class='user-image' alt='User Image'>";
 				}  */
 				
 			    ?>
@@ -199,7 +193,7 @@ session_start();
               <i class="fa fa-angle-left pull-right"></i>
             </span>
           </a>
-		     <li class="treeview active">
+		      <li class="treeview">
           <a href="#">
             <i class="fa fa-pie-chart"></i>
             <span>REQUESTS</span>
@@ -212,10 +206,10 @@ session_start();
 			<li ><a href="Admin_seller.php"><i class="fa fa-circle-o"></i> Add Seller</a></li>
 			<li ><a href="Admin_epro.php"><i class="fa fa-circle-o"></i> Edit Product</a></li>
 			<li ><a href="Admin_epr.php"><i class="fa fa-circle-o"></i> Delete Product</a></li>
-			<li class="active"><a href="Admin_addsp.php"><i class="fa fa-circle-o"></i> Seller Product</a></li>
+			<li ><a href="Admin_addsp.php"><i class="fa fa-circle-o"></i> Seller Product</a></li>
           </ul>
         </li>
-		  <li class="treeview">
+		  <li class="treeview active">
           <a href="#">
             <i class="fa fa-laptop"></i>
             <span>VIEW</span>
@@ -225,7 +219,7 @@ session_start();
           </a>
           <ul class="treeview-menu">
 		  <li><a href="Admin_fp.php"><i class="fa fa-circle-o"></i> Featured Products</a></li>
-		  <li><a href="feedback.php"><i class="fa fa-circle-o"></i>Feedback</a></li>
+		  <li class="active"><a href="feedback.php"><i class="fa fa-circle-o"></i>Feedback</a></li>
 		  <li><a href="p_details.php"><i class="fa fa-circle-o"></i>Payment Details</a></li>
 		  <li><a href="View_Product.php"><i class="fa fa-circle-o"></i> Products</a></li>
 		  <li><a href="Admin_dslr.php"><i class="fa fa-circle-o"></i> Sellors</a></li>
@@ -234,7 +228,7 @@ session_start();
         </li>
 		<li class="treeview">
           <a href="#">
-            <i class="fa fa-files-o"></i> <span>Salary</span>
+            <i class="fa fa-files-o"></i> <span>SALARY</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
@@ -246,7 +240,7 @@ session_start();
         </li>
 		<li class="treeview">
           <a href="#">
-            <i class="fa fa-edit"></i> <span>Reports</span>
+            <i class="fa fa-edit"></i> <span>REPORTS</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
@@ -257,107 +251,71 @@ session_start();
           </ul>
         </li>
   </aside>
+
+        
+  </aside>
+
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
-    
-	<section class="content" background-color="red">
+   <!-- <section class="content-header">
+      <h1>
+        MCA Virtual Library
+        <small></small>
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="index_Admin.php"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active">Add Books</li>
+      </ol>
+    </section>-->
+
+    <!-- Main content -->
+    <section class="content" background-color="red">
 
        <div class="row">
-        
+       
         <!-- /.col -->
         
 		</div>
 					
 			<div class="box">
             <div class="box-header">
-              <h2 align="center">Requested Products</h3>
+              <h2 align="center">Feedback</h3>
             </div>
 					
 			<div class="box-body">
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
                 <tr>
-                  <th>ID</th>
+                  
                   <th>NAME</th>
-                  <th>CATEGORY</th>
-                  <th>BRAND</th>
-                  <th>PRICE</th>
-				  <th>DISCOUNT</th>
-				  <th>DESCRIPTION</th>
-				  <th>IMAGE</th>
-				  <th>QUANTITY</th>
-				  <th>SELLER</th>
-				  <th>OPTIONS</th>
+                  <th>EMAIL</th>
+                  <th>SUBJECT</th>
+                  <th>FEEDBACK</th>
+				  <th>DATE</th>
+				  
                 </tr>
                 </thead>
 				 <tbody>
 				 <?php
 								$con=mysqli_connect("localhost","maria","maria","os");
 								
-								$sel="SELECT * from product where p_select='a'";
+								$sel="SELECT * from feedback";
 								$res=mysqli_query($con,$sel);
 							
 								if(mysqli_num_rows($res)>0){
 									while($row=$res->fetch_assoc()){
 									
-									echo "<tr><td>". $row["p_id"]. "</td><td>" .$row["p_name"]. "</td><td>" .$row["p_cat"]. "</td><td>" .$row["p_brand"]. "</td><td>" .$row["p_price"]. "</td><td>" .$row["p_dis"]. "</td><td>" .$row["p_desc"]. "</td><td><img src='images/".$row["p_img"]."' width='100px' height='100px'></td><td>" .$row["p_qty"]. "</td><td>" .$row["p_seller"]. "</td><td align='middle'> <div class='btn-group'>
-				  <div class='btn-group'>
-                        
-                  <button type='button' class='btn btn-default dropdown-toggle btn-sm' data-toggle='dropdown'>
-				  Options
-                    <span class='caret'></span>
-                    <span class='sr-only'>Toggle Dropdown</span>				
-                  </button>
-                        <ul class='dropdown-menu'>
-                          <li><a href='Admin_papr.php?x=". $row["p_id"]. "'>Approve</a></li>
-                          <li><a href='Admin_prjct.php?x=". $row["p_id"]. "'>Reject</a></li>
-                        </ul>
-                   </div>
-                    </div></td></tr>";
+									echo "<tr><td>" .$row["uname"]. "</td><td>" .$row["uemail"]. "</td><td>" .$row["sub"]. "</td><td>" .$row["fd"]. "</td><td>" .$row["curdate"]. "</td></tr>";
 									} 
 									
 									}
 								  
 							?>
-                <!--<tr>
-                  <td> </td>
-                  <td> </td>
-                  <td> </td>
-				  <td> </td>
-				  <td> </td>
-				   <td> </td>
-                  <td> </td>
-                  <td> </td>
-				  <td> </td>
-				  <td> </td>
-				   <td align="middle"> <div class="btn-group">
-				  <div class="btn-group">
-                        
-                  <button type="button" class="btn btn-default dropdown-toggle btn-sm" data-toggle="dropdown">
-				  Options
-                    <span class="caret"></span>
-                    <span class="sr-only">Toggle Dropdown</span>				
-                  </button>
-
-                        <ul class="dropdown-menu">
-                          <li><a href="#">Edit</a></li>
-                          <li><a href="#">Delete</a></li>
-                        </ul>
-                   </div>
-                    </div></td>
-                </tr>
-                
-				<tfoot>
-                <tr>
-                  
-                </tr>
-                </tfoot>-->
-					</table>
-				</div>
-			</div>
-		</div>
-		</div>
+							</table>
+							</div>
+	
+    </section>
             <!-- /.box-header -->
             <!-- form start -->
  

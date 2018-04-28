@@ -1,4 +1,6 @@
-		<?php	
+<?php
+session_start();
+
 					$con=mysqli_connect("localhost","maria","maria","os");
 						if( $_FILES['p_img']['name'] != "" )
 						{
@@ -21,12 +23,10 @@
 										}
 								</script>";
 							}
-
 							// copy( $_FILES['file']['name'], "/SendEmail" ) or 
 							//       die( "Could not copy file!");
 							}
 							
-
 				
 						$con=mysqli_connect("localhost","maria","maria","os");
 						$ipath=$_FILES["p_img"]["name"];
@@ -34,30 +34,32 @@
 						$price=$_POST["txt_price"];
 						$dis=$_POST["txt_pdis"];
 						$des=$_POST["txt_des"];
-						$keyw=$_POST["kwords"];
+						
 						$qty=$_POST["txt_pqty"];
-						$p_cat="SELECT p_cat FROM product WHERE p_name = '$name';";
+						$p_cat="SELECT * FROM product WHERE p_name = '$name';";
 						$pcat=mysqli_query($con,$p_cat);
 						$row=mysqli_fetch_assoc($pcat);
 						$cat=$row["p_cat"];
-						$p_br="SELECT p_brand FROM product WHERE p_name = '$name';";
-						$pbr=mysqli_query($con,$p_br);
-						$rows=mysqli_fetch_assoc($pbr);
-						$brand=$rows["p_brand"];
-						$p_sl="SELECT p_seller FROM product WHERE p_name = '$name';";
-						$pslr=mysqli_query($con,$p_sl);
-						$rowss=mysqli_fetch_assoc($pslr);
-						$seller=$rowss["p_seller"];
-						$p_id="SELECT p_id FROM product WHERE p_name = '$name';";
-						$pid=mysqli_query($con,$p_id);
-						$rowsss=mysqli_fetch_assoc($pid);
-						$id=$rowsss["p_id"];
-						$tit="SELECT p_name FROM product WHERE p_name = '$name';";
-						$res=mysqli_query($con,$tit);
-						/* echo $name;
-						if(mysqli_num_rows($res)>0)
+						$brand=$row["p_brand"];
+						$pid=$row["p_id"];
+						$seller=$row["p_seller"];
+						echo $cat;
+						echo "</br>";
+						echo $brand;
+						echo "</br>";
+						echo $pid;
+						echo "</br>";
+						echo $seller;
+						echo "</br>";
+						/* echo $name;*/
+						
+						$sle="SELECT * FROM e_product WHERE p_id = '$pid';";
+						$rle=mysqli_query($con,$sle);
+						$rol=mysqli_fetch_assoc($rle);
+						
+						 if(mysqli_num_rows($rle)>0)
 						{
-							echo "<script>var confirm = confirm(\"product with the same name is existed!\");
+							echo "<script>var confirm = confirm(\"Request existed!\");
 							if(confirm){ 
 							window.history.back();
 							}
@@ -66,13 +68,23 @@
 							}
 							</script>";
 							
-						}
-						else{ */
-						$sqlq= "update product set p_select='e' WHERE p_name = '$name';";
+						} 
+						 
+						$sqlq= "update product set p_select='e' WHERE p_name = '$name' and p_id='$pid';";
 						mysqli_query($con,$sqlq);
-						$sql= "insert into e_product(p_id,p_name,p_cat,p_brand,p_price,p_dis,p_desc,p_img,p_key,p_qty,p_seller) values('$id','$name','$cat','$brand','$price','$dis','$des','$ipath','$keyw','$qty','$seller');";
-						mysqli_query($con,$sql);
+						$sql= "insert into e_product(p_pid,p_name,p_cat,p_brand,p_price,p_dis,p_desc,p_img,p_qty,p_seller) values('$pid','$name','$cat','$brand','$price','$dis','$des','$ipath','$qty','$seller');";
+						 mysqli_query($con,$sql); 
+						echo $sql;
+						echo "</br>";
+						 echo "<script>var confirm = confirm(\"Changes has been requested!\");
+          if(confirm){ 
+              window.location='seller_pview.php';
+           }
+		   else{
+			   window.location='seller_pview.php';
+		   }
+          </script>";   
+						 /* header('location:seller_pview.php');  */
 						
-						header('location:seller_pview.php');
 					?>
 			

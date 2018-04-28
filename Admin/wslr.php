@@ -1,13 +1,22 @@
 <?php
 session_start();
-
-/* if(!empty($_GET["x"]))
-{
-	$xx=$_GET["x"];
-	echo $xx;
+	$con=mysqli_connect("localhost","maria","maria","os");
+	$x=$_GET['x'];
 	
-} */
+	
+				
+				$sq="select * from seller where s_id='$x';";
+				$res=mysqli_query($con,$sq);
+				$row=mysqli_fetch_assoc($res);
+				$sn=$row["s_name"];
+				$so=$row["s_owner"];
+				$sm=$row["s_email"];
+				$smob=$row["s_mob"];
+				$sadr=$row["s_adr"];
+				$sp=$row["s_pin"];
+				
 ?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -47,9 +56,9 @@ session_start();
   <header class="main-header">
 
     <!-- Logo -->
-   <a href="Admin_Home.php" class="logo">
+    <a href="Admin_Home.php" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
-      <span class="logo-mini"><b>A</b>H</span>
+      <span class="logo-mini"><b>E</b>S</span>
       <!-- logo for regular state and mobile devices -->
       <span class="logo-lg"><b>Elite Shoppy</b></span>
     </a>
@@ -103,7 +112,7 @@ session_start();
 				echo "<img src='dist/imgs/FEMALE.jpg' class='user-image' alt='User Image'>";
 				/* if($row['gender']=='Female')
 				{
-					echo "<img src='dist/imgs/FEMALE.jpg' class='img-circle' alt='User Image'>";
+					echo "<img src='dist/imgs/FEMALE.jpg' class='user-image' alt='User Image'>";
 				}
 				else
 				{
@@ -199,7 +208,7 @@ session_start();
               <i class="fa fa-angle-left pull-right"></i>
             </span>
           </a>
-		     <li class="treeview active">
+		    <li class="treeview">
           <a href="#">
             <i class="fa fa-pie-chart"></i>
             <span>REQUESTS</span>
@@ -212,10 +221,10 @@ session_start();
 			<li ><a href="Admin_seller.php"><i class="fa fa-circle-o"></i> Add Seller</a></li>
 			<li ><a href="Admin_epro.php"><i class="fa fa-circle-o"></i> Edit Product</a></li>
 			<li ><a href="Admin_epr.php"><i class="fa fa-circle-o"></i> Delete Product</a></li>
-			<li class="active"><a href="Admin_addsp.php"><i class="fa fa-circle-o"></i> Seller Product</a></li>
+			<li ><a href="Admin_addsp.php"><i class="fa fa-circle-o"></i> Seller Product</a></li>
           </ul>
         </li>
-		  <li class="treeview">
+		  <li class="treeview active">
           <a href="#">
             <i class="fa fa-laptop"></i>
             <span>VIEW</span>
@@ -228,7 +237,7 @@ session_start();
 		  <li><a href="feedback.php"><i class="fa fa-circle-o"></i>Feedback</a></li>
 		  <li><a href="p_details.php"><i class="fa fa-circle-o"></i>Payment Details</a></li>
 		  <li><a href="View_Product.php"><i class="fa fa-circle-o"></i> Products</a></li>
-		  <li><a href="Admin_dslr.php"><i class="fa fa-circle-o"></i> Sellors</a></li>
+		  <li class="active"><a href="Admin_dslr.php"><i class="fa fa-circle-o"></i> Sellors</a></li>
             <li><a href="View_Users.php"><i class="fa fa-circle-o"></i> Users</a></li>
           </ul>
         </li>
@@ -261,147 +270,147 @@ session_start();
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     
-	<section class="content" background-color="red">
-
-       <div class="row">
-        
-        <!-- /.col -->
-        
-		</div>
-					
-			<div class="box">
-            <div class="box-header">
-              <h2 align="center">Requested Products</h3>
+	 <section class="content">
+      <div class="row">
+        <!-- left column -->
+        <div class="col-md-6">
+          <!-- general form elements -->
+          <div class="box box-primary">
+            <div class="box-header with-border">
+              <h3 class="box-title">Seller Details</h3>
             </div>
-					
-			<div class="box-body">
-              <table id="example1" class="table table-bordered table-striped">
-                <thead>
-                <tr>
-                  <th>ID</th>
-                  <th>NAME</th>
-                  <th>CATEGORY</th>
-                  <th>BRAND</th>
-                  <th>PRICE</th>
-				  <th>DISCOUNT</th>
-				  <th>DESCRIPTION</th>
-				  <th>IMAGE</th>
-				  <th>QUANTITY</th>
-				  <th>SELLER</th>
-				  <th>OPTIONS</th>
-                </tr>
-                </thead>
-				 <tbody>
-				 <?php
-								$con=mysqli_connect("localhost","maria","maria","os");
-								
-								$sel="SELECT * from product where p_select='a'";
-								$res=mysqli_query($con,$sel);
-							
-								if(mysqli_num_rows($res)>0){
-									while($row=$res->fetch_assoc()){
-									
-									echo "<tr><td>". $row["p_id"]. "</td><td>" .$row["p_name"]. "</td><td>" .$row["p_cat"]. "</td><td>" .$row["p_brand"]. "</td><td>" .$row["p_price"]. "</td><td>" .$row["p_dis"]. "</td><td>" .$row["p_desc"]. "</td><td><img src='images/".$row["p_img"]."' width='100px' height='100px'></td><td>" .$row["p_qty"]. "</td><td>" .$row["p_seller"]. "</td><td align='middle'> <div class='btn-group'>
-				  <div class='btn-group'>
-                        
-                  <button type='button' class='btn btn-default dropdown-toggle btn-sm' data-toggle='dropdown'>
-				  Options
-                    <span class='caret'></span>
-                    <span class='sr-only'>Toggle Dropdown</span>				
-                  </button>
-                        <ul class='dropdown-menu'>
-                          <li><a href='Admin_papr.php?x=". $row["p_id"]. "'>Approve</a></li>
-                          <li><a href='Admin_prjct.php?x=". $row["p_id"]. "'>Reject</a></li>
-                        </ul>
-                   </div>
-                    </div></td></tr>";
-									} 
-									
-									}
-								  
-							?>
-                <!--<tr>
-                  <td> </td>
-                  <td> </td>
-                  <td> </td>
-				  <td> </td>
-				  <td> </td>
-				   <td> </td>
-                  <td> </td>
-                  <td> </td>
-				  <td> </td>
-				  <td> </td>
-				   <td align="middle"> <div class="btn-group">
-				  <div class="btn-group">
-                        
-                  <button type="button" class="btn btn-default dropdown-toggle btn-sm" data-toggle="dropdown">
-				  Options
-                    <span class="caret"></span>
-                    <span class="sr-only">Toggle Dropdown</span>				
-                  </button>
-
-                        <ul class="dropdown-menu">
-                          <li><a href="#">Edit</a></li>
-                          <li><a href="#">Delete</a></li>
-                        </ul>
-                   </div>
-                    </div></td>
-                </tr>
-                
-				<tfoot>
-                <tr>
-                  
-                </tr>
-                </tfoot>-->
-					</table>
-				</div>
-			</div>
-		</div>
-		</div>
             <!-- /.box-header -->
             <!-- form start -->
- 
-            <!-- /.box-body -->
-            
-  <!-- /.content-wrapper -->
+           <form class="form-horizontal">
+              <div class="box-body">
+                
+				<?php
+								/* $id=$_SESSION["txtemail"];
+								$con=mysqli_connect("localhost","maria","maria","os");
+								$sq="select * from seller where name='$y';";
+								$ress=mysqli_query($con,$sq);
+								$rowe=mysqli_fetch_assoc($ress);
+								$uid=$rowe["uid"];
+								
+								$sel="SELECT * from p_seller where pid='$x' and uid='$uid'";
+								$res=mysqli_query($con,$sel);
+								$row=mysqli_fetch_assoc($res);
+							
+								/* echo $sel; 
+										$unn=$row["uid"];
+										$pn=$row["pname"];
+										$qty=$row["qty"];
+										$amt=$row["amount"];
+										$date=$row["date"]; */
+										
+					echo "
+					<div class='form-group'>					
+                  <label for='inputEmail3' class='col-sm-2 control-label' >SELLER</label>
+				  <div class='col-sm-10'>
+                  <input type='text' class='form-control' id='inputEmail3' readonly value='$sn' >
+                </div> </div>
+				
+				<div class='form-group'>					
+                  <label for='inputEmail3' class='col-sm-2 control-label'>OWNER</label>
+				  <div class='col-sm-10'>
+                  <input type='text' class='form-control' id='inputEmail3' readonly value='$so'>
+                </div> </div>
+				<div class='form-group'>					
+                  <label for='inputEmail3' class='col-sm-2 control-label'>EMAIL</label>
+				  <div class='col-sm-10'>
+                  <input type='text' class='form-control' id='inputEmail3' readonly value='$sm'>
+                </div> </div>
+				<div class='form-group'>					
+                  <label class='col-sm-2 control-label' for='inputEmail3'>MOBILE</label>
+				  <div class='col-sm-10'>
+                  <input type='text' class='form-control' id='inputEmail3' readonly value='$smob'>
+                </div> </div>
+				<div class='form-group'>					
+                  <label class='col-sm-2 control-label' for='inputEmail3'>ADDRESS</label>
+				  <div class='col-sm-10'>
+                  <input type='text' class='form-control' id='inputEmail3' readonly value='$sadr'>
+                </div> </div>
+				<div class='form-group'>					
+                  <label class='col-sm-2 control-label' for='inputEmail3'>PINCODE</label>
+				  <div class='col-sm-10'>
+                  <input type='text' class='form-control' id='inputEmail3' readonly value='$sp'>
+                </div> </div>
+				";
+                ?>
+              </div>
+              <!-- /.box-body -->
 
-  <!--<footer class="main-footer">
+             
+            </form>
+          </div>
+          <!-- /.box -->
+
+       
+
+        </div>
+        <!--/.col (left) -->
+        <!-- right column -->
+        <div class="col-md-6">
+          <!-- Horizontal Form -->
+          <div class="box box-info">
+            <div class="box-header with-border">
+              <h3 class="box-title">Warning Message</h3>
+            </div>
+            <!-- /.box-header -->
+            <!-- form start -->
+            
+			  <?php
+			 echo "<form class='form-horizontal' method='post' action='a_sw.php?x=$x'>
+              <div class='box-body'>";
+											
+											
+                echo "<div class='form-group'>
+                  <label for='inputEmail3' class='col-sm-2 control-label'>SUBJECT</label>
+
+                  <div class='col-sm-10'>
+                    <input type='text' name='sub' id='sub' required class='form-control'  >
+                  </div>
+                </div>
+				<div class='form-group'>
+                  <label for='inputEmail3' class='col-sm-2 control-label'>MESSAGE</label>
+
+                  <div class='col-sm-10'>
+                    <textarea class='form-control' name='msg' id='msg' required  rows='8' placeholder='Enter ...' ></textarea>
+                  </div>
+                </div>";
+				?>
+                
+              </div>
+              <!-- /.box-body -->
+              <div class="box-footer">
+                
+                <?php echo "<input type='submit' name='SEND' value='SEND'  class='btn btn-info pull-right'>";?>
+              </div>
+              <!-- /.box-footer -->
+            </form>
+          </div>
+          <!-- /.box -->
+          <!-- general form elements disabled -->
+          
+      <!-- /.row -->
+    </section>
+
+  </div>
+  <!-- /.content-wrapper -->
+  <!-- <footer class="main-footer">
     <div class="pull-right hidden-xs">
       <b>Version</b> 2.4.0
     </div>
-    <strong>Copyright &copy; <a href=""> MCA Studio</a>.</strong> All rights
+    <strong>Copyright &copy; 2014-2016 <a href="https://adminlte.io">Almsaeed Studio</a>.</strong> All rights
     reserved.
-  </footer>-->
+  </footer> -->
 
   <!-- Control Sidebar -->
-  <aside class="control-sidebar control-sidebar-dark">
-    <!-- Create the tabs -->
-    <ul class="nav nav-tabs nav-justified control-sidebar-tabs">
-     <!-- <li><a href="#control-sidebar-home-tab" data-toggle="tab"><i class="fa fa-home"></i></a></li>-->
-      <li><a href="#control-sidebar-settings-tab" data-toggle="tab"><i class="fa fa-gears"></i></a></li>
-    </ul>
-    <!-- Tab panes -->
-    <div class="tab-content">
-      <!-- Home tab content -->
-      <div class="tab-pane" id="control-sidebar-home-tab">
-            </a>
-          </li>
-        </ul>
-        <!-- /.control-sidebar-menu -->
-
-      </div>
-      <!-- /.tab-pane -->
-
-      <!-- Settings tab content -->
-     
-      <!-- /.tab-pane -->
-    </div>
-  </aside>
+  
   <!-- /.control-sidebar -->
   <!-- Add the sidebar's background. This div must be placed
        immediately after the control sidebar -->
   <div class="control-sidebar-bg"></div>
-
 </div>
 <!-- ./wrapper -->
 

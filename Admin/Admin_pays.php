@@ -1,13 +1,7 @@
 <?php
 session_start();
-
-/* if(!empty($_GET["x"]))
-{
-	$xx=$_GET["x"];
-	echo $xx;
-	
-} */
 ?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -49,7 +43,7 @@ session_start();
     <!-- Logo -->
    <a href="Admin_Home.php" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
-      <span class="logo-mini"><b>A</b>H</span>
+      <span class="logo-mini"><b>E</b>S</span>
       <!-- logo for regular state and mobile devices -->
       <span class="logo-lg"><b>Elite Shoppy</b></span>
     </a>
@@ -103,7 +97,7 @@ session_start();
 				echo "<img src='dist/imgs/FEMALE.jpg' class='user-image' alt='User Image'>";
 				/* if($row['gender']=='Female')
 				{
-					echo "<img src='dist/imgs/FEMALE.jpg' class='img-circle' alt='User Image'>";
+					echo "<img src='dist/imgs/FEMALE.jpg' class='user-image' alt='User Image'>";
 				}
 				else
 				{
@@ -199,7 +193,7 @@ session_start();
               <i class="fa fa-angle-left pull-right"></i>
             </span>
           </a>
-		     <li class="treeview active">
+		   <li class="treeview">
           <a href="#">
             <i class="fa fa-pie-chart"></i>
             <span>REQUESTS</span>
@@ -207,12 +201,12 @@ session_start();
               <i class="fa fa-angle-left pull-right"></i>
             </span>
           </a>
-         <ul class="treeview-menu">
+        <ul class="treeview-menu">
             
 			<li ><a href="Admin_seller.php"><i class="fa fa-circle-o"></i> Add Seller</a></li>
 			<li ><a href="Admin_epro.php"><i class="fa fa-circle-o"></i> Edit Product</a></li>
 			<li ><a href="Admin_epr.php"><i class="fa fa-circle-o"></i> Delete Product</a></li>
-			<li class="active"><a href="Admin_addsp.php"><i class="fa fa-circle-o"></i> Seller Product</a></li>
+			<li ><a href="Admin_addsp.php"><i class="fa fa-circle-o"></i> Seller Product</a></li>
           </ul>
         </li>
 		  <li class="treeview">
@@ -232,7 +226,7 @@ session_start();
             <li><a href="View_Users.php"><i class="fa fa-circle-o"></i> Users</a></li>
           </ul>
         </li>
-		<li class="treeview">
+		<li class="treeview active">
           <a href="#">
             <i class="fa fa-files-o"></i> <span>Salary</span>
             <span class="pull-right-container">
@@ -240,7 +234,7 @@ session_start();
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="Admin_pays.php"><i class="fa fa-circle-o"></i> Pay Salary</a></li>
+            <li class="active"><a href="Admin_pays.php"><i class="fa fa-circle-o"></i> Pay Salary</a></li>
 			
           </ul>
         </li>
@@ -257,6 +251,7 @@ session_start();
           </ul>
         </li>
   </aside>
+
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -264,30 +259,25 @@ session_start();
 	<section class="content" background-color="red">
 
        <div class="row">
-        
+       
         <!-- /.col -->
         
 		</div>
 					
 			<div class="box">
             <div class="box-header">
-              <h2 align="center">Requested Products</h3>
+              <h2 align="center">Payment Details</h3>
             </div>
 					
 			<div class="box-body">
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
                 <tr>
-                  <th>ID</th>
-                  <th>NAME</th>
-                  <th>CATEGORY</th>
-                  <th>BRAND</th>
-                  <th>PRICE</th>
-				  <th>DISCOUNT</th>
-				  <th>DESCRIPTION</th>
-				  <th>IMAGE</th>
-				  <th>QUANTITY</th>
-				  <th>SELLER</th>
+                  <th>SELLER ID</th>
+                  <th>SELLER NAME</th>
+                  <th>TOTAL</th>
+				  <th>AMOUNT</th>
+				  <th>ELITE AMOUNT</th>
 				  <th>OPTIONS</th>
                 </tr>
                 </thead>
@@ -295,13 +285,16 @@ session_start();
 				 <?php
 								$con=mysqli_connect("localhost","maria","maria","os");
 								
-								$sel="SELECT * from product where p_select='a'";
+								$sel="SELECT * FROM `saccount` WHERE amt!='0'";
 								$res=mysqli_query($con,$sel);
 							
 								if(mysqli_num_rows($res)>0){
 									while($row=$res->fetch_assoc()){
+										$sal=$row['amt'];
+										$w=intval($sal*5/100);
+										$t=intval($sal-$w);
 									
-									echo "<tr><td>". $row["p_id"]. "</td><td>" .$row["p_name"]. "</td><td>" .$row["p_cat"]. "</td><td>" .$row["p_brand"]. "</td><td>" .$row["p_price"]. "</td><td>" .$row["p_dis"]. "</td><td>" .$row["p_desc"]. "</td><td><img src='images/".$row["p_img"]."' width='100px' height='100px'></td><td>" .$row["p_qty"]. "</td><td>" .$row["p_seller"]. "</td><td align='middle'> <div class='btn-group'>
+									echo "<tr><td>". $row["sid"]. "</td><td>" .$row["sname"]. "</td><td>" .$row["amt"]. "</td><td>$t</td><td>$w</td><td align='middle'> <div class='btn-group'>
 				  <div class='btn-group'>
                         
                   <button type='button' class='btn btn-default dropdown-toggle btn-sm' data-toggle='dropdown'>
@@ -309,99 +302,39 @@ session_start();
                     <span class='caret'></span>
                     <span class='sr-only'>Toggle Dropdown</span>				
                   </button>
+
                         <ul class='dropdown-menu'>
-                          <li><a href='Admin_papr.php?x=". $row["p_id"]. "'>Approve</a></li>
-                          <li><a href='Admin_prjct.php?x=". $row["p_id"]. "'>Reject</a></li>
+                          <li><a href='pays.php?x=". $row["sid"]. "'>Pay</a></li>
                         </ul>
                    </div>
-                    </div></td></tr>";
+                    </div>
+					</div></td></tr>";
 									} 
 									
 									}
 								  
 							?>
-                <!--<tr>
-                  <td> </td>
-                  <td> </td>
-                  <td> </td>
-				  <td> </td>
-				  <td> </td>
-				   <td> </td>
-                  <td> </td>
-                  <td> </td>
-				  <td> </td>
-				  <td> </td>
-				   <td align="middle"> <div class="btn-group">
-				  <div class="btn-group">
-                        
-                  <button type="button" class="btn btn-default dropdown-toggle btn-sm" data-toggle="dropdown">
-				  Options
-                    <span class="caret"></span>
-                    <span class="sr-only">Toggle Dropdown</span>				
-                  </button>
+							</table>
+							</div>
+	
+    </section>
 
-                        <ul class="dropdown-menu">
-                          <li><a href="#">Edit</a></li>
-                          <li><a href="#">Delete</a></li>
-                        </ul>
-                   </div>
-                    </div></td>
-                </tr>
-                
-				<tfoot>
-                <tr>
-                  
-                </tr>
-                </tfoot>-->
-					</table>
-				</div>
-			</div>
-		</div>
-		</div>
-            <!-- /.box-header -->
-            <!-- form start -->
- 
-            <!-- /.box-body -->
-            
+  </div>
   <!-- /.content-wrapper -->
-
-  <!--<footer class="main-footer">
+  <!-- <footer class="main-footer">
     <div class="pull-right hidden-xs">
       <b>Version</b> 2.4.0
     </div>
-    <strong>Copyright &copy; <a href=""> MCA Studio</a>.</strong> All rights
+    <strong>Copyright &copy; 2014-2016 <a href="https://adminlte.io">Almsaeed Studio</a>.</strong> All rights
     reserved.
-  </footer>-->
+  </footer> -->
 
   <!-- Control Sidebar -->
-  <aside class="control-sidebar control-sidebar-dark">
-    <!-- Create the tabs -->
-    <ul class="nav nav-tabs nav-justified control-sidebar-tabs">
-     <!-- <li><a href="#control-sidebar-home-tab" data-toggle="tab"><i class="fa fa-home"></i></a></li>-->
-      <li><a href="#control-sidebar-settings-tab" data-toggle="tab"><i class="fa fa-gears"></i></a></li>
-    </ul>
-    <!-- Tab panes -->
-    <div class="tab-content">
-      <!-- Home tab content -->
-      <div class="tab-pane" id="control-sidebar-home-tab">
-            </a>
-          </li>
-        </ul>
-        <!-- /.control-sidebar-menu -->
-
-      </div>
-      <!-- /.tab-pane -->
-
-      <!-- Settings tab content -->
-     
-      <!-- /.tab-pane -->
-    </div>
-  </aside>
+  
   <!-- /.control-sidebar -->
   <!-- Add the sidebar's background. This div must be placed
        immediately after the control sidebar -->
   <div class="control-sidebar-bg"></div>
-
 </div>
 <!-- ./wrapper -->
 

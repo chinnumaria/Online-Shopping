@@ -84,6 +84,7 @@ session_start();
 		
 </head>
 <body class="hold-transition skin-blue sidebar-mini" onload="loadCategory()">
+
 <div class="wrapper">
 
   <header class="main-header">
@@ -107,7 +108,7 @@ session_start();
         <ul class="nav navbar-nav">
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-			 <?php
+			<?php
 				$id=$_SESSION['txtemail'];
 				$con=mysqli_connect("localhost","maria","maria","os");
 				$sq="select gender from registration where email='$id';"; 
@@ -120,7 +121,7 @@ session_start();
 				else
 				{
 					echo "<img src='dist/imgs/MALE.jpg' class='user-image' alt='User Image'>";
-				}	 
+				}	
 			   
 				$id=$_SESSION["txtemail"];
 				$con=mysqli_connect("localhost","maria","maria","os");
@@ -129,7 +130,7 @@ session_start();
 				$row=mysqli_fetch_assoc($res);
 				echo "<span class='hidden-xs'>".$row['name']."</span>";
 			    ?>
-               
+              
              
             </a>
             <ul class="dropdown-menu">
@@ -173,7 +174,7 @@ session_start();
                  <!--<a href="" class="btn btn-default btn-flat">Profile</a>-->
                 </div>
                 <div class="pull-right">
-                  <a href="pages/layout/logout.php" class="btn btn-default btn-flat">Sign out</a>
+                  <a href="pages/examples/A_login.html" class="btn btn-default btn-flat">Sign out</a>
                 </div>
               </li>
             </ul>
@@ -226,16 +227,7 @@ session_start();
         </div>
       </div>
       <!-- search form -->
-      <form action="#" method="get" class="sidebar-form">
-        <div class="input-group">
-          <input type="text" name="q" class="form-control" placeholder="Search...">
-          <span class="input-group-btn">
-                <button type="submit" name="search" id="search-btn" class="btn btn-flat">
-                  <i class="fa fa-search"></i>
-                </button>
-              </span>
-        </div>
-      </form>
+      
       <!-- /.search form -->
       <!-- sidebar menu: : style can be found in sidebar.less -->
      
@@ -274,18 +266,32 @@ session_start();
             <li><a href="View_Users.php"><i class="fa fa-circle-o"></i> View Users</a></li>
 			<li><a href="View_Product.php"><i class="fa fa-circle-o"></i> View Products</a></li>
 			<li><a href="Admin_dslr.php"><i class="fa fa-circle-o"></i> View Sellors</a></li>
-			<li><a href=""><i class="fa fa-circle-o"></i> View Feedback</a></li>
+			<li><a href="Admin_fp.php"><i class="fa fa-circle-o"></i> Featured Products</a></li>
+			<li><a href="p_details.php"><i class="fa fa-circle-o"></i>Payment Details</a></li>
           </ul>
         </li>
 		<li class="treeview">
           <a href="#">
-            <i class="fa fa-edit"></i> <span>EDIT</span>
+            <i class="fa fa-files-o"></i> <span>Salary</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="Admin_fp"><i class="fa fa-circle-o"></i> Featured Products</a></li>
+            <li><a href="Admin_pays.php"><i class="fa fa-circle-o"></i> Pay Salary</a></li>
+			
+          </ul>
+        </li>
+		<li class="treeview">
+          <a href="#">
+            <i class="fa fa-edit"></i> <span>Reports</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="Admin_pd.php"><i class="fa fa-circle-o"></i> Purchase</a></li>
+			 <li><a href="Admin_ssalary.php"><i class="fa fa-circle-o"></i> Salary</a></li>
           </ul>
         </li>
   </aside>
